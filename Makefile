@@ -105,6 +105,7 @@ fclean				:	clean
 						${RM} ${NAME}
 						${RM} ${DEBUG}
 						$(MAKE) fclean -C ${DIR_LIBFT}
+						${MAKE} clean -C ${DIR_MLX}
 
 re					:
 						$(MAKE) fclean
