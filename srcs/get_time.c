@@ -1,45 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/06 20:47:44 by bperriol         ###   ########lyon.fr   */
+/*   Created: 2022/12/29 16:50:52 by bperriol          #+#    #+#             */
+/*   Updated: 2023/02/06 20:48:53 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include "libft.h"
-# include <mlx.h>
-# include <math.h>
-
-#define screenWidth 1000
-#define screenHeight 600
-#define mapWidth 24
-#define mapHeight 24
-
-typedef struct s_point
+#include "cub3D.h"
+#include <sys/time.h>
+# include <stdio.h>
+double	get_time(void)
 {
-	int	x;
-	int	y;
-	int	color;
-}	t_point;
+	struct timeval	tp;
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-
-
-double	get_time(void);
-
-#endif
+	gettimeofday(&tp, NULL);
+	printf("sec=%ld et micro=%f\n", tp.tv_sec, (double)tp.tv_usec / 1000000);
+	return ((double)tp.tv_sec + (double)tp.tv_usec / 1000000);
+}

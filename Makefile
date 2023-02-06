@@ -25,7 +25,7 @@ DIR_DEBUG			=	${NAME}.dSYM
 
 HEAD			=	cub3D.h
 
-SRCS			=	main.c
+SRCS			=	main.c		get_time.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_D			=	${SRCS:%.c=${DIR_OBJS_D}%.o}
