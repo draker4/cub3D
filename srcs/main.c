@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:36:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/07 09:27:40 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/08 13:53:31 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	main(void)
 		&img.endian);
 	while(1)
   {
-  usleep(10000);
+  usleep(50000);
     for(int x = 0; x < screenWidth; x++)
     {
       //calculate ray position and direction

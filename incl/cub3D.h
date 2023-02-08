@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/06 20:47:44 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/08 14:59:05 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,32 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
+typedef struct s_player
+{
+	int	pos_x;
+	int	pos_y;
+	int	dir_x;
+	int	dir_y;
+}	t_player;
+
+// typedef struct s_sprite
+// {
+// }	t_sprite;
+
+typedef struct s_vars
+{
+	void	*mlx_ptr;
+	void	*mlx_win;
+}	t_vars;
+
+typedef struct s_cub3D
+{
+	int			**map;
+	t_player	*player;
+	// t_sprite	*sprites;
+	t_vars		*vars;
+	t_data		*data;
+}	t_cub3D;
 
 
 double	get_time(void);
