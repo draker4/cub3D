@@ -25,7 +25,13 @@ DIR_DEBUG			=	${NAME}.dSYM
 
 HEAD			=	cub3D.h
 
-SRCS			=	main.c		get_time.c
+SRCS			=	main.c			\
+					get_time.c		\
+					play_game.c		\
+					init_cube.c		\
+					raycasting.c	\
+					mlx_utils.c		\
+					handle_events.c	\
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_D			=	${SRCS:%.c=${DIR_OBJS_D}%.o}
