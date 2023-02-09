@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:22:05 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 17:38:24 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,6 @@ void	play_game(t_cube *cube);
 void	move_player(t_cube *cube);
 
 // exit game
-void	exit_game(t_cube *cube);
+int		exit_game(t_cube *cube);
 
 #endif

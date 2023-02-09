@@ -6,13 +6,13 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:19:16 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:27:09 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 17:38:12 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	exit_game(t_cube *cube)
+int	exit_game(t_cube *cube)
 {
 	//free map[i]
 	mlx_clear_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
