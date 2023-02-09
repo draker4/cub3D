@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 19:56:52 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 12:08:21 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
 # define MOVE_SPEED 5.0
 # define ROT_SPEED 3.0
+
+# define E_ARG_NB "Select one map only\n"
 
 typedef struct s_point
 {
