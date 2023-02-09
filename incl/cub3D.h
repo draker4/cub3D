@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:38:24 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 19:09:47 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1000
 # define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
-# define MOVE_SPEED 5.0
-# define ROT_SPEED 3.0
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define MOVE_SPEED 4.0
+# define ROT_SPEED 2.0
 
 typedef struct s_point
 {
@@ -81,7 +83,6 @@ typedef struct s_raycast
 	int		line_height;
 	int		line_start;
 	int		line_end;
-	int		color;
 }	t_raycast;
 
 typedef struct s_frame
@@ -103,6 +104,18 @@ typedef struct s_move
 	int		rotate_left;
 }	t_move;
 
+typedef struct s_tex
+{
+	int		**texture;
+	int		tex_num;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	double	step;
+	double	tex_pos;
+	double	wall_hit_x;
+}	t_tex;
+
 typedef struct s_cube
 {
 	int				**map;
@@ -113,6 +126,8 @@ typedef struct s_cube
 	t_vars			vars;
 	t_data			data;
 	t_move			move;
+	t_tex			tex;
+	int				**buffer;
 }	t_cube;
 
 // prototypes init_cube
@@ -125,7 +140,6 @@ double	get_time(void);
 void	raycasting(t_cube *cube);
 
 // prototypes mlx utils
-void	draw_line(t_cube *cube, int x);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -141,5 +155,13 @@ void	move_player(t_cube *cube);
 
 // exit game
 int		exit_game(t_cube *cube);
+
+// prototypes draw textures
+void	calculate_texture(t_cube *cube);
+void	fill_texture(t_cube *cube, int x);
+void	draw_buffer(t_cube *cube);
+
+// prototypes generate textures
+void	generate_textures(t_cube *cube);
 
 #endif
