@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:18:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 19:21:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 19:31:32 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	fill_texture(t_cube *cube, int x)
 		cube->tex.tex_y = (int)cube->tex.tex_pos & (TEX_HEIGHT - 1);
 		cube->tex.tex_pos += cube->tex.step;
 		cube->tex.color = cube->tex.texture[cube->tex.tex_num][TEX_HEIGHT * \
-		cube->tex.tex_y + cube->tex.tex_x];
+		cube->tex.tex_x + cube->tex.tex_y];
 		if (cube->raycast.side == 1)
 			cube->tex.color = (cube->tex.color >> 1);
 		cube->buffer[y][x] = cube->tex.color;

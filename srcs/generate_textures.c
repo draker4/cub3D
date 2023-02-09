@@ -6,11 +6,39 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 19:01:12 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 19:31:00 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	swap_x_y(t_cube *cube)
+{
+	int	i;
+	int	x;
+	int	y;
+	int	tmp;
+
+	i = 0;
+	while (i < 8)
+	{
+		x = 0;
+		while (x < TEX_WIDTH)
+		{
+			y = 0;
+			while (y < x)
+			{
+				tmp = cube->tex.texture[i][TEX_WIDTH * y + x];
+				cube->tex.texture[i][TEX_WIDTH * y + x] = \
+				cube->tex.texture[i][TEX_WIDTH * x + y];
+				cube->tex.texture[i][TEX_WIDTH * x + y] = tmp;
+				y++;
+			}
+			x++;
+		}
+		i++;
+	}
+}
 
 //juste premier test, il faudra changer avec les paths des textures ici cets juste pour generer en attendant
 
@@ -41,4 +69,5 @@ void	generate_textures(t_cube *cube)
 		}
 		x++;
 	}
+	swap_x_y(cube);
 }
