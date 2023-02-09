@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 19:39:08 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 11:36:52 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 int	handle_keypress(int keycode, t_cube *cube)
 {
-	(void)cube;
-	printf("keycode = %d\n", keycode);
 	if (keycode == 119)
-		game->move.up = 1;
+		cube->move.up = 1;
 	if (keycode == 115)
-		game->move.down = 1;
+		cube->move.down = 1;
 	if (keycode == 97)
-		game->move.left = 1;
+		cube->move.left = 1;
 	if (keycode == 100)
-		game->move.right = 1;
+		cube->move.right = 1;
 	return (EXIT_SUCCESS);
 }
 
 int	handle_keyrelease(int keycode, t_cube *cube)
 {
 	if (keycode == 119)
-		game->move.up = 0;
+		cube->move.up = 0;
 	if (keycode == 115)
-		game->move.down = 0;
+		cube->move.down = 0;
 	if (keycode == 97)
-		game->move.left = 0;
+		cube->move.left = 0;
 	if (keycode == 100)
-		game->move.right = 0;
+		cube->move.right = 0;
 	return (EXIT_SUCCESS);
 }
