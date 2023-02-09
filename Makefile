@@ -32,7 +32,8 @@ SRCS			=	main.c			\
 					raycasting.c	\
 					mlx_utils.c		\
 					handle_events.c	\
-					move_player.c
+					move_player.c	\
+					exit_game.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_D			=	${SRCS:%.c=${DIR_OBJS_D}%.o}

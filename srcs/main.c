@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:22:39 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 17:56:02 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 11:55:21 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(void)
 		i++;
 	}
 	// fin copie map
-	if (!init_cube(&cube))
+	if (init_cube(&cube))
 		return (EXIT_FAILURE);
 	play_game(&cube);
 	return (EXIT_SUCCESS);
