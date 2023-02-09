@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 18:25:30 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:27:10 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ typedef struct s_data
 
 typedef struct s_player
 {
-	float	pos_x;
-	float	pos_y;
-	float	dir_x;
-	float	dir_y;
-	float	plane_x;
-	float	plane_y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }	t_player;
 
 // typedef struct s_sprite
@@ -71,20 +71,20 @@ typedef struct s_vars
 
 typedef struct s_raycast
 {
-	float	camera_x;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	int		map_x;
 	int		map_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	float	hit;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	hit;
 	int		step_x;
 	int		step_y;
-	float	side_dist_x;
-	float	side_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 	int		side;
-	float	dist_plan_wall;
+	double	dist_plan_wall;
 	int		line_height;
 	int		line_start;
 	int		line_end;
@@ -100,12 +100,14 @@ typedef struct s_frame
 
 typedef struct s_move
 {
-	float	move_speed;
-	float	rotate_speed;
+	double	move_speed;
+	double	rotate_speed;
 	int		up;
 	int		down;
 	int		left;
 	int		right;
+	int		rotate_right;
+	int		rotate_left;
 }	t_move;
 
 typedef struct s_elem
@@ -145,9 +147,11 @@ void	raycasting(t_cube *cube);
 // prototypes mlx utils
 void	draw_line(t_cube *cube, int x);
 int		create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // prototypes handle events
 int		handle_keypress(int keycode, t_cube *cube);
+int		handle_keyrelease(int keycode, t_cube *cube);
 
 // prototypes play game
 void	play_game(t_cube *cube);
@@ -177,5 +181,8 @@ void	ft_error(char *str);
 
 // free table splited
 void	free_split(char **str);
+
+// exit game
+int		exit_game(t_cube *cube);
 
 #endif

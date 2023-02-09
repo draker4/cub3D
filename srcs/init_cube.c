@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 19:40:25 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 17:36:00 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ int	init_cube(t_cube *cube)
 	cube->move.down = 0;
 	cube->move.left = 0;
 	cube->move.right = 0;
-	if (!init_mlx(cube))
+	cube->move.rotate_left = 0;
+	cube->move.rotate_right = 0;
+	cube->frame.frame_time = 0;
+	if (init_mlx(cube))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

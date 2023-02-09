@@ -38,7 +38,8 @@ SRCS			=	main.c			\
 					raycasting.c	\
 					mlx_utils.c		\
 					handle_events.c	\
-					move_player.c
+					move_player.c	\
+					exit_game.c
 
 SRCS_P			=	get_data.c		\
 					get_elem.c		\

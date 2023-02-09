@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:22:39 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 14:51:28 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:27:28 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
-	// // fin copie map
-	if (!init_cube(&cube))
+	// fin copie map
+	if (init_cube(&cube))
 		return (EXIT_FAILURE);
 	play_game(&cube);
 	return (EXIT_SUCCESS);
