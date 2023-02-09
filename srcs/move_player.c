@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:31:45 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 17:40:27 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	move_right_left(t_cube *cube)
 			cube->player.pos_x += cube->player.dir_y * cube->move.move_speed;
 		if (cube->map \
 		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y - \
-		cube->player.pos_x * cube->move.move_speed)] == 0)
+		cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_y -= cube->player.dir_x * cube->move.move_speed;
 	}
 	if (cube->move.left)
@@ -59,7 +59,7 @@ static void	move_right_left(t_cube *cube)
 			cube->player.pos_x -= cube->player.dir_y * cube->move.move_speed;
 		if (cube->map \
 		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y + \
-		cube->player.pos_x * cube->move.move_speed)] == 0)
+		cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_y += cube->player.dir_x * cube->move.move_speed;
 	}
 }
