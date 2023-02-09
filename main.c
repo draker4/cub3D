@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:36:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 19:37:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 10:56:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,13 +334,14 @@ int	main(void)
       dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
       dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
       double oldPlaneX = planeX;
+      
       planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
       planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
     }
     //rotate to the left
     if(keyDown(SDLK_LEFT))
     {
-      both camera direction and camera plane must be rotated
+      // both camera direction and camera plane must be rotated
       double oldDirX = dirX;
       dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
       dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);

@@ -6,33 +6,69 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/08 19:57:52 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 11:39:26 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	move_player(t_cube *cube)
+static void	move_forward_backward(t_cube *cube)
 {
-	cube->move->move_speed = cude->frame.frame_time * MOVE_SPEED;
-	cube->move->rotate_speed = cude->frame.frame_time * ROT_SPEED;
 	if (cube->move.up)
 	{
 		if (cube->map \
 		[(int)(cube->player.pos_x + cube->player.dir_x * \
-		cube->move->move_speed)][cube->player.pos_y] == 0)
-			cube->player.pos_x += cube->player.dir_x * cube->move->move_speed;
+		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+			cube->player.pos_x += cube->player.dir_x * cube->move.move_speed;
 	}
 	if (cube->move.down)
 	{
 		if (cube->map \
 		[(int)(cube->player.pos_x - cube->player.dir_x * \
-		cube->move->move_speed)][cube->player.pos_y] == 0)
-			cube->player.pos_x -= cube->player.dir_x * cube->move->move_speed;
+		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+			cube->player.pos_x -= cube->player.dir_x * cube->move.move_speed;
 	}
+}
+
+static void	rotate_player(t_cube *cube, int prev_dir_x, int prev_plane_x)
+{
 	if (cube->move.right)
 	{
-		game->player.prev_dir_x = game->player.dir_x;
-		game->player.dir_x = game->player.dir_x * cos();
+		cube->player.dir_x = cube->player.dir_x * cos(-cube->move.rotate_speed) \
+		- cube->player.dir_y * sin(-cube->move.rotate_speed);
+		cube->player.dir_y = prev_dir_x * sin(-cube->move.rotate_speed) \
+		+ cube->player.dir_y * cos(-cube->move.rotate_speed);
+		cube->player.plane_x = cube->player.plane_x * \
+		cos(-cube->move.rotate_speed) - cube->player.plane_y * \
+		sin(-cube->move.rotate_speed);
+		cube->player.plane_y = prev_plane_x * sin(-cube->move.rotate_speed) \
+		+ cube->player.plane_y * cos(-cube->move.rotate_speed);
 	}
+	if (cube->move.left)
+	{
+		cube->player.dir_x = cube->player.dir_x * cos(cube->move.rotate_speed) \
+		- cube->player.dir_y * sin(cube->move.rotate_speed);
+		cube->player.dir_y = prev_dir_x * sin(cube->move.rotate_speed) \
+		+ cube->player.dir_y * cos(cube->move.rotate_speed);
+		cube->player.plane_x = cube->player.plane_x * \
+		cos(cube->move.rotate_speed) - cube->player.plane_y * \
+		sin(cube->move.rotate_speed);
+		cube->player.plane_y = prev_plane_x * sin(cube->move.rotate_speed) \
+		+ cube->player.plane_y * cos(cube->move.rotate_speed);
+	}
+}
+
+void	move_player(t_cube *cube)
+{
+	float	prev_dir_x;
+	float	prev_plane_x;
+
+	prev_dir_x = cube->player.dir_x;
+	prev_plane_x = cube->player.plane_x;
+	cube->move.move_speed = cube->frame.frame_time * MOVE_SPEED;
+	cube->move.rotate_speed = cube->frame.frame_time * ROT_SPEED;
+	if (cube->move.up || cube->move.down)
+		move_forward_backward(cube);
+	if (cube->move.right || cube->move.left)
+		rotate_player(cube, prev_dir_x, prev_plane_x);
 }

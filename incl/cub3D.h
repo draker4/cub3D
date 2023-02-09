@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 12:08:21 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:11:02 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_player
 	float	pos_y;
 	float	dir_x;
 	float	dir_y;
-	float	prev_dir_x;
-	float	prev_dir_y;
 	float	plane_x;
 	float	plane_y;
 }	t_player;
@@ -135,5 +133,8 @@ int		handle_keypress(int keycode, t_cube *cube);
 
 // prototypes play game
 void	play_game(t_cube *cube);
+
+// prototypes move player
+void	move_player(t_cube *cube);
 
 #endif
