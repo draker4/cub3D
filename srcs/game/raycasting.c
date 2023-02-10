@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 15:37:07 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/09 19:12:15 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	dda_algo(t_cube *cube)
 	}
 }
 
-static void	draw_line_wall(t_cube *cube)
+static void	calculate_line_wall(t_cube *cube)
 {
 	if (!cube->raycast.side)
 		cube->raycast.dist_plan_wall = \
@@ -111,20 +111,10 @@ void	raycasting(t_cube *cube)
 		init_camera(cube, x);
 		init_dir(cube);
 		dda_algo(cube);
-		draw_line_wall(cube);
-		
-		  //choose wall color
-     	 switch(cube->map[cube->raycast.map_x][cube->raycast.map_y])
-      	{
-        case 1:  cube->raycast.color = create_trgb(1, 255, 160, 122);    break; //red
-        case 2:  cube->raycast.color = create_trgb(1, 127, 255, 0);  break; //green
-        case 3:  cube->raycast.color = create_trgb(1, 175, 238, 238);   break; //blue
-        case 4:  cube->raycast.color = create_trgb(1, 255, 250, 250);  break; //white
-        default: cube->raycast.color = create_trgb(1, 255, 228, 181); break; //yellow
-     	}
-		if (cube->raycast.side == 1)
-			cube->raycast.color = cube->raycast.color / 2;
-		draw_line(cube, x);
+		calculate_line_wall(cube);
+		calculate_texture(cube);
+		fill_texture(cube, x);
 		x++;
 	}
+	draw_buffer(cube);
 }

@@ -6,7 +6,11 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/10 15:20:22 by bboisson         ###   ########.fr       */
+=======
+/*   Updated: 2023/02/09 19:09:47 by bperriol         ###   ########lyon.fr   */
+>>>>>>> 56615d82269c67d4ccf39c828f31f069188398fa
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +28,10 @@
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1000
 # define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
-# define MOVE_SPEED 5.0
-# define ROT_SPEED 3.0
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define MOVE_SPEED 4.0
+# define ROT_SPEED 2.0
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -90,7 +96,6 @@ typedef struct s_raycast
 	int		line_height;
 	int		line_start;
 	int		line_end;
-	int		color;
 }	t_raycast;
 
 typedef struct s_frame
@@ -130,6 +135,18 @@ typedef struct s_limits
 	int		x_next;
 }	t_limits;
 
+typedef struct s_tex
+{
+	int		**texture;
+	int		tex_num;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	double	step;
+	double	tex_pos;
+	double	wall_hit_x;
+}	t_tex;
+
 typedef struct s_cube
 {
 	char			*line;
@@ -142,6 +159,8 @@ typedef struct s_cube
 	t_vars			vars;
 	t_data			data;
 	t_move			move;
+	t_tex			tex;
+	int				**buffer;
 }	t_cube;
 
 /* --------------------------  PROTOTYPE GAME  --------------------------- */
@@ -153,7 +172,6 @@ int		exit_game(t_cube *cube);
 void	raycasting(t_cube *cube);
 
 // prototypes mlx utils
-void	draw_line(t_cube *cube, int x);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
@@ -208,5 +226,13 @@ void	init_cube(t_cube *cube);
 
 //map utils
 int		split_size(char **str);
+
+// prototypes draw textures
+void	calculate_texture(t_cube *cube);
+void	fill_texture(t_cube *cube, int x);
+void	draw_buffer(t_cube *cube);
+
+// prototypes generate textures
+void	generate_textures(t_cube *cube);
 
 #endif
