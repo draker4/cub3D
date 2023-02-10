@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/10 15:27:26 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:28:43 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int	**init_textures(void)
 	return (textures);
 }
 
-int	init_cube(t_cube *cube)
+void	init_cube(t_cube *cube)
 {
 	cube->line = NULL;
 	cube->map = NULL;
