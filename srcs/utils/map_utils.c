@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 15:20:56 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:44:06 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_split(char **str)
+int	split_size(char **str)
 {
 	int	i;
 
 	i = 0;
+	if (!str || !*str)
+		return (i);
 	while (str[i])
-		free(str[i++]);
-	free (str);
+		i++;
+	return (i);
 }

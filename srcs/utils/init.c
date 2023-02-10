@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cube.c                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:36:00 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/10 15:15:09 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	init_mlx(t_cube *cube)
+int	init_mlx(t_cube *cube)
 {
 	cube->vars.mlx_ptr = mlx_init();
 	if (!cube->vars.mlx_ptr)
@@ -38,12 +38,17 @@ static int	init_mlx(t_cube *cube)
 	return (EXIT_SUCCESS);
 }
 
-int	init_cube(t_cube *cube)
+void	init_cube(t_cube *cube)
 {
-	cube->player.pos_x = 22;
-	cube->player.pos_y = 12;
-	cube->player.dir_x = -1;
-	cube->player.dir_y = 0;
+	cube->line = NULL;
+	cube->map = NULL;
+	cube->elem.north = NULL;
+	cube->elem.south = NULL;
+	cube->elem.west = NULL;
+	cube->elem.east = NULL;
+	cube->elem.floor = NULL;
+	cube->elem.ceilling = NULL;
+	cube->player.pos_x = -1;
 	cube->player.plane_x = 0;
 	cube->player.plane_y = 0.66;
 	cube->move.up = 0;
@@ -53,7 +58,4 @@ int	init_cube(t_cube *cube)
 	cube->move.rotate_left = 0;
 	cube->move.rotate_right = 0;
 	cube->frame.frame_time = 0;
-	if (init_mlx(cube))
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
 }

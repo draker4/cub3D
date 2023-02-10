@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:56:17 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/09 17:38:38 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:19:23 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static char	*ft_str_join(char *s1, char *s2)
 {
 	char	*new;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	new = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (new == NULL)

@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 18:27:10 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:20:22 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@
 # define ROT_SPEED 3.0
 
 # define E_ARG_NB "Select one map only\n"
-# define E_FILE_TYPE "The map should be of type .cub\n"
+# define E_CELL "Forbidden cell type used\n"
 # define E_ELEM "The data elements have to be check\n"
+# define E_FILE_TYPE "The map should be of type .cub\n"
+# define E_PLAYER "Player starting position define more than once\n"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -120,8 +122,17 @@ typedef struct s_elem
 	char	*ceilling;
 }	t_elem;
 
+typedef struct s_limits
+{
+	int		y;
+	int		x;
+	int		x_prev;
+	int		x_next;
+}	t_limits;
+
 typedef struct s_cube
 {
+	char			*line;
 	char			**map;
 	t_elem			elem;
 	t_player		player;
@@ -135,11 +146,8 @@ typedef struct s_cube
 
 /* --------------------------  PROTOTYPE GAME  --------------------------- */
 
-// prototypes init_cube
-int		init_cube(t_cube *cube);
-
-// prototypes get time
-double	get_time(void);
+// exit game
+int		exit_game(t_cube *cube);
 
 //prototypes raycasting
 void	raycasting(t_cube *cube);
@@ -161,20 +169,29 @@ void	move_player(t_cube *cube);
 
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 
+// check the map is surrounded by wall
+int		confirm_map(t_cube *cube, t_limits max, int x, int y);
+
 // get file data and parse it
 int		get_data(t_cube *cube, char *file);
 int		map_type(char *str, char *type);
 
 // get data from the file which relate to element identifier and parse it
-int		get_elem(t_cube *cube, int fd, char **data);
+int		get_elem(t_cube *cube, int fd);
 
 // get data from the file line by line
 int		get_file_line(int fd, char **line);
 
 // get data from the file which relate to the map and parse it
-int		get_map(t_cube *cube, int fd, char **data);
+int		get_map(t_cube *cube, int fd);
 
-/* --------------------------  PROTOTYPE PARSING  --------------------------- */
+// used to parse the map
+int		is_valid_cell(char **map, int x, int y);
+int		player_start(t_cube *cube, int x, int y);
+void	define_limits(t_limits *max, char **map, int y);
+int		confirm_map(t_cube *cube, t_limits max, int x, int y);
+
+/* --------------------------  PROTOTYPE UTILS  --------------------------- */
 
 // print simple error message
 void	ft_error(char *str);
@@ -182,7 +199,14 @@ void	ft_error(char *str);
 // free table splited
 void	free_split(char **str);
 
-// exit game
-int		exit_game(t_cube *cube);
+// prototypes get time
+double	get_time(void);
+
+//init data
+int		init_mlx(t_cube *cube);
+void	init_cube(t_cube *cube);
+
+//map utils
+int		split_size(char **str);
 
 #endif

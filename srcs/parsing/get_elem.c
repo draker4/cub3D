@@ -6,23 +6,11 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/09 18:20:02 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:17:31 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	split_size(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (!str || !*str)
-		return (i);
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int	confirm_id(char *id, char *str)
 {
@@ -39,7 +27,7 @@ int	confirm_id(char *id, char *str)
 	i = 0;
 	while (id[i] == str[i] && id[i] && str[i])
 		i++;
-	if (i == size_id && size_str == size_str)
+	if (i == size_id && size_id == size_str)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
@@ -66,17 +54,17 @@ int	confirm_elem(t_cube *cube, char **tmp)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_elem(t_cube *cube, int fd, char **data)
+int	parse_elem(t_cube *cube, int fd)
 {
 	char	**tmp;
 
-	while ((*data)[0] == '\n')
+	while (cube->line[0] == '\n')
 	{	
-		free(*data);
-		if (get_file_line(fd, data))
+		free(cube->line);
+		if (get_file_line(fd, &cube->line))
 			return (EXIT_FAILURE);
 	}
-	tmp = ft_split(*data, ' ');
+	tmp = ft_split(cube->line, ' ');
 	if (!tmp)
 		return (perror("ft_split"), EXIT_FAILURE);
 	else if (split_size(tmp) == 2 && !confirm_elem(cube, tmp))
@@ -86,25 +74,25 @@ int	parse_elem(t_cube *cube, int fd, char **data)
 	return (EXIT_FAILURE);
 }
 
-int	get_elem(t_cube *cube, int fd, char **data)
+int	get_elem(t_cube *cube, int fd)
 {
 	int		elem;
 
-	if (get_file_line(fd, data))
+	if (get_file_line(fd, &cube->line))
 		return (EXIT_FAILURE);
 	elem = 0;
-	while (*data && elem < 6)
+	while (cube->line && elem < 6)
 	{
-		if (parse_elem(cube, fd, data))
-			return (free(*data), EXIT_FAILURE);
-		free(*data);
-		if (get_file_line(fd, data))
+		if (parse_elem(cube, fd))
+			return (free(cube->line), EXIT_FAILURE);
+		free(cube->line);
+		if (get_file_line(fd, &cube->line))
 			return (EXIT_FAILURE);
 	}
-	while ((*data)[0] == '\n')
+	while (cube->line[0] == '\n')
 	{	
-		free(*data);
-		if (get_file_line(fd, data))
+		free(cube->line);
+		if (get_file_line(fd, &cube->line))
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/09 17:03:46 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 15:05:55 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	map_type(char *str, char *type)
 int	get_data(t_cube *cube, char *file)
 {
 	int		fd;
-	char	*data;
 
+	init_cube(cube);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (perror("Error\nget_map - open"), EXIT_FAILURE);
-	if (get_elem(cube, fd, &data) || get_map(cube, fd, &data))
+	if (get_elem(cube, fd) || get_map(cube, fd))
 		return (EXIT_FAILURE);
 	close(fd);
 	if (fd == -1)
