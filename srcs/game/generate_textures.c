@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 19:31:00 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/10 17:41:46 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

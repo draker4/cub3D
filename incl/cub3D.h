@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/10 15:28:59 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:12:09 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void	move_player(t_cube *cube);
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 
 // check the map is surrounded by wall
-int		confirm_map(t_cube *cube, t_limits max, int x, int y);
+int		confirm_map(t_cube *cube, t_limits max, int y, int x);
 
 // get file data and parse it
 int		get_data(t_cube *cube, char *file);
@@ -200,10 +200,10 @@ int		get_file_line(int fd, char **line);
 int		get_map(t_cube *cube, int fd);
 
 // used to parse the map
-int		is_valid_cell(char **map, int x, int y);
-int		player_start(t_cube *cube, int x, int y);
+int		is_valid_cell(char **map, int y, int x);
+int		player_start(t_cube *cube, int y, int x);
 void	define_limits(t_limits *max, char **map, int y);
-int		confirm_map(t_cube *cube, t_limits max, int x, int y);
+int		confirm_map(t_cube *cube, t_limits max, int y, int x);
 
 /* --------------------------  PROTOTYPE UTILS  --------------------------- */
 
@@ -217,7 +217,7 @@ void	free_split(char **str);
 double	get_time(void);
 
 //init data
-int		init_mlx(t_cube *cube);
+int		init_game(t_cube *cube);
 void	init_cube(t_cube *cube);
 
 //map utils

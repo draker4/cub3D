@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 19:12:15 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/10 17:42:36 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	dda_algo(t_cube *cube)
 			cube->raycast.map_y += cube->raycast.step_y;
 			cube->raycast.side = 1;
 		}
-		if (cube->map[cube->raycast.map_x][cube->raycast.map_y])
+		if (cube->map[cube->raycast.map_y][cube->raycast.map_x])
 			cube->raycast.hit = 1;
 	}
 }

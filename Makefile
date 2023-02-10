@@ -8,7 +8,7 @@
 
 NAME			=	cub3D
 NAME_LIBFT		=	libft.a
-DEBUG			=	minishell_debug
+DEBUG			=	cub3D_debug
 DEBUG_LIBFT		=	libft_debug.a
 
 # ----------  Directories  ----------- #
@@ -36,14 +36,14 @@ HEAD			=	cub3D.h
 
 SRCS			=	cub3D.c
 
-SRCS_G			=	exit_game.c			\
+SRCS_G			=	draw_textures.c		\
+					exit_game.c			\
+					generate_textures.c	\
 					handle_events.c		\
 					mlx_utils.c			\
 					move_player.c		\
 					play_game.c			\
-					raycasting.c		\
-					draw_textures.c		\
-					generate_textures.c
+					raycasting.c		
 
 SRCS_P			=	get_data.c			\
 					get_elem.c			\
@@ -141,7 +141,7 @@ ${DIR_OBJS}			:
 # ------  Compiled Rules Debug  ------ #
 
 ${DEBUG}			:	${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${DIR_LIBFT} ${DIR_MLX}
-						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_P} ${OBJS_D_U} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
+						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
 
 ${DIR_OBJS_D}%.o	:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS_D}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -g3 ${FSANITIZE} -c $< -o $@
@@ -192,13 +192,13 @@ debug				:
 # -----------  Run Commands  --------- #
 
 run					:	all
-						./${NAME}
+						./${NAME} map_subject.cub
 
 runl				:	all
-						${LEAKS}./${NAME}
+						${LEAKS}./${NAME} map_subject.cub
 
 runs				:	debug
-						./${DEBUG}
+						./${DEBUG} map_subject.cub
 
 rund				:	debug
 						${LLDB} ./${DEBUG}

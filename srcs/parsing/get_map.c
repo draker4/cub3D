@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 15:20:36 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:27:46 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**mapjoin(char **s1, char *s2)
 	char	**new;
 	int		i;
 
-	new = malloc(sizeof(char) * (split_size(s1) + 2));
+	new = malloc(sizeof(char *) * (split_size(s1) + 2));
 	if (new == NULL)
 		return (free(s1), perror("mapjoin - malloc"), NULL);
 	i = 0;
@@ -47,11 +47,11 @@ int	parse_map(t_cube *cube)
 		define_limits(&max, cube->map, y);
 		while (cube->map[y][x])
 		{
-			if (is_valid_cell(cube->map, x, y))
+			if (is_valid_cell(cube->map, y, x))
 				return (EXIT_FAILURE);
-			if (player_start(cube, x, y))
+			if (player_start(cube, y, x))
 				return (EXIT_FAILURE);
-			if (cube->map[x][y] == '0' && confirm_map(cube, max, x, y))
+			if (cube->map[y][x] == '0' && confirm_map(cube, max, y, x))
 				return (EXIT_FAILURE);
 			x++;
 		}
@@ -63,7 +63,7 @@ int	parse_map(t_cube *cube)
 
 int	get_map(t_cube *cube, int fd)
 {
-	while (cube->line)
+	while (cube->line[0] != '\0')
 	{
 		cube->map = mapjoin(cube->map, cube->line);
 		if (!cube->map)

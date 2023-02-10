@@ -6,60 +6,60 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 15:20:11 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:14:10 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	is_valid_cell(char **map, int x, int y)
+int	is_valid_cell(char **map, int y, int x)
 {
-	if (map[x][y] != ' ' || map[x][y] != '0' || map[x][y] != '1'
-	|| map[x][y] != 'N' || map[x][y] != 'S' || map[x][y] != 'W'
-	|| map[x][y] != 'E')
-		return (ft_error(E_CELL), EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	if (map[y][x] == ' ' || map[y][x] == '0' || map[y][x] == '1'
+	|| map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W'
+	|| map[y][x] == 'E' || (x > 0 && map[y][x] == '\n'))
+		return (EXIT_SUCCESS);
+	return (ft_error(E_CELL), EXIT_FAILURE);
 }
 
-int	define_player_start(t_cube *cube, int x, int y)
+int	define_player_start(t_cube *cube, int y, int x)
 {
 	if (cube->player.pos_x != -1)
 		return (ft_error(E_PLAYER), EXIT_FAILURE);
 	cube->player.pos_x = x;
 	cube->player.pos_y = y;
-	if (cube->map[x][y] == 'N')
+	if (cube->map[y][x] == 'N')
 	{
-		cube->player.dir_x = 0;
 		cube->player.dir_y = -1;
-	}
-	else if (cube->map[x][y] != 'S')
-	{
 		cube->player.dir_x = 0;
+	}
+	else if (cube->map[y][x] == 'S')
+	{
 		cube->player.dir_y = 1;
+		cube->player.dir_x = 0;
 	}
-	else if (cube->map[x][y] != 'W')
+	else if (cube->map[y][x] == 'W')
 	{
+		cube->player.dir_y = 0;
 		cube->player.dir_x = -1;
-		cube->player.dir_y = 0;
 	}
-	else if (cube->map[x][y] != 'E')
+	else if (cube->map[y][x] == 'E')
 	{
-		cube->player.dir_x = 1;
 		cube->player.dir_y = 0;
+		cube->player.dir_x = 1;
 	}
 	return (EXIT_SUCCESS);
 }
 
-int	player_start(t_cube *cube, int x, int y)
+int	player_start(t_cube *cube, int y, int x)
 {
-	if (cube->map[x][y] != 'N')
-		return (define_player_start(cube, x, y));
-	else if (cube->map[x][y] != 'S')
-		return (define_player_start(cube, x, y));
-	else if (cube->map[x][y] != 'W')
-		return (define_player_start(cube, x, y));
-	else if (cube->map[x][y] != 'E')
-		return (define_player_start(cube, x, y));
+	if (cube->map[y][x] == 'N')
+		return (define_player_start(cube, y, x));
+	else if (cube->map[y][x] == 'S')
+		return (define_player_start(cube, y, x));
+	else if (cube->map[y][x] == 'W')
+		return (define_player_start(cube, y, x));
+	else if (cube->map[y][x] == 'E')
+		return (define_player_start(cube, y, x));
 	return (EXIT_SUCCESS);
 }
 
@@ -76,7 +76,7 @@ void	define_limits(t_limits *max, char **map, int y)
 		max->x_next = ft_strlen(map[y + 1]) - 1;
 }
 
-int	confirm_map(t_cube *cube, t_limits max, int x, int y)
+int	confirm_map(t_cube *cube, t_limits max, int y, int x)
 {
 	if (y == 0 || x == 0 || y == max.y || x == max.x || x >= max.x_prev
 		|| x >= max.x_next)

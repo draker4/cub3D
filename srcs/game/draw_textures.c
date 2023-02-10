@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:18:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 19:31:32 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/10 17:33:44 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	calculate_texture(t_cube *cube)
 {
-	cube->tex.tex_num = cube->map[cube->raycast.map_x][cube->raycast.map_y] - 1;
+	cube->tex.tex_num = cube->map[cube->raycast.map_y][cube->raycast.map_x] - 1;
 	if (!cube->raycast.side)
 		cube->tex.wall_hit_x = cube->player.pos_y + \
 		cube->raycast.dist_plan_wall * cube->raycast.ray_dir_y;

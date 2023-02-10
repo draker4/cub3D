@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/10 15:28:43 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:27:05 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,6 @@ int	init_mlx(t_cube *cube)
 	cube->data.addr = mlx_get_data_addr(cube->data.img, \
 	&cube->data.bits_per_pixel, &cube->data.line_length, \
 	&cube->data.endian);
-	cube->buffer = init_buffer();
-	if (!cube->buffer)
-	{
-		mlx_destroy_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
-		mlx_destroy_image(cube->vars.mlx_ptr, cube->data.img);
-		free(cube->vars.mlx_ptr);
-		return (EXIT_FAILURE);
-		// egal a exit game avec exit 1
-	}
-	cube->tex.texture = init_textures();
-	if (!cube->tex.texture)
-		return (EXIT_FAILURE);
-		//COMME AU DESSUS exit game avec retour 1
-	generate_textures(cube);
 	return (EXIT_SUCCESS);
 }
 
@@ -121,4 +107,25 @@ void	init_cube(t_cube *cube)
 	cube->move.rotate_left = 0;
 	cube->move.rotate_right = 0;
 	cube->frame.frame_time = 0;
+}
+
+int	init_game(t_cube *cube)
+{	
+	if (init_mlx(cube))
+		return (EXIT_FAILURE);
+	cube->buffer = init_buffer();
+	if (!cube->buffer)
+	{
+		mlx_destroy_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
+		mlx_destroy_image(cube->vars.mlx_ptr, cube->data.img);
+		free(cube->vars.mlx_ptr);
+		return (EXIT_FAILURE);
+		// egal a exit game avec exit 1
+	}
+	cube->tex.texture = init_textures();
+	if (!cube->tex.texture)
+		return (EXIT_FAILURE);
+		//COMME AU DESSUS exit game avec retour 1
+	generate_textures(cube);
+	return (EXIT_SUCCESS);
 }

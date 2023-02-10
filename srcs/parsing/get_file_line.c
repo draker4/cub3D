@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 13:56:17 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 15:19:23 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 16:47:32 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	get_file_line(int fd, char **line)
 
 	*line = NULL;
 	nbc = 1;
+	str[0] = '\0';
 	while (!ft_strchr(str, '\n') && nbc > 0)
 	{
 		nbc = read(fd, str, 1);
@@ -54,6 +55,8 @@ int	get_file_line(int fd, char **line)
 			return (free(*line), perror("get_file_line - read"), EXIT_FAILURE);
 		str[nbc] = '\0';
 		*line = ft_str_join(*line, str);
+		if (!*line)
+			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

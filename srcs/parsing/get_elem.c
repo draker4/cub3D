@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 15:17:31 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:28:04 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	confirm_elem(t_cube *cube, char **tmp)
 	return (EXIT_SUCCESS);
 }
 
-int	parse_elem(t_cube *cube, int fd)
+int	parse_elem(t_cube *cube, int fd, int *elem)
 {
 	char	**tmp;
 
@@ -68,7 +68,7 @@ int	parse_elem(t_cube *cube, int fd)
 	if (!tmp)
 		return (perror("ft_split"), EXIT_FAILURE);
 	else if (split_size(tmp) == 2 && !confirm_elem(cube, tmp))
-		return (EXIT_SUCCESS);
+		return ((*elem)++, EXIT_SUCCESS);
 	free_split(tmp);
 	ft_error(E_ELEM);
 	return (EXIT_FAILURE);
@@ -83,7 +83,7 @@ int	get_elem(t_cube *cube, int fd)
 	elem = 0;
 	while (cube->line && elem < 6)
 	{
-		if (parse_elem(cube, fd))
+		if (parse_elem(cube, fd, &elem))
 			return (free(cube->line), EXIT_FAILURE);
 		free(cube->line);
 		if (get_file_line(fd, &cube->line))

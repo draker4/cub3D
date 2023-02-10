@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/09 17:40:27 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/10 17:40:46 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,20 @@ static void	move_forward_backward(t_cube *cube)
 {
 	if (cube->move.up)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x + cube->player.dir_x * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			+ cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_x += cube->player.dir_x * cube->move.move_speed;
-		if (cube->map \
-		[(int)cube->player.pos_x][(int)(cube->player.pos_y + \
-		cube->player.dir_y * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y + cube->player.dir_y
+				* cube->move.move_speed)][(int)cube->player.pos_x] == 0)
 			cube->player.pos_y += cube->player.dir_y * cube->move.move_speed;
 	}
 	if (cube->move.down)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x - cube->player.dir_x * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			- cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_x -= cube->player.dir_x * cube->move.move_speed;
-		if (cube->map \
-		[(int)cube->player.pos_x][(int)(cube->player.pos_y - \
-		cube->player.dir_y * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y - cube->player.dir_y
+				* cube->move.move_speed)][(int)cube->player.pos_x] == 0)
 			cube->player.pos_y -= cube->player.dir_y * cube->move.move_speed;
 	}
 }
@@ -42,24 +38,20 @@ static void	move_right_left(t_cube *cube)
 {
 	if (cube->move.right)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x + cube->player.dir_y * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			+ cube->player.dir_y * cube->move.move_speed)] == 0)
 			cube->player.pos_x += cube->player.dir_y * cube->move.move_speed;
-		if (cube->map \
-		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y - \
-		cube->player.dir_x * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y - cube->player.dir_x
+				* cube->move.move_speed)][(int)(cube->player.pos_x)] == 0)
 			cube->player.pos_y -= cube->player.dir_x * cube->move.move_speed;
 	}
 	if (cube->move.left)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x - cube->player.dir_y * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			- cube->player.dir_y * cube->move.move_speed)] == 0)
 			cube->player.pos_x -= cube->player.dir_y * cube->move.move_speed;
-		if (cube->map \
-		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y + \
-		cube->player.dir_x * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y + cube->player.dir_x
+				* cube->move.move_speed)][(int)(cube->player.pos_x)] == 0)
 			cube->player.pos_y += cube->player.dir_x * cube->move.move_speed;
 	}
 }
