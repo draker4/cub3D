@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 13:22:45 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:35:43 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	define_player_start(t_cube *cube, int y, int x)
 		cube->player.dir_y = 0;
 		cube->player.dir_x = 1;
 	}
-	return (EXIT_SUCCESS);
+	return (cube->parse.map[y][x] = '0', EXIT_SUCCESS);
 }
 
 int	player_start(t_cube *cube, int y, int x)

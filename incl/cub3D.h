@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 13:24:53 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:23:13 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define E_ELEM "The data elements have to be check\n"
 # define E_FILE_TYPE "The map should be of type .cub\n"
 # define E_PLAYER "Player starting position define more than once\n"
+# define E_NO_START "No starting position defined\n"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -205,6 +206,9 @@ int		get_file_line(int fd, char **line);
 
 // get data from the file which relate to the map and parse it
 int		get_map(t_cube *cube, int fd);
+
+//transform map form char to int
+int		map_to_int(t_cube *cube);
 
 // used to parse the map
 int		is_valid_cell(char **map, int y, int x);

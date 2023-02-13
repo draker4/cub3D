@@ -49,6 +49,7 @@ SRCS_P			=	get_data.c			\
 					get_elem.c			\
 					get_file_line.c		\
 					get_map.c			\
+					map_to_int.c		\
 					parse_map.c
 
 SRCS_U			=	error.c				\
@@ -204,4 +205,4 @@ rund				:	debug
 						${LLDB} ./${DEBUG}
 
 runv				:	all
-						${VALGRIND} ./${NAME}
+						${VALGRIND} ./${NAME} map_tuto.cub

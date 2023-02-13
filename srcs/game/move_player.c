@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 13:14:18 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:52:07 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,57 +16,49 @@ static void	move_forward_backward(t_cube *cube)
 {
 	if (cube->move.up)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x + cube->player.dir_x * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			+ cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_x += cube->player.dir_x * cube->move.move_speed;
-		if (cube->map \
-		[(int)cube->player.pos_x][(int)(cube->player.pos_y + \
-		cube->player.dir_y * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y + cube->player.dir_y
+				* cube->move.move_speed)][(int)cube->player.pos_x] == 0)
 			cube->player.pos_y += cube->player.dir_y * cube->move.move_speed;
 	}
 	if (cube->move.down)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x - cube->player.dir_x * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map [(int)cube->player.pos_y][(int)(cube->player.pos_x
+			- cube->player.dir_x * cube->move.move_speed)] == 0)
 			cube->player.pos_x -= cube->player.dir_x * cube->move.move_speed;
-		if (cube->map \
-		[(int)cube->player.pos_x][(int)(cube->player.pos_y - \
-		cube->player.dir_y * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y - cube->player.dir_y
+				* cube->move.move_speed)][(int)cube->player.pos_x] == 0)
 			cube->player.pos_y -= cube->player.dir_y * cube->move.move_speed;
 	}
 }
 
 static void	move_right_left(t_cube *cube)
 {
-	if (cube->move.right)
-	{
-		if (cube->map \
-		[(int)(cube->player.pos_x + cube->player.dir_y * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
-			cube->player.pos_x += cube->player.dir_y * cube->move.move_speed;
-		if (cube->map \
-		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y - \
-		cube->player.dir_x * cube->move.move_speed)] == 0)
-			cube->player.pos_y -= cube->player.dir_x * cube->move.move_speed;
-	}
 	if (cube->move.left)
 	{
-		if (cube->map \
-		[(int)(cube->player.pos_x - cube->player.dir_y * \
-		cube->move.move_speed)][(int)cube->player.pos_y] == 0)
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			+ cube->player.dir_y * cube->move.move_speed)] == 0)
+			cube->player.pos_x += cube->player.dir_y * cube->move.move_speed;
+		if (cube->map[(int)(cube->player.pos_y - cube->player.dir_x
+				* cube->move.move_speed)][(int)(cube->player.pos_x)] == 0)
+			cube->player.pos_y -= cube->player.dir_x * cube->move.move_speed;
+	}
+	if (cube->move.right)
+	{
+		if (cube->map[(int)cube->player.pos_y][(int)(cube->player.pos_x
+			- cube->player.dir_y * cube->move.move_speed)] == 0)
 			cube->player.pos_x -= cube->player.dir_y * cube->move.move_speed;
-		if (cube->map \
-		[(int)(cube->player.pos_x)][(int)(cube->player.pos_y + \
-		cube->player.dir_x * cube->move.move_speed)] == 0)
+		if (cube->map[(int)(cube->player.pos_y + cube->player.dir_x
+				* cube->move.move_speed)][(int)(cube->player.pos_x)] == 0)
 			cube->player.pos_y += cube->player.dir_x * cube->move.move_speed;
 	}
 }
 
 static void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x)
 {
-	if (cube->move.rotate_right)
+	if (cube->move.rotate_left)
 	{
 		cube->player.dir_x = cube->player.dir_x * cos(-cube->move.rotate_speed) \
 		- cube->player.dir_y * sin(-cube->move.rotate_speed);
@@ -78,7 +70,7 @@ static void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x)
 		cube->player.plane_y = prev_plane_x * sin(-cube->move.rotate_speed) \
 		+ cube->player.plane_y * cos(-cube->move.rotate_speed);
 	}
-	if (cube->move.rotate_left)
+	if (cube->move.rotate_right)
 	{
 		cube->player.dir_x = cube->player.dir_x * cos(cube->move.rotate_speed) \
 		- cube->player.dir_y * sin(cube->move.rotate_speed);

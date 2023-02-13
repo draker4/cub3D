@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 13:26:53 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:22:30 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	parse_map(t_cube *cube)
 		}
 		y++;
 	}
+	if (cube->player.pos_x == -1)
+		return (ft_error(E_NO_START), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -71,7 +73,7 @@ int	get_map(t_cube *cube, int fd)
 		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
-	if (parse_map(cube))
+	if (parse_map(cube) || map_to_int(cube))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
