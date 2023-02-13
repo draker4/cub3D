@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/10 17:12:09 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:24:53 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,13 @@ typedef struct s_limits
 	int		x_next;
 }	t_limits;
 
+typedef struct s_parse
+{
+	char		*line;
+	char		**map;
+	t_limits	max;
+}	t_parse;
+
 typedef struct s_tex
 {
 	int		**texture;
@@ -145,8 +152,8 @@ typedef struct s_tex
 
 typedef struct s_cube
 {
-	char			*line;
-	char			**map;
+	int				**map;
+	t_parse			parse;
 	t_elem			elem;
 	t_player		player;
 	t_raycast		raycast;

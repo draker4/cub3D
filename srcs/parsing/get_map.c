@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 17:27:46 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:26:53 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ int	parse_map(t_cube *cube)
 {
 	int			x;
 	int			y;
-	t_limits	max;
 
 	y = 0;
-	max.y = split_size(cube->map);
-	while (cube->map[y])
+	cube->parse.max.y = split_size(cube->parse.map);
+	while (cube->parse.map[y])
 	{
 		x = 0;
-		define_limits(&max, cube->map, y);
-		while (cube->map[y][x])
+		define_limits(&cube->parse.max, cube->parse.map, y);
+		while (cube->parse.map[y][x])
 		{
-			if (is_valid_cell(cube->map, y, x))
+			if (is_valid_cell(cube->parse.map, y, x))
 				return (EXIT_FAILURE);
 			if (player_start(cube, y, x))
 				return (EXIT_FAILURE);
-			if (cube->map[y][x] == '0' && confirm_map(cube, max, y, x))
+			if (cube->parse.map[y][x] == '0' && confirm_map(cube,
+				cube->parse.max, y, x))
 				return (EXIT_FAILURE);
 			x++;
 		}
@@ -63,12 +63,12 @@ int	parse_map(t_cube *cube)
 
 int	get_map(t_cube *cube, int fd)
 {
-	while (cube->line[0] != '\0')
+	while (cube->parse.line[0] != '\0')
 	{
-		cube->map = mapjoin(cube->map, cube->line);
-		if (!cube->map)
+		cube->parse.map = mapjoin(cube->parse.map, cube->parse.line);
+		if (!cube->parse.map)
 			return (EXIT_FAILURE);
-		if (get_file_line(fd, &cube->line))
+		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
 	if (parse_map(cube))

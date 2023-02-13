@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 17:28:04 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:20:19 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int	parse_elem(t_cube *cube, int fd, int *elem)
 {
 	char	**tmp;
 
-	while (cube->line[0] == '\n')
+	while (cube->parse.line[0] == '\n')
 	{	
-		free(cube->line);
-		if (get_file_line(fd, &cube->line))
+		free(cube->parse.line);
+		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
-	tmp = ft_split(cube->line, ' ');
+	tmp = ft_split(cube->parse.line, ' ');
 	if (!tmp)
 		return (perror("ft_split"), EXIT_FAILURE);
 	else if (split_size(tmp) == 2 && !confirm_elem(cube, tmp))
@@ -78,21 +78,21 @@ int	get_elem(t_cube *cube, int fd)
 {
 	int		elem;
 
-	if (get_file_line(fd, &cube->line))
+	if (get_file_line(fd, &cube->parse.line))
 		return (EXIT_FAILURE);
 	elem = 0;
-	while (cube->line && elem < 6)
+	while (cube->parse.line && elem < 6)
 	{
 		if (parse_elem(cube, fd, &elem))
-			return (free(cube->line), EXIT_FAILURE);
-		free(cube->line);
-		if (get_file_line(fd, &cube->line))
+			return (free(cube->parse.line), EXIT_FAILURE);
+		free(cube->parse.line);
+		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
-	while (cube->line[0] == '\n')
+	while (cube->parse.line[0] == '\n')
 	{	
-		free(cube->line);
-		if (get_file_line(fd, &cube->line))
+		free(cube->parse.line);
+		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

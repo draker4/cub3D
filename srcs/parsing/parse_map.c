@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/10 17:14:10 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:22:45 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,22 @@ int	define_player_start(t_cube *cube, int y, int x)
 		return (ft_error(E_PLAYER), EXIT_FAILURE);
 	cube->player.pos_x = x;
 	cube->player.pos_y = y;
-	if (cube->map[y][x] == 'N')
+	if (cube->parse.map[y][x] == 'N')
 	{
 		cube->player.dir_y = -1;
 		cube->player.dir_x = 0;
 	}
-	else if (cube->map[y][x] == 'S')
+	else if (cube->parse.map[y][x] == 'S')
 	{
 		cube->player.dir_y = 1;
 		cube->player.dir_x = 0;
 	}
-	else if (cube->map[y][x] == 'W')
+	else if (cube->parse.map[y][x] == 'W')
 	{
 		cube->player.dir_y = 0;
 		cube->player.dir_x = -1;
 	}
-	else if (cube->map[y][x] == 'E')
+	else if (cube->parse.map[y][x] == 'E')
 	{
 		cube->player.dir_y = 0;
 		cube->player.dir_x = 1;
@@ -52,13 +52,13 @@ int	define_player_start(t_cube *cube, int y, int x)
 
 int	player_start(t_cube *cube, int y, int x)
 {
-	if (cube->map[y][x] == 'N')
+	if (cube->parse.map[y][x] == 'N')
 		return (define_player_start(cube, y, x));
-	else if (cube->map[y][x] == 'S')
+	else if (cube->parse.map[y][x] == 'S')
 		return (define_player_start(cube, y, x));
-	else if (cube->map[y][x] == 'W')
+	else if (cube->parse.map[y][x] == 'W')
 		return (define_player_start(cube, y, x));
-	else if (cube->map[y][x] == 'E')
+	else if (cube->parse.map[y][x] == 'E')
 		return (define_player_start(cube, y, x));
 	return (EXIT_SUCCESS);
 }
@@ -81,8 +81,8 @@ int	confirm_map(t_cube *cube, t_limits max, int y, int x)
 	if (y == 0 || x == 0 || y == max.y || x == max.x || x >= max.x_prev
 		|| x >= max.x_next)
 		return (EXIT_FAILURE);
-	else if (cube->map[y - 1][x] == ' ' || cube->map[y + 1][x] == ' '
-	|| cube->map[y][x - 1] == ' ' || cube->map[y][x + 1] == ' ')
+	if (cube->parse.map[y - 1][x] == ' ' || cube->parse.map[y + 1][x] == ' '
+	|| cube->parse.map[y][x - 1] == ' ' || cube->parse.map[y][x + 1] == ' ')
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

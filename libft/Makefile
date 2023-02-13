@@ -42,7 +42,7 @@ PATH_SRCS	=	${addprefix ${DIR_SRCS}, ${SRCS}}
 
 # ----------  Compilation  ----------- #
 
-CC			=	cc
+CC			=	clang
 CFLAGS		= 	-Wall -Wextra -Werror
 AR			= 	ar rcs
 FSANITIZE	=	-fsanitize=address

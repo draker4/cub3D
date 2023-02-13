@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/10 17:27:05 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 13:27:13 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static int	**init_textures(void)
 
 void	init_cube(t_cube *cube)
 {
-	cube->line = NULL;
-	cube->map = NULL;
+	cube->parse.line = NULL;
+	cube->parse.map = NULL;
 	cube->elem.north = NULL;
 	cube->elem.south = NULL;
 	cube->elem.west = NULL;

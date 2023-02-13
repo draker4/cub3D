@@ -82,7 +82,7 @@ PATH_LIBFT		=	${addprefix ${DIR_LIBFT}, ${LIBFT_A}}
 
 # ----------  Compilation  ----------- #
 
-CC				=	cc
+CC				=	clang
 CFLAGS			= 	-Wall -Wextra -Werror
 AR				= 	ar rcs
 FSANITIZE		=	-fsanitize=address
@@ -192,7 +192,7 @@ debug				:
 # -----------  Run Commands  --------- #
 
 run					:	all
-						./${NAME} map_subject.cub
+						./${NAME} map_tuto.cub
 
 runl				:	all
 						${LEAKS}./${NAME} map_subject.cub
