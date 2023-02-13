@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 13:20:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:23:34 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	confirm_id(char *id, char *str)
 	if (size_id != size_str)
 		return (EXIT_FAILURE);
 	i = 0;
-	while (id[i] == str[i] && id[i] && str[i])
+	while (*id && *str && id[i] && str[i] && id[i] == str[i])
 		i++;
-	if (i == size_id && size_id == size_str)
+	if (!id[i] && !str[i])
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
@@ -35,17 +35,17 @@ int	confirm_id(char *id, char *str)
 
 int	confirm_elem(t_cube *cube, char **tmp)
 {
-	if (confirm_id("NO", tmp[0]) && !cube->elem.north)
+	if (!confirm_id("NO", tmp[0]) && !cube->elem.north)
 		cube->elem.north = tmp[1];
-	else if (confirm_id("SO", tmp[0]) && !cube->elem.south)
+	else if (!confirm_id("SO", tmp[0]) && !cube->elem.south)
 		cube->elem.south = tmp[1];
-	else if (confirm_id("WE", tmp[0]) && !cube->elem.west)
+	else if (!confirm_id("WE", tmp[0]) && !cube->elem.west)
 		cube->elem.west = tmp[1];
-	else if (confirm_id("EA", tmp[0]) && !cube->elem.east)
+	else if (!confirm_id("EA", tmp[0]) && !cube->elem.east)
 		cube->elem.east = tmp[1];
-	else if (confirm_id("F", tmp[0]) && !cube->elem.floor)
+	else if (!confirm_id("F", tmp[0]) && !cube->elem.floor)
 		cube->elem.floor = tmp[1];
-	else if (confirm_id("C", tmp[0]) && !cube->elem.ceilling)
+	else if (!confirm_id("C", tmp[0]) && !cube->elem.ceilling)
 		cube->elem.ceilling = tmp[1];
 	else
 		return (EXIT_FAILURE);
@@ -84,7 +84,7 @@ int	get_elem(t_cube *cube, int fd)
 	while (cube->parse.line && elem < 6)
 	{
 		if (parse_elem(cube, fd, &elem))
-			return (free(cube->parse.line), EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		free(cube->parse.line);
 		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);

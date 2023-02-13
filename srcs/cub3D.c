@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:22:39 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 14:53:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:54:37 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int argc, char **argv)
 	if (map_type(argv[1], ".cub"))
 		return (ft_error(E_FILE_TYPE), EXIT_FAILURE);
 	if (get_data(&cube, argv[1]))
-		return (EXIT_FAILURE);
+		return (free_cube(&cube), EXIT_FAILURE);
 	if (init_game(&cube))
-		return (EXIT_FAILURE);
+		return (free_cube(&cube), EXIT_FAILURE);
 	play_game(&cube);
 	return (EXIT_SUCCESS);
 }

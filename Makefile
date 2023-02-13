@@ -199,7 +199,7 @@ runl				:	all
 						${LEAKS}./${NAME} map_subject.cub
 
 runs				:	debug
-						./${DEBUG} map_subject.cub
+						./${DEBUG} map_tuto.cub
 
 rund				:	debug
 						${LLDB} ./${DEBUG}

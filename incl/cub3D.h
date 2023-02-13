@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 14:23:13 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:13:44 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define E_FILE_TYPE "The map should be of type .cub\n"
 # define E_PLAYER "Player starting position define more than once\n"
 # define E_NO_START "No starting position defined\n"
+# define E_WALL "The map isn't closed or there is an empty field between \
+the wall\n"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -223,6 +225,7 @@ void	ft_error(char *str);
 
 // free table splited
 void	free_split(char **str);
+void	free_cube(t_cube *cube);
 
 // prototypes get time
 double	get_time(void);

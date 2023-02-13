@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 14:35:43 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:14:18 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ int	confirm_map(t_cube *cube, t_limits max, int y, int x)
 {
 	if (y == 0 || x == 0 || y == max.y || x == max.x || x >= max.x_prev
 		|| x >= max.x_next)
-		return (EXIT_FAILURE);
+		return (ft_error(E_WALL), EXIT_FAILURE);
 	if (cube->parse.map[y - 1][x] == ' ' || cube->parse.map[y + 1][x] == ' '
 	|| cube->parse.map[y][x - 1] == ' ' || cube->parse.map[y][x + 1] == ' ')
-		return (EXIT_FAILURE);
+		return (ft_error(E_WALL), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
