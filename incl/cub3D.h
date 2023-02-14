@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:13:06 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:23:30 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TEX_HEIGHT 64
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
+# define ANGLE 0.66
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"

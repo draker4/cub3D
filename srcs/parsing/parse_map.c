@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 15:13:37 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:23:47 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	is_valid_cell(char **map, int y, int x)
 int	player_start(t_cube *cube, int y, int x)
 {
 	if (cube->parse.map[y][x] == 'N')
-		init_player(cube, (t_player){0, 0, 0, -1, 0.66, 0}, y, x);
+		init_player(cube, (t_player){0, 0, 0, -1, -ANGLE, 0}, y, x);
 	else if (cube->parse.map[y][x] == 'S')
-		init_player(cube, (t_player){0, 0, 0, 1, -0.66, 0}, y, x);
+		init_player(cube, (t_player){0, 0, 0, 1, ANGLE, 0}, y, x);
 	else if (cube->parse.map[y][x] == 'W')
-		init_player(cube, (t_player){0, 0, -1, 0, 0, 0.66}, y, x);
+		init_player(cube, (t_player){0, 0, -1, 0, 0, ANGLE}, y, x);
 	else if (cube->parse.map[y][x] == 'E')
-		init_player(cube, (t_player){0, 0, 1, 0, 0, -0.66}, y, x);
+		init_player(cube, (t_player){0, 0, 1, 0, 0, -ANGLE}, y, x);
 	return (EXIT_SUCCESS);
 }
 

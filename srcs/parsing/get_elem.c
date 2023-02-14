@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 16:23:34 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:44:30 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,36 @@ int	confirm_id(char *id, char *str)
 	return (EXIT_FAILURE);
 }
 
+int	remove_n(char **tmp)
+{
+	int		i;
+	int		j;
+	char	*new;
+
+	i = 0;
+	while (tmp[1][i] && tmp[1][i] != '\n')
+		i++;
+	new = malloc(sizeof(char) * (i + 1));
+	if (!new)
+		return (perror("remove_n - malloc"), EXIT_FAILURE);
+	j = -1;
+	while (++j < i)
+		new[j] = tmp[1][j];
+	new[j] = '\0';
+	free (tmp[1]);
+	tmp[1] = new;
+	return (EXIT_SUCCESS);
+}
 
 int	confirm_elem(t_cube *cube, char **tmp)
 {
-	if (!confirm_id("NO", tmp[0]) && !cube->elem.north)
+	if (!confirm_id("NO", tmp[0]) && !cube->elem.north && !remove_n(tmp))
 		cube->elem.north = tmp[1];
-	else if (!confirm_id("SO", tmp[0]) && !cube->elem.south)
+	else if (!confirm_id("SO", tmp[0]) && !cube->elem.south && !remove_n(tmp))
 		cube->elem.south = tmp[1];
-	else if (!confirm_id("WE", tmp[0]) && !cube->elem.west)
+	else if (!confirm_id("WE", tmp[0]) && !cube->elem.west && !remove_n(tmp))
 		cube->elem.west = tmp[1];
-	else if (!confirm_id("EA", tmp[0]) && !cube->elem.east)
+	else if (!confirm_id("EA", tmp[0]) && !cube->elem.east && !remove_n(tmp))
 		cube->elem.east = tmp[1];
 	else if (!confirm_id("F", tmp[0]) && !cube->elem.floor)
 		cube->elem.floor = tmp[1];
@@ -49,6 +69,7 @@ int	confirm_elem(t_cube *cube, char **tmp)
 		cube->elem.ceilling = tmp[1];
 	else
 		return (EXIT_FAILURE);
+	printf("%s\n", tmp[1]);
 	free(tmp[0]);
 	free(tmp);
 	return (EXIT_SUCCESS);
