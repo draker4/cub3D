@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:13:58 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:19:45 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ typedef struct s_elem
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor_colour;
-	int		ceiling_colour;
+	int		floor_color;
+	int		ceiling_color;
 	char	*floor_path;
 	char	*ceiling_path;
 }	t_elem;

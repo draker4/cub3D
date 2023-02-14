@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:15:38 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 18:25:10 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int	update(t_cube *cube)
 	cube->frame.time_now = get_time();
 	cube->frame.frame_time = cube->frame.time_now - cube->frame.time_prev;
 	move_player(cube);
-	raycast_floor_ceiling(cube);
+	if (cube->elem.floor_color != -1 || cube->elem.ceiling_color)
+		raycast_floor_ceiling(cube);
+	else
+		fill_background(cube);
 	raycast_walls(cube);
 	mlx_put_image_to_window(cube->vars.mlx_ptr, cube->vars.mlx_win, \
 	cube->data.img, 0, 0);
