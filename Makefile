@@ -54,7 +54,8 @@ SRCS_P			=	get_data.c			\
 SRCS_U			=	error.c				\
 					free_data.c			\
 					get_time.c			\
-					init.c				\
+					init_game.c			\
+					init_parsing.c		\
 					map_utils.c			\
 					mlx_utils.c
 

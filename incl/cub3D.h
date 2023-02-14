@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 12:23:57 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 15:13:06 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,11 @@ void	free_tab_int(int **to_free);
 // prototypes get time
 double	get_time(void);
 
-//init data
+//init data to start game
 int		init_game(t_cube *cube);
+
+//init data for parsing
+int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils

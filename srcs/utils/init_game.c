@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 14:21:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 14:54:11 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,6 @@ static int	**init_textures(void)
 	}
 	textures[i] = NULL;
 	return (textures);
-}
-
-void	init_cube(t_cube *cube)
-{
-	cube->map = NULL;
-	cube->parse.line = NULL;
-	cube->parse.map = NULL;
-	cube->elem.north = NULL;
-	cube->elem.south = NULL;
-	cube->elem.west = NULL;
-	cube->elem.east = NULL;
-	cube->elem.floor = NULL;
-	cube->elem.ceilling = NULL;
-	cube->player.pos_x = -1;
-	cube->player.plane_x = 0;
-	cube->player.plane_y = 0.66;
-	cube->move.up = 0;
-	cube->move.down = 0;
-	cube->move.left = 0;
-	cube->move.right = 0;
-	cube->move.rotate_left = 0;
-	cube->move.rotate_right = 0;
-	cube->tex.texture = NULL;
-	cube->buffer = NULL;
 }
 
 int	init_game(t_cube *cube)
