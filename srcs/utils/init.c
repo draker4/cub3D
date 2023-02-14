@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 15:44:36 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:21:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_mlx(t_cube *cube)
 	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
 	if (!cube->vars.mlx_win)
 	{
+		write(2, E_MLX_WINDOW, ft_strlen(E_MLX_WINDOW));
 		free(cube->vars.mlx_ptr);
 		return (EXIT_FAILURE);
 	}
@@ -28,6 +29,7 @@ int	init_mlx(t_cube *cube)
 	SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cube->data.img)
 	{
+		write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE));
 		mlx_destroy_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
 		free(cube->vars.mlx_ptr);
 		return (EXIT_FAILURE);
@@ -43,7 +45,7 @@ static int	**init_buffer(void)
 	int	**buffer;
 	int	i;
 
-	buffer = malloc(sizeof(int *) * (SCREEN_HEIGHT));
+	buffer = malloc(sizeof(int *) * (SCREEN_HEIGHT + 1));
 	if (!buffer)
 		return (perror("Init_buffer - Malloc"), NULL);
 	i = 0;
@@ -59,6 +61,7 @@ static int	**init_buffer(void)
 		}
 		i++;
 	}
+	buffer[i] = NULL;
 	return (buffer);
 }
 
@@ -67,11 +70,11 @@ static int	**init_textures(void)
 	int	**textures;
 	int	i;
 
-	textures = malloc(sizeof(int *) * (8 + 1));
+	textures = malloc(sizeof(int *) * (4 + 1));
 	if (!textures)
 		return (perror("Init_textures - Malloc"), NULL);
 	i = 0;
-	while (i < 8)
+	while (i < 4)
 	{
 		textures[i] = malloc(sizeof(int) * (TEX_WIDTH * TEX_HEIGHT));
 		if (!textures[i])
@@ -107,7 +110,8 @@ void	init_cube(t_cube *cube)
 	cube->move.right = 0;
 	cube->move.rotate_left = 0;
 	cube->move.rotate_right = 0;
-	cube->frame.frame_time = 0;
+	cube->tex.texture = NULL;
+	cube->buffer = NULL;
 }
 
 int	init_game(t_cube *cube)
@@ -116,17 +120,11 @@ int	init_game(t_cube *cube)
 		return (EXIT_FAILURE);
 	cube->buffer = init_buffer();
 	if (!cube->buffer)
-	{
-		mlx_destroy_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
-		mlx_destroy_image(cube->vars.mlx_ptr, cube->data.img);
-		free(cube->vars.mlx_ptr);
-		return (EXIT_FAILURE);
-		// egal a exit game avec exit 1
-	}
+		exit_game(cube, 1);
 	cube->tex.texture = init_textures();
 	if (!cube->tex.texture)
-		return (EXIT_FAILURE);
-		//COMME AU DESSUS exit game avec retour 1
-	generate_textures(cube);
+		exit_game(cube, 1);
+	if (generate_textures(cube))
+		exit_game(cube, 1);
 	return (EXIT_SUCCESS);
 }

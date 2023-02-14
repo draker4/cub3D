@@ -40,7 +40,6 @@ SRCS_G			=	draw_textures.c		\
 					exit_game.c			\
 					generate_textures.c	\
 					handle_events.c		\
-					mlx_utils.c			\
 					move_player.c		\
 					play_game.c			\
 					raycasting.c		
@@ -56,7 +55,8 @@ SRCS_U			=	error.c				\
 					free_data.c			\
 					get_time.c			\
 					init.c				\
-					map_utils.c
+					map_utils.c			\
+					mlx_utils.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_G			=	${SRCS_G:%.c=${DIR_OBJS_G}%.o}

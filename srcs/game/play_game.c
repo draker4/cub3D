@@ -3,42 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   play_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 13:30:10 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:29:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	clean_pixels(t_cube *cube)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	while (x < SCREEN_WIDTH)
-	{
-		y = 0;
-		while (y < SCREEN_HEIGHT)
-		{
-			my_mlx_pixel_put(&cube->data, x, y, 0x000000);
-			y++;
-		}
-		x++;
-	}
-}
-
 static int	update(t_cube *cube)
 {
-	clean_pixels(cube);
-	move_player(cube);
-	raycasting(cube);
 	cube->frame.time_prev = cube->frame.time_now;
 	cube->frame.time_now = get_time();
 	cube->frame.frame_time = cube->frame.time_now - cube->frame.time_prev;
-	//printf("fps=%f\n", 1.0 / cube->frame.frame_time);
+	move_player(cube);
+	raycasting(cube);
 	mlx_put_image_to_window(cube->vars.mlx_ptr, cube->vars.mlx_win, \
 	cube->data.img, 0, 0);
 	return (EXIT_SUCCESS);

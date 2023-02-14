@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 16:09:35 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 10:54:19 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	free_map(int **map)
+{
+	int	i;
+
+	i = 0;
+	while (*map && map[i])
+		free(map[i++]);
+	free (map);
+}
 
 void	free_split(char **str)
 {
@@ -20,16 +30,6 @@ void	free_split(char **str)
 	while (*str && str[i])
 		free(str[i++]);
 	free (str);
-}
-
-void	free_map(int **map)
-{
-	int	i;
-
-	i = 0;
-	while (*map && map[i])
-		free(map[i++]);
-	free (map);
 }
 
 void	free_cube(t_cube *cube)
@@ -46,4 +46,14 @@ void	free_cube(t_cube *cube)
 	free(cube->elem.east);
 	free(cube->elem.floor);
 	free(cube->elem.ceilling);
+}
+
+void	free_tab_int(int **to_free)
+{
+	int	i;
+
+	i = 0;
+	while (to_free[i])
+		free(to_free[i++]);
+	free(to_free);
 }
