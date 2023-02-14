@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:15:39 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:43:34 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ static int	**init_textures(void)
 	int	**textures;
 	int	i;
 
-	textures = malloc(sizeof(int *) * (4 + 1));
+	textures = malloc(sizeof(int *) * (6 + 1));
 	if (!textures)
 		return (perror("Init_textures - Malloc"), NULL);
 	i = 0;
-	while (i < 4)
+	while (i < 6)
 	{
 		textures[i] = malloc(sizeof(int) * (TEX_WIDTH * TEX_HEIGHT));
 		if (!textures[i])

@@ -6,97 +6,68 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:56:08 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:12:27 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:52:28 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_camera(t_cube *cube, int x)
+static void	init_camera(t_cube *cube, int y)
 {
-	cube->raycast.ray_dir_x = cube->player.dir_x - cube->player.plane_x;
-	cube->raycast.ray_dir_y = cube->player.dir_y + cube->player.plane_y * \
-	cube->raycast.camera_x;
-	cube->raycast.map_x = (int) cube->player.pos_x;
-	cube->raycast.map_y = (int) cube->player.pos_y;
-	if (!cube->raycast.ray_dir_x)
-		cube->raycast.delta_dist_x = 1e30;
-	else
-		cube->raycast.delta_dist_x = fabs(1 / cube->raycast.ray_dir_x);
-	if (!cube->raycast.ray_dir_y)
-		cube->raycast.delta_dist_y = 1e30;
-	else
-		cube->raycast.delta_dist_y = fabs(1 / cube->raycast.ray_dir_y);
-	cube->raycast.hit = 0;
+	cube->bkground.ray_dir_x0 = cube->player.dir_x - cube->player.plane_x;
+	cube->bkground.ray_dir_y0 = cube->player.dir_y - cube->player.plane_y;
+	cube->bkground.ray_dir_x1 = cube->player.dir_x + cube->player.plane_x;
+	cube->bkground.ray_dir_y1 = cube->player.dir_y + cube->player.plane_y;
+	cube->bkground.center_y = y - SCREEN_HEIGHT / 2;
+	cube->bkground.pos_z = 0.5 * SCREEN_HEIGHT;
+	cube->bkground.hori_dist = cube->bkground.pos_z / cube->bkground.center_y;
 }
 
 static void	init_dir(t_cube *cube)
 {
-	if (cube->raycast.ray_dir_x < 0)
-	{
-		cube->raycast.step_x = -1;
-		cube->raycast.side_dist_x = (cube->player.pos_x - \
-		cube->raycast.map_x) * cube->raycast.delta_dist_x;
-	}
-	else
-	{
-		cube->raycast.step_x = 1;
-		cube->raycast.side_dist_x = (cube->raycast.map_x + 1.0 - \
-		cube->player.pos_x) * cube->raycast.delta_dist_x;
-	}
-	if (cube->raycast.ray_dir_y < 0)
-	{
-		cube->raycast.step_y = -1;
-		cube->raycast.side_dist_y = (cube->player.pos_y - \
-		cube->raycast.map_y) * cube->raycast.delta_dist_y;
-	}
-	else
-	{
-		cube->raycast.step_y = 1;
-		cube->raycast.side_dist_y = (cube->raycast.map_y + 1.0 - \
-		cube->player.pos_y) * cube->raycast.delta_dist_y;
-	}
+	cube->bkground.step_x = cube->bkground.hori_dist * \
+	(cube->bkground.ray_dir_x1 - cube->bkground.ray_dir_x0) / SCREEN_WIDTH;
+	cube->bkground.step_y = cube->bkground.hori_dist * \
+	(cube->bkground.ray_dir_y1 - cube->bkground.ray_dir_y0) / SCREEN_WIDTH;
+	cube->bkground.floor_x = cube->player.pos_x + cube->bkground.hori_dist * \
+	cube->bkground.ray_dir_x0;
+	cube->bkground.floor_y = cube->player.pos_y + cube->bkground.hori_dist * \
+	cube->bkground.ray_dir_y0;
 }
 
-static void	dda_algo(t_cube *cube)
+static void	draw_pixel(t_cube *cube, int x, int y)
 {
-	while (!cube->raycast.hit)
-	{
-		if (cube->raycast.side_dist_x < cube->raycast.side_dist_y)
-		{
-			cube->raycast.side_dist_x += cube->raycast.delta_dist_x;
-			cube->raycast.map_x += cube->raycast.step_x;
-			cube->raycast.side = 0;
-		}
-		else
-		{
-			cube->raycast.side_dist_y += cube->raycast.delta_dist_y;
-			cube->raycast.map_y += cube->raycast.step_y;
-			cube->raycast.side = 1;
-		}
-		if (cube->map[cube->raycast.map_y][cube->raycast.map_x])
-			cube->raycast.hit = 1;
-	}
+	cube->bkground.tex_floor = 4;
+	cube->bkground.tex_ceil = 5;
+	cube->bkground.floor_color = cube->tex.texture[cube->bkground.tex_floor] \
+	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
+	//on garde que si utile de faire plus sombre
+	cube->bkground.floor_color = (cube->bkground.floor_color >> 1) & 8355711;
+	cube->buffer[y][x] = cube->bkground.floor_color;
+	cube->bkground.ceil_color = cube->tex.texture[cube->bkground.tex_ceil] \
+	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
+	//on garde que si utile de faire plus sombre
+	cube->bkground.ceil_color = (cube->bkground.ceil_color >> 1) & 8355711;
+	cube->buffer[SCREEN_HEIGHT - y - 1][x] = cube->bkground.ceil_color;
 }
 
-static void	calculate_line_wall(t_cube *cube)
+static void	find_texture(t_cube *cube, int y)
 {
-	if (!cube->raycast.side)
-		cube->raycast.dist_plan_wall = \
-		(cube->raycast.side_dist_x - cube->raycast.delta_dist_x);
-	else
-		cube->raycast.dist_plan_wall = \
-		(cube->raycast.side_dist_y - cube->raycast.delta_dist_y);
-	cube->raycast.line_height = \
-	(int)(SCREEN_HEIGHT * 1.5 / cube->raycast.dist_plan_wall);
-	cube->raycast.line_start = \
-	-cube->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
-	if (cube->raycast.line_start < 0)
-		cube->raycast.line_start = 0;
-	cube->raycast.line_end = \
-	cube->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
-	if (cube->raycast.line_end >= SCREEN_HEIGHT)
-		cube->raycast.line_end = SCREEN_HEIGHT - 1;
+	int	x;
+
+	x = 0;
+	while (x < SCREEN_WIDTH)
+	{
+		cube->bkground.cell_x = (int)cube->bkground.floor_x;
+		cube->bkground.cell_y = (int)cube->bkground.floor_y;
+		cube->bkground.tex_x = (int)(TEX_WIDTH * (cube->bkground.floor_x - \
+		cube->bkground.cell_x)) & (TEX_WIDTH - 1);
+		cube->bkground.tex_y = (int)(TEX_HEIGHT * (cube->bkground.floor_y - \
+		cube->bkground.cell_y)) & (TEX_HEIGHT - 1);
+		cube->bkground.floor_x += cube->bkground.step_x;
+		cube->bkground.floor_y += cube->bkground.step_y;
+		draw_pixel(cube, x, y);
+	}
 }
 
 void	raycast_floor_ceiling(t_cube *cube)
@@ -108,11 +79,7 @@ void	raycast_floor_ceiling(t_cube *cube)
 	{
 		init_camera(cube, y);
 		init_dir(cube);
-		dda_algo(cube);
-		calculate_line_wall(cube);
-		calculate_texture(cube);
-		fill_texture(cube, x);
-		x++;
+		find_texture(cube, y);
+		y++;
 	}
-	draw_buffer(cube);
 }

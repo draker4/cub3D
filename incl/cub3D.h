@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:11:45 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:50:46 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ typedef struct s_elem
 	char	*west;
 	char	*east;
 	int		floor_colour;
-	int		ceilling_colour;
+	int		ceiling_colour;
 	char	*floor_path;
-	char	*ceilling_path;
+	char	*ceiling_path;
 }	t_elem;
 
 typedef struct s_limits
@@ -158,6 +158,30 @@ typedef struct s_tex
 	double	wall_hit_x;
 }	t_tex;
 
+typedef struct s_bkground
+{
+	float	ray_dir_x0;
+	float	ray_dir_x1;
+	float	ray_dir_y0;
+	float	ray_dir_y1;
+	int		center_y;
+	float	pos_z;
+	float	hori_dist;
+	float	step_x;
+	float	step_y;
+	float	floor_x;
+	float	floor_y;
+	int		cell_x;
+	int		cell_y;
+	int		tex_x;
+	int		tex_y;
+	int		tex_floor;
+	int		tex_ceil;
+	int		floor_color;
+	int		ceil_color;
+}	t_bkground;
+
+
 typedef struct s_cube
 {
 	int				**map;
@@ -165,6 +189,7 @@ typedef struct s_cube
 	t_elem			elem;
 	t_player		player;
 	t_raycast		raycast;
+	t_bkground		bkground;
 	t_frame			frame;
 	// t_sprite		*sprites;
 	t_vars			vars;
