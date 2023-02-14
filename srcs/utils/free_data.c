@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 10:54:19 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 14:35:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_tab_int(int **to_free)
 	int	i;
 
 	i = 0;
-	while (to_free[i])
+	while (*to_free && to_free[i])
 		free(to_free[i++]);
 	free(to_free);
 }

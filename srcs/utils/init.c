@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 14:21:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 14:39:51 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	init_cube(t_cube *cube)
 }
 
 int	init_game(t_cube *cube)
-{	
+{
 	if (init_mlx(cube))
 		return (EXIT_FAILURE);
 	cube->buffer = init_buffer();
