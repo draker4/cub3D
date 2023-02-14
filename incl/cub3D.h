@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:56:28 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 18:13:58 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
+# define WALL_HEIGHT 1.5
 # define ANGLE 0.66
 
 # define E_ARG_NB "Select one map only\n"
@@ -275,14 +276,13 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
-int		combine_rgb(int t, int r, int g, int b);
+int		combine_rgb(int r, int g, int b);
 int		colour_atoi(char *str, int *colour);
 int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
 
 // prototypes mlx utils
-int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

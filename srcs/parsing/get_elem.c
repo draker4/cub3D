@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 17:51:40 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:13:19 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ int	colour_to_int(t_cube *cube, char **tmp)
 	if (colour_atoi(rgb[2], &b))
 		return (EXIT_FAILURE);
 	if (tmp[0][0] == 'F')
-		cube->elem.floor_colour = combine_rgb(0, r, g, b);
+		cube->elem.floor_colour = combine_rgb(r, g, b);
 	if (tmp[0][0] == 'C')
-		cube->elem.ceiling_colour = combine_rgb(0, r, g, b);
+		cube->elem.ceiling_colour = combine_rgb(r, g, b);
 	free_split(rgb);
+	printf("%d\n", cube->elem.floor_colour);
 	return (EXIT_SUCCESS);
 }
 
