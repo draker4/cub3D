@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 12:23:57 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 15:42:23 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1000
 # define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
+# define TEX_WIDTH 256
+# define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
 
