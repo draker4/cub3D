@@ -1,7 +1,7 @@
-NO ./textures/eagle.xpm
-SO ./textures/greystone.xpm
-WE ./textures/purplestone.xpm
-EA ./textures/redbrick.xpm
+NO ./textures/wall_north.xpm
+SO ./textures/Wall_south.xpm
+WE ./textures/Wall_west.xpm
+EA ./textures/Wall_east.xpm
 F 2201000
 C 225300
 

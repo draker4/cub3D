@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:07:33 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:11:45 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1000
 # define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
+# define TEX_WIDTH 256
+# define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
 # define ANGLE 0.66

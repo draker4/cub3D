@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 14:49:42 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 15:43:11 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	generate_textures(t_cube *cube)
 {
 	int	i;
 
-	load_texture(cube, 0, "./textures/eagle.xpm");
-	load_texture(cube, 1, "./textures/greystone.xpm");
-	load_texture(cube, 2, "./textures/redbrick.xpm");
-	load_texture(cube, 3, "./textures/purplestone.xpm");
+	load_texture(cube, 0, "./textures/wall_north.xpm");
+	load_texture(cube, 1, "./textures/wall_south.xpm");
+	load_texture(cube, 2, "./textures/wall_east.xpm");
+	load_texture(cube, 3, "./textures/wall_west.xpm");
 	i = 0;
 	while (i < 4)
 	{
