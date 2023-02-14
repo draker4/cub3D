@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:24:45 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:54:41 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	calculate_line_wall(t_cube *cube)
 		cube->raycast.line_end = SCREEN_HEIGHT - 1;
 }
 
-void	raycasting(t_cube *cube)
+void	raycast_walls(t_cube *cube)
 {
 	int	x;
 

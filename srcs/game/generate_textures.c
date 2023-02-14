@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:43:11 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:07:39 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ int	generate_textures(t_cube *cube)
 {
 	int	i;
 
-	load_texture(cube, 0, "./textures/wall_north.xpm");
-	load_texture(cube, 1, "./textures/wall_south.xpm");
-	load_texture(cube, 2, "./textures/wall_east.xpm");
-	load_texture(cube, 3, "./textures/wall_west.xpm");
+	load_texture(cube, 0, cube->elem.north);
+	load_texture(cube, 1, cube->elem.south);
+	load_texture(cube, 2, cube->elem.east);
+	load_texture(cube, 3, cube->elem.west);
 	i = 0;
 	while (i < 4)
 	{
 		if (!cube->tex.texture[i++])
 			exit_game(cube, 1);
 	}
+	if (cube->elem.floor)
 	return (EXIT_SUCCESS);
 }

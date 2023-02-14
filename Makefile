@@ -36,27 +36,28 @@ HEAD			=	cub3D.h
 
 SRCS			=	cub3D.c
 
-SRCS_G			=	draw_textures.c		\
-					exit_game.c			\
-					generate_textures.c	\
-					handle_events.c		\
-					move_player.c		\
-					play_game.c			\
-					raycasting.c		
+SRCS_G			=	draw_textures.c			\
+					exit_game.c				\
+					generate_textures.c		\
+					handle_events.c			\
+					move_player.c			\
+					play_game.c				\
+					raycast_floor_ceiling.c	\
+					raycast_walls.c
 
-SRCS_P			=	get_data.c			\
-					get_elem.c			\
-					get_file_line.c		\
-					get_map.c			\
-					map_to_int.c		\
+SRCS_P			=	get_data.c				\
+					get_elem.c				\
+					get_file_line.c			\
+					get_map.c				\
+					map_to_int.c			\
 					parse_map.c
 
-SRCS_U			=	error.c				\
-					free_data.c			\
-					get_time.c			\
-					init_game.c			\
-					init_parsing.c		\
-					map_utils.c			\
+SRCS_U			=	error.c					\
+					free_data.c				\
+					get_time.c				\
+					init_game.c				\
+					init_parsing.c			\
+					map_utils.c				\
 					mlx_utils.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
