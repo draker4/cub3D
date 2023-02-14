@@ -6,7 +6,11 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/14 17:50:46 by bperriol         ###   ########lyon.fr   */
+=======
+/*   Updated: 2023/02/14 17:51:03 by bboisson         ###   ########.fr       */
+>>>>>>> 0d1c78b3dbd3d0d76c8f0211aff8636da8a1836a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,6 +276,9 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
+int		combine_rgb(int t, int r, int g, int b);
+int		colour_atoi(char *str, int *colour);
+int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
 
