@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 16:13:44 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:23:57 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define E_NO_START "No starting position defined\n"
 # define E_WALL "The map isn't closed or there is an empty field between \
 the wall\n"
+# define E_XPM_IMAGE "Mlx_xpm_file_to_image function error\n"
+# define E_MLX_WINDOW "Mlx_new_window function error\n"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -171,25 +173,29 @@ typedef struct s_cube
 
 /* --------------------------  PROTOTYPE GAME  --------------------------- */
 
+// prototypes draw textures
+void	calculate_texture(t_cube *cube);
+void	fill_texture(t_cube *cube, int x);
+void	draw_buffer(t_cube *cube);
+
 // exit game
-int		exit_game(t_cube *cube);
+int		exit_game(t_cube *cube, int exit_status);
 
-//prototypes raycasting
-void	raycasting(t_cube *cube);
-
-// prototypes mlx utils
-int		create_trgb(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+// prototypes generate textures
+int		generate_textures(t_cube *cube);
 
 // prototypes handle events
 int		handle_keypress(int keycode, t_cube *cube);
 int		handle_keyrelease(int keycode, t_cube *cube);
 
+// prototypes move player
+void	move_player(t_cube *cube);
+
 // prototypes play game
 void	play_game(t_cube *cube);
 
-// prototypes move player
-void	move_player(t_cube *cube);
+//prototypes raycasting
+void	raycasting(t_cube *cube);
 
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 
@@ -226,6 +232,7 @@ void	ft_error(char *str);
 // free table splited
 void	free_split(char **str);
 void	free_cube(t_cube *cube);
+void	free_tab_int(int **to_free);
 
 // prototypes get time
 double	get_time(void);
@@ -237,12 +244,8 @@ void	init_cube(t_cube *cube);
 //map utils
 int		split_size(char **str);
 
-// prototypes draw textures
-void	calculate_texture(t_cube *cube);
-void	fill_texture(t_cube *cube, int x);
-void	draw_buffer(t_cube *cube);
-
-// prototypes generate textures
-void	generate_textures(t_cube *cube);
+// prototypes mlx utils
+int		create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

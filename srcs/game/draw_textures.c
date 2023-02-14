@@ -3,18 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:18:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/13 14:41:30 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:59:48 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	find_index_texture(t_cube *cube)
+{
+	if (cube->raycast.side)
+	{
+		if (cube->raycast.ray_dir_y <= 0)
+			cube->tex.tex_num = 0;
+		else
+			cube->tex.tex_num = 1;
+	}
+	else
+	{
+		if (cube->raycast.ray_dir_x <= 0)
+			cube->tex.tex_num = 3;
+		else
+			cube->tex.tex_num = 2;
+	}
+}
+
 void	calculate_texture(t_cube *cube)
 {
-	cube->tex.tex_num = cube->map[cube->raycast.map_y][cube->raycast.map_x] - 1;
+	find_index_texture(cube);
 	if (!cube->raycast.side)
 		cube->tex.wall_hit_x = cube->player.pos_y + \
 		cube->raycast.dist_plan_wall * cube->raycast.ray_dir_y;
@@ -43,8 +61,6 @@ void	fill_texture(t_cube *cube, int x)
 		cube->tex.tex_pos += cube->tex.step;
 		cube->tex.color = cube->tex.texture[cube->tex.tex_num][TEX_HEIGHT * \
 		cube->tex.tex_x + cube->tex.tex_y];
-		if (cube->raycast.side == 1)
-			cube->tex.color = (cube->tex.color >> 1);
 		cube->buffer[y][x] = cube->tex.color;
 		y++;
 	}
