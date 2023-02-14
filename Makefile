@@ -18,6 +18,7 @@ DIR_SRCS			=	./srcs/
 DIR_SRCS_G			=	./srcs/game/
 DIR_SRCS_P			=	./srcs/parsing/
 DIR_SRCS_U			=	./srcs/utils/
+DIR_SRCS_S			=	./srcs/sprites/
 DIR_LIBFT			=	./libft/
 DIR_MLX				=	./mlx_linux/
 DIR_OBJS			=	.build/
@@ -60,23 +61,29 @@ SRCS_U			=	error.c					\
 					map_utils.c				\
 					mlx_utils.c
 
+SRCS_S			=
+
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_G			=	${SRCS_G:%.c=${DIR_OBJS_G}%.o}
 OBJS_P			=	${SRCS_P:%.c=${DIR_OBJS_P}%.o}
 OBJS_U			=	${SRCS_U:%.c=${DIR_OBJS_U}%.o}
+OBJS_S			=	${SRCS_S:%.c=${DIR_OBJS_S}%.o}
 OBJS_D			=	${SRCS:%.c=${DIR_OBJS_D}%.o}
 OBJS_D_G		=	${SRCS_G:%.c=${DIR_OBJS_D_G}%.o}
 OBJS_D_P		=	${SRCS_P:%.c=${DIR_OBJS_D_P}%.o}
 OBJS_D_U		=	${SRCS_U:%.c=${DIR_OBJS_D_U}%.o}
+OBJS_D_S		=	${SRCS_S:%.c=${DIR_OBJS_D_S}%.o}
 
 DEPS			=	${OBJS:.o=.d}
 DEPS_G			=	${OBJS_G:.o=.d}
 DEPS_P			=	${OBJS_P:.o=.d}
 DEPS_U			=	${OBJS_U:.o=.d}
+DEPS_S			=	${OBJS_S:.o=.d}
 DEPS_D			=	${OBJS_D:.o=.d}
 DEPS_D_G		=	${OBJS_D_G:.o=.d}
 DEPS_D_P		=	${OBJS_D_P:.o=.d}
 DEPS_D_U		=	${OBJS_D_U:.o=.d}
+DEPS_D_S		=	${OBJS_D_S:.o=.d}
 
 # --------------  Path  -------------- #
 
@@ -115,8 +122,8 @@ all					:
 
 # ---------  Compiled Rules  --------- #
 
-${NAME}				:	${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} ${DIR_LIBFT} ${DIR_MLX}
-						${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} -L ${DIR_LIBFT} ${LIBFT} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH}
+${NAME}				:	${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} ${OBJS_S} ${DIR_LIBFT} ${DIR_MLX}
+						${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} ${OBJS_S} -L ${DIR_LIBFT} ${LIBFT} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH}
 
 ${DIR_OBJS}%.o		:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -c $< -o $@
@@ -130,21 +137,26 @@ ${DIR_OBJS_P}%.o	:	${DIR_SRCS_P}%.c Makefile | ${DIR_OBJS}
 ${DIR_OBJS_U}%.o	:	${DIR_SRCS_U}%.c Makefile | ${DIR_OBJS}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -c $< -o $@
 
+${DIR_OBJS_S}%.o	:	${DIR_SRCS_S}%.c Makefile | ${DIR_OBJS}
+						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -c $< -o $@
+
 ${DIR_OBJS}			:
 						${MKDIR} ${DIR_OBJS}
 						${MKDIR} ${DIR_OBJS_G}
 						${MKDIR} ${DIR_OBJS_P}
 						${MKDIR} ${DIR_OBJS_U}
+						${MKDIR} ${DIR_OBJS_S}
 
 -include ${DEPS}
 -include ${DEPS_G}
 -include ${DEPS_P}
 -include ${DEPS_U}
+-include ${DEPS_S}
 
 # ------  Compiled Rules Debug  ------ #
 
-${DEBUG}			:	${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${DIR_LIBFT} ${DIR_MLX}
-						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
+${DEBUG}			:	${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${OBJS_D_S} ${DIR_LIBFT} ${DIR_MLX}
+						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${OBJS_D_S} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
 
 ${DIR_OBJS_D}%.o	:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS_D}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -g3 ${FSANITIZE} -c $< -o $@
@@ -158,16 +170,21 @@ ${DIR_OBJS_D_P}%.o	:	${DIR_SRCS_P}%.c Makefile | ${DIR_OBJS_D}
 ${DIR_OBJS_D_U}%.o	:	${DIR_SRCS_U}%.c Makefile | ${DIR_OBJS_D}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -g3 ${FSANITIZE} -c $< -o $@
 
+${DIR_OBJS_D_S}%.o	:	${DIR_SRCS_S}%.c Makefile | ${DIR_OBJS_D}
+						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -g3 ${FSANITIZE} -c $< -o $@
+
 ${DIR_OBJS_D}		:
 						${MKDIR} ${DIR_OBJS_D}
 						${MKDIR} ${DIR_OBJS_D_G}
 						${MKDIR} ${DIR_OBJS_D_P}
 						${MKDIR} ${DIR_OBJS_D_U}
+						${MKDIR} ${DIR_OBJS_D_S}
 
 -include ${DEPS_D}
 -include ${DEPS_D_G}
 -include ${DEPS_D_P}
 -include ${DEPS_D_U}
+-include ${DEPS_D_S}
 
 # ---------  Usual Commands  --------  #
 
