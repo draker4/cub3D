@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 18:13:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:22:11 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,24 @@ int	colour_to_int(t_cube *cube, char **tmp)
 	int		g;
 	int		b;
 
+	if (rgb_format(tmp[1]) != 2)
+		return (EXIT_FAILURE);
 	rgb = ft_split(tmp[1], ',');
 	if (!rgb)
 		return (EXIT_FAILURE);
 	if (split_size(rgb) != 3)
 		return (EXIT_FAILURE);
-	if (colour_atoi(rgb[0], &r))
+	if (color_atoi(rgb[0], &r))
 		return (EXIT_FAILURE);
-	if (colour_atoi(rgb[1], &g))
+	if (color_atoi(rgb[1], &g))
 		return (EXIT_FAILURE);
-	if (colour_atoi(rgb[2], &b))
+	if (color_atoi(rgb[2], &b))
 		return (EXIT_FAILURE);
 	if (tmp[0][0] == 'F')
-		cube->elem.floor_colour = combine_rgb(r, g, b);
+		cube->elem.floor_color = combine_rgb(r, g, b);
 	if (tmp[0][0] == 'C')
-		cube->elem.ceiling_colour = combine_rgb(r, g, b);
+		cube->elem.ceiling_color = combine_rgb(r, g, b);
 	free_split(rgb);
-	printf("%d\n", cube->elem.floor_colour);
 	return (EXIT_SUCCESS);
 }
 
@@ -74,11 +75,11 @@ int	confirm_elem(t_cube *cube, char **tmp)
 		&& !file_type(tmp[1], ".xpm"))
 		cube->elem.east = tmp[1];
 	else if (!confirm_id("F", tmp[0]) && !cube->elem.floor_path
-		&& cube->elem.floor_colour == -1 && (!remove_n(tmp)
+		&& cube->elem.floor_color == -1 && (!remove_n(tmp)
 			&& (!colour_to_int(cube, tmp) || !file_type(tmp[1], ".xpm"))))
 		cube->elem.floor_path = tmp[1];
 	else if (!confirm_id("C", tmp[0]) && !cube->elem.ceiling_path
-		&& cube->elem.ceiling_colour == -1 && (!remove_n(tmp)
+		&& cube->elem.ceiling_color == -1 && (!remove_n(tmp)
 			&& (!colour_to_int(cube, tmp) || !file_type(tmp[1], ".xpm"))))
 		cube->elem.ceiling_path = tmp[1];
 	else

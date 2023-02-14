@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:13:58 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:20:56 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ typedef struct s_elem
 	char	*south;
 	char	*west;
 	char	*east;
-	int		floor_colour;
-	int		ceiling_colour;
+	int		floor_color;
+	int		ceiling_color;
 	char	*floor_path;
 	char	*ceiling_path;
 }	t_elem;
@@ -276,13 +276,15 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
-int		combine_rgb(int r, int g, int b);
-int		colour_atoi(char *str, int *colour);
+int		rgb_format(char *str);
+int		color_atoi(char *str, int *color);
 int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
 
 // prototypes mlx utils
+
+int		combine_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

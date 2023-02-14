@@ -6,26 +6,37 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 18:13:13 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:20:35 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	combine_rgb(int r, int g, int b)
+int	rgb_format(char *str)
 {
-	return (r << 16 | g << 8 | b);
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	while (*str && str[i])
+	{	
+		if (str[i] == ',')
+			nb++;
+		i++;
+	}
+	return (nb);
 }
 
-int	colour_atoi(char *str, int *colour)
+int	color_atoi(char *str, int *color)
 {
 	int				i;
 
 	i = 0;
-	*colour = 0;
-	while (str[i] >= '0' && str[i] <= '9' && *colour < 256)
+	*color = 0;
+	while (str[i] >= '0' && str[i] <= '9' && *color < 256)
 	{
-		*colour = *colour * 10 + str[i] - 48;
+		*color = *color * 10 + str[i] - 48;
 		i++;
 	}
 	if (str[i])
