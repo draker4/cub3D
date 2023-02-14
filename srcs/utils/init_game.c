@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 14:54:11 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:15:39 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	**init_textures(void)
 }
 
 int	init_game(t_cube *cube)
-{	
+{
 	if (init_mlx(cube))
 		return (EXIT_FAILURE);
 	cube->buffer = init_buffer();

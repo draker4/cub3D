@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 14:39:02 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:52:01 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	move_right_left(t_cube *cube)
 
 static void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x)
 {
-	if (cube->move.rotate_left)
+	if (cube->move.rotate_right)
 	{
 		cube->player.dir_x = cube->player.dir_x * cos(-cube->move.rotate_speed) \
 		- cube->player.dir_y * sin(-cube->move.rotate_speed);
@@ -70,7 +70,7 @@ static void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x)
 		cube->player.plane_y = prev_plane_x * sin(-cube->move.rotate_speed) \
 		+ cube->player.plane_y * cos(-cube->move.rotate_speed);
 	}
-	if (cube->move.rotate_right)
+	if (cube->move.rotate_left)
 	{
 		cube->player.dir_x = cube->player.dir_x * cos(cube->move.rotate_speed) \
 		- cube->player.dir_y * sin(cube->move.rotate_speed);
@@ -100,4 +100,3 @@ void	move_player(t_cube *cube)
 	if (cube->move.rotate_left || cube->move.rotate_right)
 		rotate_player(cube, prev_dir_x, prev_plane_x);
 }
-

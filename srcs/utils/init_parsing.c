@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:12:53 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:15:54 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	init_cube(t_cube *cube)
 	cube->elem.floor = NULL;
 	cube->elem.ceilling = NULL;
 	cube->player.pos_x = -1;
-	cube->player.plane_x = 0;
-	cube->player.plane_y = 0.66;
 	cube->move.up = 0;
 	cube->move.down = 0;
 	cube->move.left = 0;
