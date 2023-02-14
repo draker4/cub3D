@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 17:10:50 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:51:54 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_cube(t_cube *cube)
 	free(cube->elem.west);
 	free(cube->elem.east);
 	free(cube->elem.floor_path);
-	free(cube->elem.ceilling_path);
+	free(cube->elem.ceiling_path);
 }
 
 void	free_tab_int(int **to_free)

@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:09:36 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:46:40 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	init_cube(t_cube *cube)
 	cube->elem.east = NULL;
 	cube->elem.floor_colour = -1;
 	cube->elem.floor_path = NULL;
-	cube->elem.ceilling_colour = -1;
-	cube->elem.ceilling_path = NULL;
+	cube->elem.ceiling_colour = -1;
+	cube->elem.ceiling_path = NULL;
 	cube->player.pos_x = -1;
 	cube->move.up = 0;
 	cube->move.down = 0;

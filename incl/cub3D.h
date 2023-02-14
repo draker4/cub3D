@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:11:45 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:51:03 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ typedef struct s_elem
 	char	*west;
 	char	*east;
 	int		floor_colour;
-	int		ceilling_colour;
+	int		ceiling_colour;
 	char	*floor_path;
-	char	*ceilling_path;
+	char	*ceiling_path;
 }	t_elem;
 
 typedef struct s_limits
@@ -247,6 +247,9 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
+int		combine_rgb(int t, int r, int g, int b);
+int		colour_atoi(char *str, int *colour);
+int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
 
