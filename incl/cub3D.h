@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:46:56 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:11:45 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,10 @@ typedef struct s_elem
 	char	*south;
 	char	*west;
 	char	*east;
-	char	*floor;
-	char	*ceilling;
+	int		floor_colour;
+	int		ceilling_colour;
+	char	*floor_path;
+	char	*ceilling_path;
 }	t_elem;
 
 typedef struct s_limits
@@ -205,7 +207,6 @@ int		confirm_map(t_cube *cube, t_limits max, int y, int x);
 
 // get file data and parse it
 int		get_data(t_cube *cube, char *file);
-int		map_type(char *str, char *type);
 
 // get data from the file which relate to element identifier and parse it
 int		get_elem(t_cube *cube, int fd);
@@ -246,6 +247,7 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
+int		file_type(char *str, char *type);
 int		split_size(char **str);
 
 // prototypes mlx utils
