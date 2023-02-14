@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 15:44:30 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 16:47:26 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	confirm_elem(t_cube *cube, char **tmp)
 		cube->elem.ceilling = tmp[1];
 	else
 		return (EXIT_FAILURE);
-	printf("%s\n", tmp[1]);
 	free(tmp[0]);
 	free(tmp);
 	return (EXIT_SUCCESS);
