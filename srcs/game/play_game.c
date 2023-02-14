@@ -6,11 +6,34 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:25:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 18:52:13 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	fill_background(t_cube *cube)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < SCREEN_WIDTH)
+	{
+		y = 0;
+		while (y < SCREEN_HEIGHT / 2)
+		{
+			cube->buffer[y][x] = cube->elem.floor_color;
+			y++;
+		}
+		while (y < SCREEN_HEIGHT)
+		{
+			cube->buffer[y][x] = cube->elem.floor_color;
+			y++;
+		}
+		x++;
+	}
+}
 
 static int	update(t_cube *cube)
 {

@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:24:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 18:54:30 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ static void	load_texture(t_cube *cube, int index, char *path)
 	mlx_destroy_image(cube->vars.mlx_ptr, data.img);
 }
 
-static void	fill_texture(t_cube *cube, int index, int color)
+static void	fill_pixel(t_cube *cube, int index, int color)
 {
 	int	x;
 	int	y;
 
 	x = 0;
-	while (x < SCREEN_WIDTH)
+	while (x < TEX_WIDTH)
 	{
 		y = 0;
-		while (y < SCREEN_HEIGHT)
+		while (y < TEX_HEIGHT)
 		{
 			cube->tex.texture[index][x * TEX_WIDTH + y] = color;
 			y++;
@@ -61,10 +61,7 @@ static void	fill_texture(t_cube *cube, int index, int color)
 static void	generate_background(t_cube *cube)
 {
 	if (cube->elem.floor_color != -1)
-	{
-		fill_texture(cube, 4, cube->elem.floor_color);
-		cube->bkground.floor_color = cube->elem.floor_color;
-	}
+		fill_pixel(cube, 4, cube->elem.floor_color);
 	else
 	{
 		load_texture(cube, 4, cube->elem.floor_path);
@@ -72,10 +69,7 @@ static void	generate_background(t_cube *cube)
 			exit_game(cube, 1);
 	}
 	if (cube->elem.ceiling_color != -1)
-	{
-		fill_texture(cube, 5, cube->elem.ceiling_color);
-		cube->bkground.ceil_color = cube->elem.ceiling_color;
-	}
+		fill_pixel(cube, 5, cube->elem.ceiling_color);
 	else
 	{
 		load_texture(cube, 5, cube->elem.ceiling_path);

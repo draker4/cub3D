@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:56:08 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:02:13 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 18:55:17 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static void	draw_pixel(t_cube *cube, int x, int y)
 	cube->bkground.tex_ceil = 5;
 	cube->bkground.floor_color = cube->tex.texture[cube->bkground.tex_floor] \
 	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
-	cube->bkground.floor_color = (cube->bkground.floor_color >> 1) & 8355711;
+	// cube->bkground.floor_color = (cube->bkground.floor_color >> 1) & 8355711;
 	cube->buffer[y][x] = cube->bkground.floor_color;
 	cube->bkground.ceil_color = cube->tex.texture[cube->bkground.tex_ceil] \
 	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
-	cube->bkground.ceil_color = (cube->bkground.ceil_color >> 1) & 8355711;
+	// cube->bkground.ceil_color = (cube->bkground.ceil_color >> 1) & 8355711;
 	cube->buffer[SCREEN_HEIGHT - y - 1][x] = cube->bkground.ceil_color;
 }
 
