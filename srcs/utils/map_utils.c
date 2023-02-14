@@ -6,15 +6,15 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 17:50:58 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 18:13:13 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	combine_rgb(int t, int r, int g, int b)
+int	combine_rgb(int r, int g, int b)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }
 
 int	colour_atoi(char *str, int *colour)
