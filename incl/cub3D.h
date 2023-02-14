@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:25:37 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 19:18:06 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,7 @@ double	get_time(void);
 int		init_game(t_cube *cube);
 
 //init data for parsing
-int		init_player(t_cube *cube, t_player define, int y, int x);
+int		init_player(t_cube *cube, t_player define, double y, double x);
 void	init_cube(t_cube *cube);
 
 //map utils

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 16:48:42 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:22:48 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ int	is_valid_cell(char **map, int y, int x)
 int	player_start(t_cube *cube, int y, int x)
 {
 	if (cube->parse.map[y][x] == 'N')
-		return (init_player(cube, (t_player){0, 0, 0, -1, ANGLE, 0}, y, x));
+		return (init_player(cube, (t_player){0, 0, 0, -1, ANGLE, 0}, \
+		(double)y + 0.5, (double)x + 0.5));
 	else if (cube->parse.map[y][x] == 'S')
-		return (init_player(cube, (t_player){0, 0, 0, 1, -ANGLE, 0}, y, x));
+		return (init_player(cube, (t_player){0, 0, 0, 1, -ANGLE, 0}, \
+		(double)y + 0.5, (double)x + 0.5));
 	else if (cube->parse.map[y][x] == 'W')
-		return (init_player(cube, (t_player){0, 0, -1, 0, 0, -ANGLE}, y, x));
+		return (init_player(cube, (t_player){0, 0, -1, 0, 0, -ANGLE}, \
+		(double)y + 0.5, (double)x + 0.5));
 	else if (cube->parse.map[y][x] == 'E')
-		return (init_player(cube, (t_player){0, 0, 1, 0, 0, ANGLE}, y, x));
+		return (init_player(cube, (t_player){0, 0, 1, 0, 0, ANGLE}, \
+		(double)y + 0.5, (double)x + 0.5));
 	return (EXIT_SUCCESS);
 }
 

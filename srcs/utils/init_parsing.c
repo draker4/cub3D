@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:21:05 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 19:17:43 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_player(t_cube *cube, t_player define, int y, int x)
+int	init_player(t_cube *cube, t_player define, double y, double x)
 {
 	if (cube->player.pos_x != -1)
 		return (ft_error(E_PLAYER), EXIT_FAILURE);
@@ -22,7 +22,7 @@ int	init_player(t_cube *cube, t_player define, int y, int x)
 	cube->player.dir_y = define.dir_y;
 	cube->player.plane_x = define.plane_x;
 	cube->player.plane_y = define.plane_y;
-	cube->parse.map[y][x] = '0';
+	cube->parse.map[(int)y][(int)x] = '0';
 	return (EXIT_SUCCESS);
 }
 
