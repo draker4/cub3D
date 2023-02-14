@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:08:31 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 15:24:45 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	calculate_line_wall(t_cube *cube)
 		cube->raycast.dist_plan_wall = \
 		(cube->raycast.side_dist_y - cube->raycast.delta_dist_y);
 	cube->raycast.line_height = \
-	(int)(SCREEN_HEIGHT * 2 / cube->raycast.dist_plan_wall);
+	(int)(SCREEN_HEIGHT * 1.5 / cube->raycast.dist_plan_wall);
 	cube->raycast.line_start = \
 	-cube->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
 	if (cube->raycast.line_start < 0)

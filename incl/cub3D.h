@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 15:42:23 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 15:46:56 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
+# define ANGLE 0.66
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -237,8 +238,11 @@ void	free_tab_int(int **to_free);
 // prototypes get time
 double	get_time(void);
 
-//init data
+//init data to start game
 int		init_game(t_cube *cube);
+
+//init data for parsing
+int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
