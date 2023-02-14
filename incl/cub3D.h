@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:54:59 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:56:28 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,8 +222,11 @@ void	move_player(t_cube *cube);
 // prototypes play game
 void	play_game(t_cube *cube);
 
-//prototypes raycasting
-void	raycasting(t_cube *cube);
+// prototypes raycast_walls
+void	raycast_walls(t_cube *cube);
+
+// prototypes raycast_floor_ceiling
+void	raycast_floor_ceiling(t_cube *cube);
 
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 

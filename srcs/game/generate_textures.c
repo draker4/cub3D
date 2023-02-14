@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 17:51:24 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:59:41 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ static void	load_texture(t_cube *cube, int index, char *path)
 static void	generate_background(t_cube *cube)
 {
 	if (cube->elem.floor_colour != -1)
-	{
 		cube->bkground.floor_color = cube->elem.floor_colour;
-		cube->tex.texture[4][0] = 1;
-	}
 	else
 	{
 		load_texture(cube, 4, cube->elem.floor_path);
@@ -54,10 +51,7 @@ static void	generate_background(t_cube *cube)
 			exit_game(cube, 1);
 	}
 	if (cube->elem.ceiling_colour != -1)
-	{
 		cube->bkground.ceil_color = cube->elem.ceiling_colour;
-		cube->tex.texture[5][0] = 1;
-	}
 	else
 	{
 		load_texture(cube, 5, cube->elem.ceiling_path);
