@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 16:47:26 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/14 17:10:16 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ int	confirm_elem(t_cube *cube, char **tmp)
 		cube->elem.west = tmp[1];
 	else if (!confirm_id("EA", tmp[0]) && !cube->elem.east && !remove_n(tmp))
 		cube->elem.east = tmp[1];
-	else if (!confirm_id("F", tmp[0]) && !cube->elem.floor)
-		cube->elem.floor = tmp[1];
-	else if (!confirm_id("C", tmp[0]) && !cube->elem.ceilling)
-		cube->elem.ceilling = tmp[1];
+	else if (!confirm_id("F", tmp[0]) && !cube->elem.floor_path
+		&& !remove_n(tmp))
+		cube->elem.floor_path = tmp[1];
+	else if (!confirm_id("C", tmp[0]) && !cube->elem.ceilling_path
+		&& !remove_n(tmp))
+		cube->elem.ceilling_path = tmp[1];
 	else
 		return (EXIT_FAILURE);
 	free(tmp[0]);

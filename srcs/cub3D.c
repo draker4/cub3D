@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:22:39 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 11:14:59 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:07:46 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (ft_error(E_ARG_NB), EXIT_FAILURE);
-	if (map_type(argv[1], ".cub"))
+	if (file_type(argv[1], ".cub"))
 		return (ft_error(E_FILE_TYPE), EXIT_FAILURE);
 	if (get_data(&cube, argv[1]))
 		return (free_cube(&cube), EXIT_FAILURE);
