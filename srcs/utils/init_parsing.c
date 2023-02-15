@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 15:22:02 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:14:06 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ void	init_cube(t_cube *cube)
 	cube->move.right = 0;
 	cube->move.rotate_left = 0;
 	cube->move.rotate_right = 0;
+	cube->obj = NULL;
 	cube->tex.texture = NULL;
 }

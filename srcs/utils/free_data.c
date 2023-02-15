@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 11:01:57 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 16:14:40 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_cube(t_cube *cube)
 	free(cube->elem.east);
 	free(cube->elem.floor_path);
 	free(cube->elem.ceiling_path);
+	if (cube->obj)
+		free_obj(&cube->obj);
 }
 
 void	free_tab_int(int **to_free)

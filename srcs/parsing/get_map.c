@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 14:22:30 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:09:50 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,30 @@ char	**mapjoin(char **s1, char *s2)
 	return (new);
 }
 
+void	define_limits(t_limits *max, char **map, int y)
+{
+	if (y <= 0)
+		max->x_prev = 0;
+	else
+		max->x_prev = ft_strlen(map[y - 1]) - 1;
+	max->x = ft_strlen(map[y]) - 1;
+	if (y == max->y)
+		max->x_next = 0;
+	else
+		max->x_next = ft_strlen(map[y + 1]) - 1;
+}
+
+int	confirm_map(t_cube *cube, t_limits max, int y, int x)
+{
+	if (y == 0 || x == 0 || y == max.y || x == max.x || x >= max.x_prev
+		|| x >= max.x_next)
+		return (ft_error(E_WALL), EXIT_FAILURE);
+	if (cube->parse.map[y - 1][x] == ' ' || cube->parse.map[y + 1][x] == ' '
+	|| cube->parse.map[y][x - 1] == ' ' || cube->parse.map[y][x + 1] == ' ')
+		return (ft_error(E_WALL), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
 int	parse_map(t_cube *cube)
 {
 	int			x;
@@ -46,9 +70,7 @@ int	parse_map(t_cube *cube)
 		define_limits(&cube->parse.max, cube->parse.map, y);
 		while (cube->parse.map[y][x])
 		{
-			if (is_valid_cell(cube->parse.map, y, x))
-				return (EXIT_FAILURE);
-			if (player_start(cube, y, x))
+			if (parse_cell(cube, y, x))
 				return (EXIT_FAILURE);
 			if (cube->parse.map[y][x] == '0' && confirm_map(cube,
 				cube->parse.max, y, x))
@@ -57,11 +79,8 @@ int	parse_map(t_cube *cube)
 		}
 		y++;
 	}
-	if (cube->player.pos_x == -1)
-		return (ft_error(E_NO_START), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
 
 int	get_map(t_cube *cube, int fd)
 {
@@ -73,7 +92,11 @@ int	get_map(t_cube *cube, int fd)
 		if (get_file_line(fd, &cube->parse.line))
 			return (EXIT_FAILURE);
 	}
-	if (parse_map(cube) || map_to_int(cube))
+	if (parse_map(cube))
+		return (EXIT_FAILURE);
+	if (cube->player.pos_x == -1)
+		return (ft_error(E_NO_START), EXIT_FAILURE);
+	if (map_to_int(cube))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

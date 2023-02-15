@@ -53,8 +53,7 @@ SRCS_P			=	get_data.c				\
 					get_file_line.c			\
 					get_map.c				\
 					map_to_int.c			\
-					parse_map.c				\
-					parse_sprite.c
+					parse_cell.c
 
 SRCS_S			=	calcul_sprites.c		\
 					draw_sprites.c
@@ -64,6 +63,7 @@ SRCS_U			=	error.c					\
 					get_time.c				\
 					init_game.c				\
 					init_parsing.c			\
+					lst_obj_utils.c			\
 					map_utils.c				\
 					mlx_utils.c
 

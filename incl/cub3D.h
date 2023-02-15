@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 15:23:20 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:09:36 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,10 +296,12 @@ int		get_map(t_cube *cube, int fd);
 int		map_to_int(t_cube *cube);
 
 // used to parse the map
-int		is_valid_cell(char **map, int y, int x);
 int		player_start(t_cube *cube, int y, int x);
 void	define_limits(t_limits *max, char **map, int y);
-int		confirm_map(t_cube *cube, t_limits max, int y, int x);
+int		parse_cell(t_cube *cube, int y, int x);
+
+// analyse obj and prepare list of object to be used
+int		parse_obj(t_cube *cube, int y, int x);
 
 /* --------------------------  PROTOTYPE UTILS  --------------------------- */
 
@@ -320,6 +322,12 @@ int		init_game(t_cube *cube);
 //init data for parsing
 int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
+
+//manage obj list
+t_obj	*new_obj(t_obj data, int y, int x);
+void	free_obj(t_obj **obj);
+void	obj_add_back(t_obj **obj, t_obj *new);
+int		obj_size(t_obj *obj);
 
 //map utils
 int		rgb_format(char *str);
