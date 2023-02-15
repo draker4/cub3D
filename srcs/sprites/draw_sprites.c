@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:15:51 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 15:21:51 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:12:32 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,110 +14,74 @@
 
 static void	calculate_distance(t_cube *cube)
 {
-	int	i;
+	t_obj	*current;
 
-	i = 0;
-	while (i < NB_SPRITES)
+	current = cube->obj;
+	while (current)
 	{
-		cube->sprite[i].distance = \
-		((cube->player.pos_x - cube->sprite[i].pos_x) * \
-		(cube->player.pos_x - cube->sprite[i].pos_x)) + \
-		((cube->player.pos_y - cube->sprite[i].pos_y) * \
-		(cube->player.pos_y - cube->sprite[i].pos_y));
-		i++;
+		current->distance = \
+		((cube->player.pos_x - current->pos_x) * \
+		(cube->player.pos_x - current->pos_x)) + \
+		((cube->player.pos_y - current->pos_y) * \
+		(cube->player.pos_y - current->pos_y));
+		current = current->next;
+	}
+}
+
+static void	sort_current(t_obj **current, t_obj **prev_current, t_cube *cube)
+{
+	t_obj	*current_next;
+	t_obj	*tmp;
+	t_obj	*prev_tmp;
+
+	tmp = (*current)->next;
+	prev_tmp = *current;
+	while (tmp)
+	{
+		if (tmp->distance > (*current)->distance)
+		{
+			prev_tmp->next = *current;
+			current_next = (*current)->next;
+			(*current)->next = tmp->next;
+			if (!(*prev_current))
+				cube->obj = tmp;
+			else
+				(*prev_current)->next = tmp;
+			tmp->next = current_next;
+		}
+		tmp = tmp->next;
 	}
 }
 
 static void	sort_sprites(t_cube *cube)
 {
-	int			i;
-	int			j;
-	t_sprite	tmp;
+	t_obj	*current;
+	t_obj	*prev_current;
 
-	i = 0;
-	while (i < NB_SPRITES)
+	if (cube->nb_objs == 1)
+		return ;
+	current = cube->obj;
+	prev_current = NULL;
+	while (current)
 	{
-		j = i + 1;
-		while (j < NB_SPRITES)
-		{
-			if (cube->sprite[j].distance > cube->sprite[i].distance)
-			{
-				tmp = cube->sprite[j];
-				cube->sprite[j] = cube->sprite[i];
-				cube->sprite[i] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-static void	init_scale(t_cube *cube, int i)
-{
-	if (cube->sprite[i].texture == 6)
-	{
-		cube->sprite[i].u_div = 1.0;
-		cube->sprite[i].v_div = 1.0;
-		cube->sprite[i].v_move = -256.0;
-	}
-	if (cube->sprite[i].texture == 7)
-	{
-		cube->sprite[i].u_div = 1.0;
-		cube->sprite[i].v_div = 1.0;
-		cube->sprite[i].v_move = 256.0;
-	}
-	if (cube->sprite[i].texture == 8)
-	{
-		cube->sprite[i].u_div = 0.5;
-		cube->sprite[i].v_div = 0.5;
-		cube->sprite[i].v_move = 256.0;
-	}
-	if (cube->sprite[i].texture == 9)
-	{
-		cube->sprite[i].u_div = 1;
-		cube->sprite[i].v_div = 1;
-		cube->sprite[i].v_move = 0.0;
+		sort_current(&current, &prev_current, cube);
+		prev_current = current;
+		current = current->next;
 	}
 }
 
 void	draw_sprites(t_cube *cube)
 {
-	int	i;
+	t_obj	*current;
 
-	cube->sprite[0] = (t_sprite){20.5, 11.5, 6, 0, 1, 1, 0.0}; //green light in front of playerstart
-	//green lights in every room
-	cube->sprite[1] = (t_sprite){18.5, 4.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[2] = (t_sprite){10.0, 4.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[3] = (t_sprite){10.0, 12.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[4] = (t_sprite){3.5, 6.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[5] = (t_sprite){3.5, 20.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[6] = (t_sprite){3.5, 14.5, 6, 0, 1, 1, 0.0};
-	cube->sprite[7] = (t_sprite){14.5, 20.5, 6, 0, 1, 1, 0.0};
-
-	//row of pillars in front of wall: fisheye test
-	cube->sprite[8] = (t_sprite){18.5, 10.5, 8, 0, 1, 1, 0.0};
-	cube->sprite[9] = (t_sprite){18.5, 11.5, 8, 0, 1, 1, 0.0};
-	cube->sprite[10] = (t_sprite){18.5, 12.5, 8, 0, 1, 1, 0.0};
-
-	//some barrels around the map
-	cube->sprite[11] = (t_sprite){21.5, 1.5, 7, 0, 1, 1, 0.0};
-	cube->sprite[12] = (t_sprite){15.5, 1.5, 7, 0, 1, 1, 0.0};
-	cube->sprite[13] = (t_sprite){16.0, 1.8, 7, 0, 1, 1, 0.0};
-	cube->sprite[14] = (t_sprite){16.2, 1.2, 7, 0, 1, 1, 0.0};
-	cube->sprite[15] = (t_sprite){3.5, 2.5, 7, 0, 1, 1, 0.0};
-	cube->sprite[16] = (t_sprite){9.5, 15.5, 7, 0, 1, 1, 0.0};
-	cube->sprite[17] = (t_sprite){10.0, 15.1, 7, 0, 1, 1, 0.0};
-	cube->sprite[18] = (t_sprite){10.5, 15.8, 7, 0, 1, 1, 0.0};
-
+	current = cube->obj;
 	calculate_distance(cube);
 	sort_sprites(cube);
-	i = 0;
-	while (i < NB_SPRITES)
+	while (current)
 	{
-		init_calc_sprites(cube, i);
-		init_scale(cube, i);
-		calc_height_width(cube, i);
-		draw_pixels_sprites(cube, i);
-		i++;
+		init_calc_sprites(cube, current);
+		calc_height_width(cube, current);
+		draw_pixels_sprites(cube, current);
+		current = current->next;
 	}
 }

@@ -6,16 +6,16 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:34:00 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 14:23:34 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:11:40 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_calc_sprites(t_cube *cube, int i)
+void	init_calc_sprites(t_cube *cube, t_obj *current)
 {
-	cube->sprites.sprite_x = cube->sprite[i].pos_x - cube->player.pos_x;
-	cube->sprites.sprite_y = cube->sprite[i].pos_y - cube->player.pos_y;
+	cube->sprites.sprite_x = current->pos_x - cube->player.pos_x;
+	cube->sprites.sprite_y = current->pos_y - cube->player.pos_y;
 	cube->sprites.inv_mat = 1.0 / (cube->player.plane_x * cube->player.dir_y - \
 	cube->player.dir_x * cube->player.plane_y);
 	cube->sprites.transf_x = cube->sprites.inv_mat * (cube->player.dir_y * \
@@ -26,12 +26,12 @@ void	init_calc_sprites(t_cube *cube, int i)
 	cube->sprites.transf_x / cube->sprites.transf_y));
 }
 
-void	calc_height_width(t_cube *cube, int i)
+void	calc_height_width(t_cube *cube, t_obj *current)
 {
-	cube->sprites.move_screen = (int)(cube->sprite[i].v_move / \
+	cube->sprites.move_screen = (int)(current->v_move / \
 	cube->sprites.transf_y);
 	cube->sprites.sp_height = fabs(SCREEN_HEIGHT / cube->sprites.transf_y) / \
-	cube->sprite[i].v_div;
+	current->v_div;
 	cube->sprites.start_y = -(int)(cube->sprites.sp_height) / 2 + \
 	SCREEN_HEIGHT / 2 + cube->sprites.move_screen;
 	if (cube->sprites.start_y < 0)
@@ -41,7 +41,7 @@ void	calc_height_width(t_cube *cube, int i)
 	if (cube->sprites.end_y >= SCREEN_HEIGHT)
 		cube->sprites.end_y = SCREEN_HEIGHT - 1;
 	cube->sprites.sp_width = fabs(SCREEN_HEIGHT / \
-	cube->sprites.transf_y) / cube->sprite[i].u_div;
+	cube->sprites.transf_y) / current->u_div;
 	cube->sprites.start_x = -(int)(cube->sprites.sp_width) / 2 + \
 	cube->sprites.sp_screen_x;
 	if (cube->sprites.start_x < 0)
@@ -52,7 +52,7 @@ void	calc_height_width(t_cube *cube, int i)
 		cube->sprites.end_x = SCREEN_WIDTH - 1;
 }
 
-void	draw_pixels_sprites(t_cube *cube, int i)
+void	draw_pixels_sprites(t_cube *cube, t_obj *current)
 {
 	int	x;
 	int	y;
@@ -72,8 +72,8 @@ void	draw_pixels_sprites(t_cube *cube, int i)
 				SCREEN_HEIGHT * 128 + cube->sprites.sp_height * 128;
 				cube->sprites.tex_y = ((cube->sprites.d * TEX_HEIGHT) / \
 				cube->sprites.sp_height) / 256;
-				cube->sprites.color = cube->tex.texture [cube->sprite[i].\
-				texture][TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y];
+				cube->sprites.color = cube->tex.texture [current->texture] \
+				[TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y];
 				if ((cube->sprites.color & 0x00FFFFFF) != 0)
 					cube->buffer[y][x] = cube->sprites.color;
 			}

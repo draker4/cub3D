@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:30:06 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:11:04 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,6 +252,7 @@ typedef struct s_cube
 	t_move			move;
 	t_tex			tex;
 	t_weapon		weapon;
+	int				nb_objs;
 	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 	double			buffer_z[SCREEN_WIDTH];
@@ -355,9 +356,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 /* --------------------------  PROTOTYPE SPRITES  --------------------------- */
 
 // calcul sprites
-void	init_calc_sprites(t_cube *cube, int i);
-void	calc_height_width(t_cube *cube, int i);
-void	draw_pixels_sprites(t_cube *cube, int i);
+void	init_calc_sprites(t_cube *cube, t_obj *current);
+void	calc_height_width(t_cube *cube, t_obj *current);
+void	draw_pixels_sprites(t_cube *cube, t_obj *current);
 
 // draw sprites
 void	draw_sprites(t_cube *cube);
