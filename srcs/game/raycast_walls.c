@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 13:50:17 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 18:13:39 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	dda_algo(t_cube *cube)
 			cube->raycast.map_y += cube->raycast.step_y;
 			cube->raycast.side = 1;
 		}
-		if (cube->map[cube->raycast.map_y][cube->raycast.map_x])
+		if (cube->map[cube->raycast.map_y][cube->raycast.map_x] == 1)
 			cube->raycast.hit = 1;
 	}
 }

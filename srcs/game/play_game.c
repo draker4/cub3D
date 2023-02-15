@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:24:03 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:45:34 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	update(t_cube *cube)
 void	play_game(t_cube *cube)
 {
 	cube->frame.time_now = get_time();
-	mlx_hook(cube->vars.mlx_win, 6, 1L << 0, &handle_mouse, cube);
+	mlx_hook(cube->vars.mlx_win, 6, 1L << 6, &handle_mouse, cube);
 	mlx_hook(cube->vars.mlx_win, 2, 1L << 0, &handle_keypress, cube);
 	mlx_hook(cube->vars.mlx_win, 3, 1L << 1, &handle_keyrelease, cube);
 	mlx_hook(cube->vars.mlx_win, 17, 0, &exit_game, cube);

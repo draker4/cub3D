@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 16:26:21 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:12:40 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	parse_map(t_cube *cube)
 		{
 			if (parse_cell(cube, y, x))
 				return (EXIT_FAILURE);
-			if (cube->parse.map[y][x] == '0' && confirm_map(cube,
-				cube->parse.max, y, x))
+			if ((cube->parse.map[y][x] == '0' || cube->parse.map[y][x] == '2')
+				&& confirm_map(cube, cube->parse.max, y, x))
 				return (EXIT_FAILURE);
 			x++;
 		}

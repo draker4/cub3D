@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:23:50 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:09:27 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,7 +341,7 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //manage obj list
-t_obj	*new_obj(t_obj data, int y, int x);
+t_obj	*new_obj(t_obj data, t_cube *cube, char cell);
 void	free_obj(t_obj **obj);
 void	obj_add_back(t_obj **obj, t_obj *new);
 int		obj_size(t_obj *obj);
