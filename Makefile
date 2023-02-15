@@ -51,7 +51,8 @@ SRCS_P			=	get_data.c				\
 					get_file_line.c			\
 					get_map.c				\
 					map_to_int.c			\
-					parse_map.c
+					parse_map.c				\
+					parse_sprite.c
 
 SRCS_U			=	error.c					\
 					free_data.c				\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 19:22:48 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:22:14 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	is_valid_cell(char **map, int y, int x)
 {
 	if (map[y][x] == ' ' || map[y][x] == '0' || map[y][x] == '1'
 	|| map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'W'
-	|| map[y][x] == 'E' || (x > 0 && map[y][x] == '\n'))
+	|| map[y][x] == 'E' || (x > 0 && map[y][x] == '\n'
+	|| map[y][x] == 'B' || map[y][x] == 'L' || map[y][x] == 'P'))
 		return (EXIT_SUCCESS);
 	return (ft_error(E_CELL), EXIT_FAILURE);
 }
@@ -24,17 +25,13 @@ int	is_valid_cell(char **map, int y, int x)
 int	player_start(t_cube *cube, int y, int x)
 {
 	if (cube->parse.map[y][x] == 'N')
-		return (init_player(cube, (t_player){0, 0, 0, -1, ANGLE, 0}, \
-		(double)y + 0.5, (double)x + 0.5));
+		return (init_player(cube, (t_player){0, 0, 0, -1, ANGLE, 0}, y, x));
 	else if (cube->parse.map[y][x] == 'S')
-		return (init_player(cube, (t_player){0, 0, 0, 1, -ANGLE, 0}, \
-		(double)y + 0.5, (double)x + 0.5));
+		return (init_player(cube, (t_player){0, 0, 0, 1, -ANGLE, 0}, y, x));
 	else if (cube->parse.map[y][x] == 'W')
-		return (init_player(cube, (t_player){0, 0, -1, 0, 0, -ANGLE}, \
-		(double)y + 0.5, (double)x + 0.5));
+		return (init_player(cube, (t_player){0, 0, -1, 0, 0, -ANGLE}, y, x));
 	else if (cube->parse.map[y][x] == 'E')
-		return (init_player(cube, (t_player){0, 0, 1, 0, 0, ANGLE}, \
-		(double)y + 0.5, (double)x + 0.5));
+		return (init_player(cube, (t_player){0, 0, 1, 0, 0, ANGLE}, y, x));
 	return (EXIT_SUCCESS);
 }
 

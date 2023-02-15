@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 13:33:40 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:21:33 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stdio.h>
 # include <sys/time.h>
 
+# define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
 # define SCREEN_WIDTH 2000
 # define SCREEN_HEIGHT 1000
-# define SCREEN_TITLE "****CUB3D BAPT'S TEAM****"
 # define TEX_WIDTH 256
 # define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
@@ -32,6 +32,14 @@
 # define ANGLE 0.66
 # define NB_SPRITES 19
 # define NB_TEXTURES 9
+
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define RIGHT 65363
+# define LEFT 65361
+# define ESCAPE 65307
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -76,13 +84,17 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
-typedef struct s_sprite
+typedef struct s_obj
 {
-	double	pos_x;
-	double	pos_y;
-	int		texture;
-	double	distance;
-}	t_sprite;
+	double			pos_x;
+	double			pos_y;
+	int				texture;
+	double			distance;
+	double			u_div;
+	double			v_div;
+	double			v_move;
+	struct s_obj	*next;
+}	t_obj;
 
 typedef struct s_sprites
 {
@@ -222,7 +234,7 @@ typedef struct s_cube
 	t_raycast		raycast;
 	t_bkground		bkground;
 	t_frame			frame;
-	t_sprite		sprite[NB_SPRITES];
+	t_obj			*obj;
 	t_sprites		sprites;
 	t_vars			vars;
 	t_data			data;
@@ -304,7 +316,7 @@ double	get_time(void);
 int		init_game(t_cube *cube);
 
 //init data for parsing
-int		init_player(t_cube *cube, t_player define, double y, double x);
+int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //map utils
