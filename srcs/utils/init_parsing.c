@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:30:34 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 20:10:20 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	init_cube(t_cube *cube)
 	cube->obj = NULL;
 	cube->tex.texture = NULL;
 	cube->weapon.tex = NULL;
+	cube->attack = 0;
 }

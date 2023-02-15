@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 18:33:29 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 20:10:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,8 +224,6 @@ typedef struct s_bkground
 	int		cell_y;
 	int		tex_x;
 	int		tex_y;
-	int		tex_floor;
-	int		tex_ceil;
 	int		floor_color;
 	int		ceil_color;
 }	t_bkground;
