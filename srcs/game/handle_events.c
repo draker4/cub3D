@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:19:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 16:30:19 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	handle_keypress(int keycode, t_cube *cube)
 {
-	if (keycode == 119)
+	if (keycode == W)
 		cube->move.up = 1;
-	if (keycode == 115)
+	if (keycode == S)
 		cube->move.down = 1;
-	if (keycode == 97)
+	if (keycode == A)
 		cube->move.left = 1;
-	if (keycode == 100)
+	if (keycode == D)
 		cube->move.right = 1;
-	if (keycode == 65363)
+	if (keycode == RIGHT)
 		cube->move.rotate_right = 1;
-	if (keycode == 65361)
+	if (keycode == LEFT)
 		cube->move.rotate_left = 1;
 	if (keycode == 32)
 	{
@@ -38,15 +38,15 @@ int	handle_keypress(int keycode, t_cube *cube)
 
 int	handle_keyrelease(int keycode, t_cube *cube)
 {
-	if (keycode == 119)
+	if (keycode == W)
 		cube->move.up = 0;
-	if (keycode == 115)
+	if (keycode == S)
 		cube->move.down = 0;
-	if (keycode == 97)
+	if (keycode == A)
 		cube->move.left = 0;
-	if (keycode == 100)
+	if (keycode == D)
 		cube->move.right = 0;
-	if (keycode == 65363)
+	if (keycode == RIGHT)
 		cube->move.rotate_right = 0;
 	if (keycode == 65361)
 		cube->move.rotate_left = 0;

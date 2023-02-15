@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 15:56:24 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 16:30:30 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	free_cube(t_cube *cube)
 	free(cube->elem.east);
 	free(cube->elem.floor_path);
 	free(cube->elem.ceiling_path);
+	if (cube->obj)
+		free_obj(&cube->obj);
 }
 
 void	free_tab_int(int **to_free)
