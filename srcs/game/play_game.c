@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:45:34 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:52:10 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	update(t_cube *cube)
 	raycast_walls(cube);
 	draw_sprites(cube);
 	draw_weapon(cube);
+	draw_map(cube);
 	draw_buffer(cube);
 	mlx_put_image_to_window(cube->vars.mlx_ptr, cube->vars.mlx_win, \
 	cube->data.img, 0, 0);

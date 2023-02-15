@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 18:33:29 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 20:13:59 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,7 @@ typedef struct s_cube
 	t_move			move;
 	t_tex			tex;
 	t_weapon		weapon;
+	t_limits		limits;
 	int				nb_objs;
 	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
@@ -265,6 +266,9 @@ typedef struct s_cube
 // collisions sprites
 void	move_sprites_front(t_cube *cube);
 void	move_sprites_side(t_cube *cube);
+
+// create minimap
+void	draw_map(t_cube *cube);
 
 // prototypes draw textures
 void	calculate_texture(t_cube *cube);
@@ -337,28 +341,29 @@ void	free_tab_int(int **to_free);
 // get time
 double	get_time(void);
 
-//init data to start game
+// init data to start game
 int		init_game(t_cube *cube);
 
-//init data for parsing
+// init data for parsing
 int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
-//manage obj list
+// manage obj list
 t_obj	*new_obj(t_obj data, t_cube *cube, char cell);
 void	free_obj(t_obj **obj);
 void	obj_add_back(t_obj **obj, t_obj *new);
 int		obj_size(t_obj *obj);
 
-//map utils
+// map utils
 int		rgb_format(char *str);
 int		color_atoi(char *str, int *color);
 int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
+int		map_size_x(int *map);
+int		map_size_y(int **map);
 
 // mlx utils
-
 int		combine_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
