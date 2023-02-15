@@ -6,11 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:56:08 by bperriol          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/02/15 19:35:08 by bboisson         ###   ########.fr       */
-=======
-/*   Updated: 2023/02/15 19:59:55 by bperriol         ###   ########lyon.fr   */
->>>>>>> 4fd34541db1149c9a64f52056382b7d43b8b16d1
+/*   Updated: 2023/02/15 20:52:38 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +39,9 @@ static void	draw_pixel(t_cube *cube, int x, int y)
 {
 	cube->bkground.floor_color = cube->tex.texture[4] \
 	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
-	// cube->bkground.floor_color = (cube->bkground.floor_color >> 1) & 8355711;
 	cube->buffer[y][x] = cube->bkground.floor_color;
 	cube->bkground.ceil_color = cube->tex.texture[5] \
 	[TEX_WIDTH * cube->bkground.tex_y + cube->bkground.tex_x];
-	// cube->bkground.ceil_color = (cube->bkground.ceil_color >> 1) & 8355711;
 	cube->buffer[SCREEN_HEIGHT - y - 1][x] = cube->bkground.ceil_color;
 }
 
