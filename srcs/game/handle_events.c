@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:30:19 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:47:12 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,20 @@ int	handle_keyrelease(int keycode, t_cube *cube)
 	if (keycode == 65361)
 		cube->move.rotate_left = 0;
 	return (EXIT_SUCCESS);
+}
+
+int	handle_mouse(int x, int y, t_cube *cube)
+{
+	static int	prev;
+	int			current;
+
+	current = x;
+	if (current < prev)
+		rotate_player(cube, cube->player.dir_x, cube->player.plane_x,
+			MOUSE_LEFT);
+	else if (current > prev)
+		rotate_player(cube, cube->player.dir_x, cube->player.plane_x,
+			MOUSE_RIGHT);
+	prev = current;
+	return (y);
 }

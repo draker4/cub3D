@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:11:04 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 18:09:27 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define RIGHT 65363
 # define LEFT 65361
 # define ESCAPE 65307
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -274,8 +276,11 @@ int		generate_textures(t_cube *cube);
 // prototypes handle events
 int		handle_keypress(int keycode, t_cube *cube);
 int		handle_keyrelease(int keycode, t_cube *cube);
+int		handle_mouse(int x, int y, t_cube *cube);
 
 // prototypes move player
+void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x,
+			int mouse);
 void	move_player(t_cube *cube);
 
 // prototypes play game
@@ -336,7 +341,7 @@ int		init_player(t_cube *cube, t_player define, int y, int x);
 void	init_cube(t_cube *cube);
 
 //manage obj list
-t_obj	*new_obj(t_obj data, int y, int x);
+t_obj	*new_obj(t_obj data, t_cube *cube, char cell);
 void	free_obj(t_obj **obj);
 void	obj_add_back(t_obj **obj, t_obj *new);
 int		obj_size(t_obj *obj);
