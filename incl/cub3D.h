@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:09:36 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:57:19 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define RIGHT 65363
 # define LEFT 65361
 # define ESCAPE 65307
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -262,8 +264,11 @@ int		generate_textures(t_cube *cube);
 // prototypes handle events
 int		handle_keypress(int keycode, t_cube *cube);
 int		handle_keyrelease(int keycode, t_cube *cube);
+int		handle_mouse(int x, int y, t_cube *cube);
 
 // prototypes move player
+void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x,
+			int mouse);
 void	move_player(t_cube *cube);
 
 // prototypes play game
