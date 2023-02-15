@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 13:33:40 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 14:20:18 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ typedef struct s_sprite
 	double	pos_y;
 	int		texture;
 	double	distance;
+	double	u_div;
+	double	v_div;
+	double	v_move;
 }	t_sprite;
 
 typedef struct s_sprites
@@ -91,17 +94,18 @@ typedef struct s_sprites
 	double	inv_mat;
 	double	transf_x;
 	double	transf_y;
+	double	sp_height;
+	double	sp_width;
 	int		sp_screen_x;
-	int		sp_height;
 	int		start_y;
 	int		end_y;
-	int		sp_width;
 	int		start_x;
 	int		end_x;
 	int		tex_x;
 	int		tex_y;
 	int		color;
 	int		d;
+	int		move_screen;
 }	t_sprites;
 
 typedef struct s_vars
@@ -323,7 +327,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // calcul sprites
 void	init_calc_sprites(t_cube *cube, int i);
-void	calc_height_width(t_cube *cube);
+void	calc_height_width(t_cube *cube, int i);
 void	draw_pixels_sprites(t_cube *cube, int i);
 
 // draw sprites
