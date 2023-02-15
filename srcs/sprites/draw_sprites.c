@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:15:51 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 18:17:37 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 19:13:07 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,44 +28,43 @@ static void	calculate_distance(t_cube *cube)
 	}
 }
 
-static void	sort_current(t_obj **current, t_obj **prev_current, t_cube *cube)
+static void	swap_obj(t_obj **current, t_obj **check, t_obj tmp)
 {
-	t_obj	*current_next;
-	t_obj	*tmp;
-	t_obj	*prev_tmp;
-
-	tmp = (*current)->next;
-	prev_tmp = *current;
-	while (tmp)
-	{
-		if (tmp->distance > (*current)->distance)
-		{
-			prev_tmp->next = *current;
-			current_next = (*current)->next;
-			(*current)->next = tmp->next;
-			if (!(*prev_current))
-				cube->obj = tmp;
-			else
-				(*prev_current)->next = tmp;
-			tmp->next = current_next;
-		}
-		tmp = tmp->next;
-	}
+	(*current)->pos_x = (*check)->pos_x;
+	(*current)->pos_y = (*check)->pos_y;
+	(*current)->texture = (*check)->texture;
+	(*current)->distance = (*check)->distance;
+	(*current)->u_div = (*check)->u_div;
+	(*current)->v_div = (*check)->v_div;
+	(*current)->v_move = (*check)->v_move;
+	(*check)->pos_x = tmp.pos_x;
+	(*check)->pos_y = tmp.pos_y;
+	(*check)->texture = tmp.texture;
+	(*check)->distance = tmp.distance;
+	(*check)->u_div = tmp.u_div;
+	(*check)->v_div = tmp.v_div;
+	(*check)->v_move = tmp.v_move;
 }
 
 static void	sort_sprites(t_cube *cube)
 {
+	int		i;
+	int		j;
 	t_obj	*current;
-	t_obj	*prev_current;
+	t_obj	*check;
 
-	if (cube->nb_objs == 1)
-		return ;
+	i = -1;
 	current = cube->obj;
-	prev_current = NULL;
-	while (current)
+	while (++i < cube->nb_objs)
 	{
-		sort_current(&current, &prev_current, cube);
-		prev_current = current;
+		j = i;
+		check = current->next;
+		while (++j < cube->nb_objs)
+		{
+			if (check->distance > current->distance)
+				swap_obj(&current, &check, *current);
+			check = check->next;
+		}
 		current = current->next;
 	}
 }
