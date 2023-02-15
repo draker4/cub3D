@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   play_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/02/15 19:52:10 by bboisson         ###   ########.fr       */
+=======
+/*   Updated: 2023/02/15 20:01:37 by bperriol         ###   ########lyon.fr   */
+>>>>>>> 4fd34541db1149c9a64f52056382b7d43b8b16d1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +41,7 @@ static void	fill_background(t_cube *cube)
 
 static int	update(t_cube *cube)
 {
+	// printf("attack=%d\n", cube->attack);
 	cube->frame.time_prev = cube->frame.time_now;
 	cube->frame.time_now = get_time();
 	cube->frame.frame_time = cube->frame.time_now - cube->frame.time_prev;

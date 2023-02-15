@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:13:59 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:50:43 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,8 +224,6 @@ typedef struct s_bkground
 	int		cell_y;
 	int		tex_x;
 	int		tex_y;
-	int		tex_floor;
-	int		tex_ceil;
 	int		floor_color;
 	int		ceil_color;
 }	t_bkground;

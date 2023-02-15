@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_events.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:47:12 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:10:28 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
