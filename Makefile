@@ -17,18 +17,19 @@ DIR_HEAD			=	./incl/
 DIR_SRCS			=	./srcs/
 DIR_SRCS_G			=	./srcs/game/
 DIR_SRCS_P			=	./srcs/parsing/
-DIR_SRCS_U			=	./srcs/utils/
 DIR_SRCS_S			=	./srcs/sprites/
+DIR_SRCS_U			=	./srcs/utils/
 DIR_LIBFT			=	./libft/
 DIR_MLX				=	./mlx_linux/
 DIR_OBJS			=	.build/
 DIR_OBJS_G			=	.build/game/
 DIR_OBJS_P			=	.build/parsing/
-DIR_OBJS_U			=	.build/utils/
 DIR_OBJS_S			=	.build/sprites/
+DIR_OBJS_U			=	.build/utils/
 DIR_OBJS_D			=	.build_debug/
 DIR_OBJS_D_G		=	.build_debug/game/
 DIR_OBJS_D_P		=	.build_debug/parsing/
+DIR_OBJS_D_S		=	.build_debug/sprites/
 DIR_OBJS_D_U		=	.build_debug/utils/
 DIR_DEBUG			=	${NAME}.dSYM
 
@@ -55,6 +56,9 @@ SRCS_P			=	get_data.c				\
 					parse_map.c				\
 					parse_sprite.c
 
+SRCS_S			=	calcul_sprites.c		\
+					draw_sprites.c
+
 SRCS_U			=	error.c					\
 					free_data.c				\
 					get_time.c				\
@@ -62,9 +66,6 @@ SRCS_U			=	error.c					\
 					init_parsing.c			\
 					map_utils.c				\
 					mlx_utils.c
-
-SRCS_S			=	calcul_sprites.c		\
-					draw_sprites.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_G			=	${SRCS_G:%.c=${DIR_OBJS_G}%.o}
@@ -80,13 +81,13 @@ OBJS_D_S		=	${SRCS_S:%.c=${DIR_OBJS_D_S}%.o}
 DEPS			=	${OBJS:.o=.d}
 DEPS_G			=	${OBJS_G:.o=.d}
 DEPS_P			=	${OBJS_P:.o=.d}
-DEPS_U			=	${OBJS_U:.o=.d}
 DEPS_S			=	${OBJS_S:.o=.d}
+DEPS_U			=	${OBJS_U:.o=.d}
 DEPS_D			=	${OBJS_D:.o=.d}
 DEPS_D_G		=	${OBJS_D_G:.o=.d}
 DEPS_D_P		=	${OBJS_D_P:.o=.d}
-DEPS_D_U		=	${OBJS_D_U:.o=.d}
 DEPS_D_S		=	${OBJS_D_S:.o=.d}
+DEPS_D_U		=	${OBJS_D_U:.o=.d}
 
 # --------------  Path  -------------- #
 
@@ -125,8 +126,8 @@ all					:
 
 # ---------  Compiled Rules  --------- #
 
-${NAME}				:	${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} ${OBJS_S} ${DIR_LIBFT} ${DIR_MLX}
-						${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_U} ${OBJS_S} -L ${DIR_LIBFT} ${LIBFT} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH}
+${NAME}				:	${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_S} ${OBJS_U} ${DIR_LIBFT} ${DIR_MLX}
+						${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${OBJS_G} ${OBJS_P} ${OBJS_S} ${OBJS_U} -L ${DIR_LIBFT} ${LIBFT} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH}
 
 ${DIR_OBJS}%.o		:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -c $< -o $@
@@ -158,8 +159,8 @@ ${DIR_OBJS}			:
 
 # ------  Compiled Rules Debug  ------ #
 
-${DEBUG}			:	${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${OBJS_D_S} ${DIR_LIBFT} ${DIR_MLX}
-						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_U} ${OBJS_D_S} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
+${DEBUG}			:	${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_S} ${OBJS_D_U} ${DIR_LIBFT} ${DIR_MLX}
+						${CC} ${CFLAGS} -o ${DEBUG} ${OBJS_D} ${OBJS_D_G} ${OBJS_D_P} ${OBJS_D_S} ${OBJS_D_U} -L ${DIR_LIBFT} ${LIBFT_D} -L ${DIR_MLX} ${MLX} ${LIB_GRAPH} -g3 ${FSANITIZE}
 
 ${DIR_OBJS_D}%.o	:	${DIR_SRCS}%.c Makefile | ${DIR_OBJS_D}
 						${CC} ${CFLAGS} ${MMD} -I ${DIR_HEAD} -I ${DIR_LIBFT} ${I_MLX} -g3 ${FSANITIZE} -c $< -o $@
@@ -215,16 +216,16 @@ debug				:
 # -----------  Run Commands  --------- #
 
 run					:	all
-						./${NAME} map_tuto.cub
+						./${NAME} map/map_tuto.cub
 
 runl				:	all
-						${LEAKS}./${NAME} map_subject.cub
+						${LEAKS}./${NAME} map/map_subject.cub
 
 runs				:	debug
-						./${DEBUG} map_tuto.cub
+						./${DEBUG} map/map_tuto.cub
 
 rund				:	debug
 						${LLDB} ./${DEBUG}
 
 runv				:	all
-						${VALGRIND} ./${NAME} map_tuto.cub
+						${VALGRIND} ./${NAME} map/map_tuto.cub
