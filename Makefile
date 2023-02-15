@@ -63,7 +63,8 @@ SRCS_U			=	error.c					\
 					mlx_utils.c
 
 SRCS_S			=	calcul_sprites.c		\
-					draw_sprites.c
+					draw_sprites.c			\
+					draw_weapon.c
 
 OBJS			=	${SRCS:%.c=${DIR_OBJS}%.o}
 OBJS_G			=	${SRCS_G:%.c=${DIR_OBJS_G}%.o}

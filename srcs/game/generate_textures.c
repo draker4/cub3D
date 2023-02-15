@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 15:19:25 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 16:14:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,34 @@ static void	generate_background(t_cube *cube)
 	}
 }
 
+static int	generate_weapon(t_cube *cube, int index, char *path)
+{
+	t_data	data;
+	int		width;
+	int		height;
+	int		x;
+	int		y;
+
+	data.img = mlx_xpm_file_to_image(cube->vars.mlx_ptr, path, &width, &height);
+	if (!data.img)
+		return (write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), EXIT_FAILURE);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
+	&data.line_length, &data.endian);
+	x = -1;
+	while (++x < SCREEN_WIDTH)
+	{
+		y = -1;
+		while (++y < SCREEN_HEIGHT)
+		{
+			cube->weapon.tex[index][x * SCREEN_HEIGHT + y] = \
+			*(unsigned int *)(data.addr + (y * data.line_length + x * \
+			(data.bits_per_pixel / 8)));
+		}
+	}
+	mlx_destroy_image(cube->vars.mlx_ptr, data.img);
+	return (EXIT_SUCCESS);
+}
+
 int	generate_textures(t_cube *cube)
 {
 	if (load_texture(cube, 0, cube->elem.north)
@@ -86,9 +114,12 @@ int	generate_textures(t_cube *cube)
 		|| load_texture(cube, 3, cube->elem.west)
 		|| load_texture(cube, 6, LIGHT_PATH)
 		|| load_texture(cube, 7, BARREL_PATH)
-		|| load_texture(cube, 8, PILLAR_PATH)
-		|| load_texture(cube, 9, PUNCH3_PATH))
+		|| load_texture(cube, 8, PILLAR_PATH))
 		exit_game(cube, 1);
 	generate_background(cube);
+	if (generate_weapon(cube, 0, PUNCH1_PATH)
+		|| generate_weapon(cube, 1, PUNCH2_PATH)
+		|| generate_weapon(cube, 2, PUNCH3_PATH))
+		exit_game(cube, 1);
 	return (EXIT_SUCCESS);
 }

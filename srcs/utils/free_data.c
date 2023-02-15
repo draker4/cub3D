@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 11:01:57 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:56:24 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	free_cube(t_cube *cube)
 		free_map(cube->map);
 	if (cube->tex.texture)
 		free_tab_int(cube->tex.texture);
+	if (cube->weapon.tex)
+		free_tab_int(cube->weapon.tex);
 	free(cube->elem.north);
 	free(cube->elem.south);
 	free(cube->elem.west);

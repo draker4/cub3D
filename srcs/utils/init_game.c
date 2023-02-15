@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 13:48:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:57:26 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,40 @@ static int	**init_textures(void)
 	return (textures);
 }
 
+static int	**init_weapon(void)
+{
+	int	**tex;
+	int	i;
+
+	tex = malloc(sizeof(int *) * (3 + 1));
+	if (!tex)
+		return (perror("Init_textures - Malloc"), NULL);
+	i = 0;
+	while (i < 3)
+	{
+		tex[i] = malloc(sizeof(int) * (SCREEN_WIDTH * SCREEN_HEIGHT));
+		if (!tex[i])
+		{
+			while (--i)
+				free(tex[i]);
+			free(tex);
+			return (perror("Init_textures - Malloc"), NULL);
+		}
+		i++;
+	}
+	tex[i] = NULL;
+	return (tex);
+}
+
 int	init_game(t_cube *cube)
 {
 	if (init_mlx(cube))
 		return (EXIT_FAILURE);
 	cube->tex.texture = init_textures();
 	if (!cube->tex.texture)
+		exit_game(cube, 1);
+	cube->weapon.tex = init_weapon();
+	if (!cube->weapon.tex)
 		exit_game(cube, 1);
 	if (generate_textures(cube))
 		exit_game(cube, 1);
