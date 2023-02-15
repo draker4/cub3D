@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/14 17:51:54 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:01:57 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	free_cube(t_cube *cube)
 		free_split(cube->parse.map);
 	if (cube->map)
 		free_map(cube->map);
+	if (cube->tex.texture)
+		free_tab_int(cube->tex.texture);
 	free(cube->elem.north);
 	free(cube->elem.south);
 	free(cube->elem.west);

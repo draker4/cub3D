@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 19:17:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 11:02:03 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void	init_cube(t_cube *cube)
 	cube->move.rotate_left = 0;
 	cube->move.rotate_right = 0;
 	cube->tex.texture = NULL;
-	cube->buffer = NULL;
 }

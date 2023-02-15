@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 19:18:06 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 13:33:40 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
+# define NB_SPRITES 19
+# define NB_TEXTURES 9
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -41,6 +43,10 @@
 the wall\n"
 # define E_XPM_IMAGE "Mlx_xpm_file_to_image function error\n"
 # define E_MLX_WINDOW "Mlx_new_window function error\n"
+
+# define LIGHT_PATH "./sprites/greenlight.xpm"
+# define BARREL_PATH "./sprites/barrel.xpm"
+# define PILLAR_PATH "./sprites/pillar.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -70,9 +76,33 @@ typedef struct s_player
 	double	plane_y;
 }	t_player;
 
-// typedef struct s_sprite
-// {
-// }	t_sprite;
+typedef struct s_sprite
+{
+	double	pos_x;
+	double	pos_y;
+	int		texture;
+	double	distance;
+}	t_sprite;
+
+typedef struct s_sprites
+{
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_mat;
+	double	transf_x;
+	double	transf_y;
+	int		sp_screen_x;
+	int		sp_height;
+	int		start_y;
+	int		end_y;
+	int		sp_width;
+	int		start_x;
+	int		end_x;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	int		d;
+}	t_sprites;
 
 typedef struct s_vars
 {
@@ -192,12 +222,14 @@ typedef struct s_cube
 	t_raycast		raycast;
 	t_bkground		bkground;
 	t_frame			frame;
-	// t_sprite		*sprites;
+	t_sprite		sprite[NB_SPRITES];
+	t_sprites		sprites;
 	t_vars			vars;
 	t_data			data;
 	t_move			move;
 	t_tex			tex;
-	int				**buffer;
+	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
+	double			buffer_z[SCREEN_WIDTH];
 }	t_cube;
 
 /* --------------------------  PROTOTYPE GAME  --------------------------- */
@@ -265,7 +297,7 @@ void	free_split(char **str);
 void	free_cube(t_cube *cube);
 void	free_tab_int(int **to_free);
 
-// prototypes get time
+// get time
 double	get_time(void);
 
 //init data to start game
@@ -282,9 +314,19 @@ int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
 
-// prototypes mlx utils
+// mlx utils
 
 int		combine_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* --------------------------  PROTOTYPE SPRITES  --------------------------- */
+
+// calcul sprites
+void	init_calc_sprites(t_cube *cube, int i);
+void	calc_height_width(t_cube *cube);
+void	draw_pixels_sprites(t_cube *cube, int i);
+
+// draw sprites
+void	draw_sprites(t_cube *cube);
 
 #endif

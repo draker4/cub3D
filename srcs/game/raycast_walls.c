@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:43:42 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:06:26 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 13:50:17 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	raycast_walls(t_cube *cube)
 		calculate_line_wall(cube);
 		calculate_texture(cube);
 		fill_texture(cube, x);
+		cube->buffer_z[x] = cube->raycast.dist_plan_wall;
 		x++;
 	}
-	draw_buffer(cube);
 }
