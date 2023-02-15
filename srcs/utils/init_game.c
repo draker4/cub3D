@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:10:18 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 19:12:43 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	init_game(t_cube *cube)
 	cube->weapon.tex = init_weapon();
 	if (!cube->weapon.tex)
 		exit_game(cube, 1);
+	cube->nb_objs = obj_size(cube->obj);
 	if (generate_textures(cube))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);
