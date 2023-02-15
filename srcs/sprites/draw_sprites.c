@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:15:51 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 14:24:07 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:13:58 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,19 @@ static void	init_scale(t_cube *cube, int i)
 		cube->sprite[i].v_div = 0.5;
 		cube->sprite[i].v_move = 256.0;
 	}
+	if (cube->sprite[i].texture == 9)
+	{
+		cube->sprite[i].u_div = 1;
+		cube->sprite[i].v_div = 1;
+		cube->sprite[i].v_move = 0.0;
+	}
 }
+
+// static void	init_weapon(t_cube *cube, int i)
+// {
+// 	cube->sprite[i].pos_x = cube->player.pos_x + cube->player.dir_x + 10;
+// 	cube->sprite[i].pos_y = cube->player.pos_y + cube->player.pos_y + 10;
+// }
 
 void	draw_sprites(t_cube *cube)
 {
@@ -102,11 +114,16 @@ void	draw_sprites(t_cube *cube)
 	cube->sprite[16] = (t_sprite){9.5, 15.5, 7, 0, 1, 1, 0.0};
 	cube->sprite[17] = (t_sprite){10.0, 15.1, 7, 0, 1, 1, 0.0};
 	cube->sprite[18] = (t_sprite){10.5, 15.8, 7, 0, 1, 1, 0.0};
+	// cube->sprite[19] = (t_sprite){0, 0, 9, 0, 0, 0, 0};
+	
+
 	calculate_distance(cube);
 	sort_sprites(cube);
 	i = 0;
 	while (i < NB_SPRITES)
 	{
+		// if (cube->sprite[i].texture == 9)
+		// 	init_weapon(cube, i);
 		init_calc_sprites(cube, i);
 		init_scale(cube, i);
 		calc_height_width(cube, i);

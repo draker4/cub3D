@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 14:20:18 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:18:58 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_SPRITES 19
-# define NB_TEXTURES 9
+# define NB_SPRITES 20
+# define NB_TEXTURES 10
 
 # define E_ARG_NB "Select one map only\n"
 # define E_CELL "Forbidden cell type used\n"
@@ -47,6 +47,7 @@ the wall\n"
 # define LIGHT_PATH "./sprites/greenlight.xpm"
 # define BARREL_PATH "./sprites/barrel.xpm"
 # define PILLAR_PATH "./sprites/pillar.xpm"
+# define PUNCH3_PATH "./sprites/punch3.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
