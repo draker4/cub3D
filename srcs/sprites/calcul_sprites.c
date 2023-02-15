@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:34:00 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:11:40 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:59:24 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ void	calc_height_width(t_cube *cube, t_obj *current)
 	cube->sprites.transf_y);
 	cube->sprites.sp_height = fabs(SCREEN_HEIGHT / cube->sprites.transf_y) / \
 	current->v_div;
-	cube->sprites.start_y = -(int)(cube->sprites.sp_height) / 2 + \
-	SCREEN_HEIGHT / 2 + cube->sprites.move_screen;
+	cube->sprites.start_y = (int)(-cube->sprites.sp_height / 2 + \
+	SCREEN_HEIGHT / 2 + cube->sprites.move_screen);
 	if (cube->sprites.start_y < 0)
 		cube->sprites.start_y = 0;
-	cube->sprites.end_y = (int)(cube->sprites.sp_height) / 2 + \
-	SCREEN_HEIGHT / 2 + cube->sprites.move_screen;
+	cube->sprites.end_y = (int)(cube->sprites.sp_height / 2 + \
+	SCREEN_HEIGHT / 2 + cube->sprites.move_screen);
 	if (cube->sprites.end_y >= SCREEN_HEIGHT)
 		cube->sprites.end_y = SCREEN_HEIGHT - 1;
 	cube->sprites.sp_width = fabs(SCREEN_HEIGHT / \
 	cube->sprites.transf_y) / current->u_div;
-	cube->sprites.start_x = -(int)(cube->sprites.sp_width) / 2 + \
-	cube->sprites.sp_screen_x;
+	cube->sprites.start_x = (int)(-cube->sprites.sp_width / 2 + \
+	cube->sprites.sp_screen_x);
 	if (cube->sprites.start_x < 0)
 		cube->sprites.start_x = 0;
-	cube->sprites.end_x = (int)(cube->sprites.sp_width) / 2 + \
-	cube->sprites.sp_screen_x;
+	cube->sprites.end_x = (int)(cube->sprites.sp_width / 2 + \
+	cube->sprites.sp_screen_x);
 	if (cube->sprites.end_x >= SCREEN_WIDTH)
 		cube->sprites.end_x = SCREEN_WIDTH - 1;
 }
@@ -69,9 +69,9 @@ void	draw_pixels_sprites(t_cube *cube, t_obj *current)
 			while (++y < cube->sprites.end_y)
 			{
 				cube->sprites.d = (y - cube->sprites.move_screen) * 256 - \
-				SCREEN_HEIGHT * 128 + cube->sprites.sp_height * 128;
+				SCREEN_HEIGHT * 128 + (int)cube->sprites.sp_height * 128;
 				cube->sprites.tex_y = ((cube->sprites.d * TEX_HEIGHT) / \
-				cube->sprites.sp_height) / 256;
+				(int)cube->sprites.sp_height) / 256;
 				cube->sprites.color = cube->tex.texture [current->texture] \
 				[TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y];
 				if ((cube->sprites.color & 0x00FFFFFF) != 0)

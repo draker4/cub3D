@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:22:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:28:56 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:30:48 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	choose_anim(t_cube *cube)
 		if (cube->weapon.start_frame > time)
 		{
 			cube->weapon.nb_frame++;
-			time += 0.2;
+			time += 0.1;
 		}
 	}
 	if (cube->weapon.nb_frame == 3)

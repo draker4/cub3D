@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 17:20:46 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 17:47:03 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse_obj(t_cube *cube, int y, int x)
 	else if (cube->parse.map[y][x] == 'B')
 		new = new_obj((t_obj){0, 0, 7, 0.0, 1, 1, 256, NULL}, y, x);
 	else if (cube->parse.map[y][x] == 'P')
-		new = new_obj((t_obj){0, 0, 8, 0.0, 1, 1, 256, NULL}, y, x);
+		new = new_obj((t_obj){0, 0, 8, 0.0, 0.6, 0.6, 0, NULL}, y, x);
 	if (!new)
 		return (EXIT_FAILURE);
 	obj_add_back(&cube->obj, new);
