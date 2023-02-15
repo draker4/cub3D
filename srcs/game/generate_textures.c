@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 13:48:42 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/15 15:19:25 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int	generate_textures(t_cube *cube)
 		|| load_texture(cube, 3, cube->elem.west)
 		|| load_texture(cube, 6, LIGHT_PATH)
 		|| load_texture(cube, 7, BARREL_PATH)
-		|| load_texture(cube, 8, PILLAR_PATH))
+		|| load_texture(cube, 8, PILLAR_PATH)
+		|| load_texture(cube, 9, PUNCH3_PATH))
 		exit_game(cube, 1);
 	generate_background(cube);
 	return (EXIT_SUCCESS);

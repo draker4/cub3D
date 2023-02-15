@@ -25,6 +25,7 @@ DIR_OBJS			=	.build/
 DIR_OBJS_G			=	.build/game/
 DIR_OBJS_P			=	.build/parsing/
 DIR_OBJS_U			=	.build/utils/
+DIR_OBJS_S			=	.build/sprites/
 DIR_OBJS_D			=	.build_debug/
 DIR_OBJS_D_G		=	.build_debug/game/
 DIR_OBJS_D_P		=	.build_debug/parsing/

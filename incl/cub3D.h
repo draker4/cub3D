@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 15:21:33 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:23:20 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_SPRITES 19
-# define NB_TEXTURES 9
+# define NB_SPRITES 20
+# define NB_TEXTURES 10
 
 # define W 119
 # define S 115
@@ -55,6 +55,7 @@ the wall\n"
 # define LIGHT_PATH "./sprites/greenlight.xpm"
 # define BARREL_PATH "./sprites/barrel.xpm"
 # define PILLAR_PATH "./sprites/pillar.xpm"
+# define PUNCH3_PATH "./sprites/punch3.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -103,17 +104,18 @@ typedef struct s_sprites
 	double	inv_mat;
 	double	transf_x;
 	double	transf_y;
+	double	sp_height;
+	double	sp_width;
 	int		sp_screen_x;
-	int		sp_height;
 	int		start_y;
 	int		end_y;
-	int		sp_width;
 	int		start_x;
 	int		end_x;
 	int		tex_x;
 	int		tex_y;
 	int		color;
 	int		d;
+	int		move_screen;
 }	t_sprites;
 
 typedef struct s_vars
@@ -335,7 +337,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 // calcul sprites
 void	init_calc_sprites(t_cube *cube, int i);
-void	calc_height_width(t_cube *cube);
+void	calc_height_width(t_cube *cube, int i);
 void	draw_pixels_sprites(t_cube *cube, int i);
 
 // draw sprites
