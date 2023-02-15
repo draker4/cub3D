@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 16:16:02 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:24:41 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ int	parse_obj(t_cube *cube, int y, int x)
 	if (cube->parse.map[y][x] == 'L')
 		new = new_obj((t_obj){0, 0, 6, 0.0, 1, 1, -256, NULL}, y, x);
 	else if (cube->parse.map[y][x] == 'B')
-		new = new_obj((t_obj){0, 0, 6, 0.0, 1, 1, -256, NULL}, y, x);
+		new = new_obj((t_obj){0, 0, 7, 0.0, 1, 1, 256, NULL}, y, x);
 	else if (cube->parse.map[y][x] == 'P')
-		new = new_obj((t_obj){0, 0, 6, 0.0, 1, 1, -256, NULL}, y, x);
+		new = new_obj((t_obj){0, 0, 8, 0.0, 0.5, 0.5, 256, NULL}, y, x);
 	if (!new)
 		return (EXIT_FAILURE);
 	obj_add_back(&cube->obj, new);
+	cube->parse.map[y][x] = '0';
 	return (EXIT_SUCCESS);
 }
 
@@ -53,6 +54,6 @@ int	parse_cell(t_cube *cube, int y, int x)
 		return (player_start(cube, y, x));
 	if (cube->parse.map[y][x] == 'B' || cube->parse.map[y][x] == 'L'
 		|| cube->parse.map[y][x] == 'P')
-		return (EXIT_SUCCESS);
+		return (parse_obj(cube, y, x));
 	return (ft_error(E_CELL), EXIT_FAILURE);
 }
