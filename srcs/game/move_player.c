@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 19:42:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:56:57 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:28:31 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,15 @@ void	move_player(t_cube *cube)
 	cube->move.move_speed = cube->frame.frame_time * MOVE_SPEED;
 	cube->move.rotate_speed = cube->frame.frame_time * ROT_SPEED;
 	if (cube->move.up || cube->move.down)
+	{
 		move_forward_backward(cube);
+		move_sprites_front(cube);
+	}
 	if (cube->move.right || cube->move.left)
+	{
 		move_right_left(cube);
+		move_sprites_side(cube);
+	}
 	if (cube->move.rotate_left || cube->move.rotate_right)
 		rotate_player(cube, prev_dir_x, prev_plane_x, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 18:09:27 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 18:33:29 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,10 @@ typedef struct s_cube
 }	t_cube;
 
 /* --------------------------  PROTOTYPE GAME  --------------------------- */
+
+// collisions sprites
+void	move_sprites_front(t_cube *cube);
+void	move_sprites_side(t_cube *cube);
 
 // prototypes draw textures
 void	calculate_texture(t_cube *cube);

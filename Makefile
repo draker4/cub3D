@@ -39,7 +39,8 @@ HEAD			=	cub3D.h
 
 SRCS			=	cub3D.c
 
-SRCS_G			=	draw_textures.c			\
+SRCS_G			=	collision_sprites.c		\
+					draw_textures.c			\
 					exit_game.c				\
 					generate_textures.c		\
 					handle_events.c			\
