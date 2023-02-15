@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:57:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:23:50 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_SPRITES 20
-# define NB_TEXTURES 10
+# define NB_SPRITES 19
+# define NB_TEXTURES 9
 
 # define W 119
 # define S 115
@@ -57,6 +57,8 @@ the wall\n"
 # define LIGHT_PATH "./sprites/greenlight.xpm"
 # define BARREL_PATH "./sprites/barrel.xpm"
 # define PILLAR_PATH "./sprites/pillar.xpm"
+# define PUNCH1_PATH "./sprites/punch1.xpm"
+# define PUNCH2_PATH "./sprites/punch2.xpm"
 # define PUNCH3_PATH "./sprites/punch3.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
@@ -228,6 +230,13 @@ typedef struct s_bkground
 	int		ceil_color;
 }	t_bkground;
 
+typedef struct s_weapon
+{
+	int		**tex;
+	int		nb_frame;
+	double	start_frame;
+}	t_weapon;
+
 
 typedef struct s_cube
 {
@@ -244,6 +253,9 @@ typedef struct s_cube
 	t_data			data;
 	t_move			move;
 	t_tex			tex;
+	t_weapon		weapon;
+	int				nb_objs;
+	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 	double			buffer_z[SCREEN_WIDTH];
 }	t_cube;
@@ -349,11 +361,14 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 /* --------------------------  PROTOTYPE SPRITES  --------------------------- */
 
 // calcul sprites
-void	init_calc_sprites(t_cube *cube, int i);
-void	calc_height_width(t_cube *cube, int i);
-void	draw_pixels_sprites(t_cube *cube, int i);
+void	init_calc_sprites(t_cube *cube, t_obj *current);
+void	calc_height_width(t_cube *cube, t_obj *current);
+void	draw_pixels_sprites(t_cube *cube, t_obj *current);
 
 // draw sprites
 void	draw_sprites(t_cube *cube);
+
+// draw weapon
+void	draw_weapon(t_cube *cube);
 
 #endif
