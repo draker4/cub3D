@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:50:43 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:05:30 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@
 # define ANGLE 0.66
 # define NB_SPRITES 19
 # define NB_TEXTURES 9
+# define MAP_SIZE 200
+# define MAP_POS 10
+
+# define BLACK 0x000000
+# define BLUE 0x0000FF
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
 
 # define W 119
 # define S 115
@@ -234,7 +241,6 @@ typedef struct s_weapon
 	int		nb_frame;
 	double	start_frame;
 }	t_weapon;
-
 
 typedef struct s_cube
 {

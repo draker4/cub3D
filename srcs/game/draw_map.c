@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:49:32 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:55:47 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,21 @@ void	define_map(t_cube *cube, int y, int x)
 	double	map_x;
 	double	map_y;
 
-	map_x = cube->player.pos_x - 10.0 + ((x - 10) / 10);
-	map_y = cube->player.pos_y - 10.0 + ((y - SCREEN_HEIGHT + 200 + 10) / 10);
+	map_x = cube->player.pos_x - 12.0 + ((x - MAP_POS) / 8);
+	map_y = cube->player.pos_y - 12.0 + ((y - SCREEN_HEIGHT + MAP_SIZE
+				+ MAP_POS) / 8);
 	if (map_x < 0.0 || map_y < 0.0 || map_x > (double)cube->limits.x
-		|| map_y > (double)cube->limits.y)
-		cube->buffer[y][x] = 0xFFFFFF;
+		|| map_y > (double)cube->limits.y
+		|| cube->map[(int)map_y][(int)map_x] == -1)
+		cube->buffer[y][x] = BLACK;
 	else if (cube->map[(int)map_y][(int)map_x] == 1)
-		cube->buffer[y][x] = 0x000000;
+		cube->buffer[y][x] = BLUE;
 	else
-		cube->buffer[y][x] = 0xFF0000;
-	if ((x > (200 / 2 + 10) && x < (200 / 2 + 10 + 10)) && (y > (SCREEN_HEIGHT - 200 / 2 -10)
-		&& y < (SCREEN_HEIGHT - 200 / 2 -10 + 10)))
-		cube->buffer[y][x] = 0xFFFF00;
+		cube->buffer[y][x] = WHITE;
+	if ((x > (MAP_SIZE / 2 + MAP_POS - 4) && x < (200 / 2 + MAP_POS + 4))
+		&& (y > (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS - 4)
+			&& y < (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS + 4)))
+		cube->buffer[y][x] = RED;
 }
 
 void	draw_map(t_cube *cube)
@@ -36,11 +39,11 @@ void	draw_map(t_cube *cube)
 	int	x;
 	int	y;
 
-	y = SCREEN_HEIGHT - 200 - 10;
-	while (y < SCREEN_HEIGHT - 10)
+	y = SCREEN_HEIGHT - MAP_SIZE - MAP_POS;
+	while (y < SCREEN_HEIGHT - MAP_POS)
 	{
-		x = 10;
-		while (x < 200 + 10)
+		x = MAP_POS;
+		while (x < MAP_SIZE + MAP_POS)
 		{
 			define_map(cube, y, x);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 18:12:40 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 15:59:09 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	parse_map(t_cube *cube)
 
 	y = 0;
 	cube->parse.max.y = split_size(cube->parse.map);
+	cube->limits.y = cube->parse.max.y;
 	while (cube->parse.map[y])
 	{
 		x = 0;

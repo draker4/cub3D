@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/13 15:43:35 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:03:46 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	line_to_int(t_cube *cube, int i, int size_max)
 	while (cube->parse.map[i][j] && cube->parse.map[i][j] != '\n')
 	{
 		if (cube->parse.map[i][j] == ' ')
-			cube->map[i][j] = 0;
+			cube->map[i][j] = -1;
 		else
 			cube->map[i][j] = cube->parse.map[i][j] - 48;
 		j++;
 	}
-	while (j < size_max - 1)
-		cube->map[i][j++] = 0;
+	while (j < size_max)
+		cube->map[i][j++] = -1;
 	cube->map[i][j] = '\0';
 	return (EXIT_SUCCESS);
 }
@@ -74,6 +74,7 @@ int	map_to_int(t_cube *cube)
 	if (!cube->map)
 		return (perror("map_to_int - malloc"), EXIT_FAILURE);
 	size_max = largest_line(cube);
+	cube->limits.x = size_max;
 	while (cube->parse.map[i] && cube->parse.map[i][0] != '\0')
 	{
 		cube->map[i + 1] = NULL;

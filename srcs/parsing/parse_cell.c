@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 19:19:39 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 16:56:24 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	parse_obj(t_cube *cube, int y, int x)
 		new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 7, 0.0, 1, 1,
 				256, NULL}, cube, '2');
 	else if (cube->parse.map[y][x] == 'P')
-		new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 8, 0.0, 0.6, 
+		new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 8, 0.0, 0.6,
 				0.6, 0, NULL}, cube, '2');
 	if (!new)
 		return (EXIT_FAILURE);
