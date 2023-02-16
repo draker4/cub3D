@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:55:47 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:12:38 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	define_map(t_cube *cube, int y, int x)
 		cube->buffer[y][x] = BLUE;
 	else
 		cube->buffer[y][x] = WHITE;
-	if ((x > (MAP_SIZE / 2 + MAP_POS - 4) && x < (200 / 2 + MAP_POS + 4))
-		&& (y > (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS - 4)
-			&& y < (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS + 4)))
+	if ((x > (MAP_SIZE / 2 + MAP_POS - 3) && x < (200 / 2 + MAP_POS + 3))
+		&& (y > (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS - 3)
+			&& y < (SCREEN_HEIGHT - MAP_SIZE / 2 - MAP_POS + 3)))
 		cube->buffer[y][x] = RED;
 }
 
