@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/16 15:59:09 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:09:52 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ int	confirm_map(t_cube *cube, t_limits max, int y, int x)
 	if (cube->parse.map[y - 1][x] == ' ' || cube->parse.map[y + 1][x] == ' '
 	|| cube->parse.map[y][x - 1] == ' ' || cube->parse.map[y][x + 1] == ' ')
 		return (ft_error(E_WALL), EXIT_FAILURE);
+	if ((cube->parse.map[y][x] == '3' || cube->parse.map[y][x] == '4')
+	&& ((cube->parse.map[y - 1][x] == '1' && cube->parse.map[y + 1][x] == '1')
+	|| (cube->parse.map[y][x - 1] == '1' && cube->parse.map[y][x + 1] == '1')))
+		return (EXIT_SUCCESS);
+	else if (cube->parse.map[y][x] == '3' || cube->parse.map[y][x] == '4')
+		return (ft_error(E_DOOR), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
@@ -73,7 +79,8 @@ int	parse_map(t_cube *cube)
 		{
 			if (parse_cell(cube, y, x))
 				return (EXIT_FAILURE);
-			if ((cube->parse.map[y][x] == '0' || cube->parse.map[y][x] == '2')
+			if ((cube->parse.map[y][x] == '0' || cube->parse.map[y][x] == '2'
+				|| cube->parse.map[y][x] == '3' || cube->parse.map[y][x] == '4')
 				&& confirm_map(cube, cube->parse.max, y, x))
 				return (EXIT_FAILURE);
 			x++;
