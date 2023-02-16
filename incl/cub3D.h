@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:31:50 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 17:20:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
 # define NB_SPRITES 19
-# define NB_TEXTURES 10
+# define NB_TEXTURES 20
 
 # define W 119
 # define S 115
@@ -63,6 +63,16 @@ the wall\n"
 # define PUNCH2_PATH "./sprites/punch2.xpm"
 # define PUNCH3_PATH "./sprites/punch3.xpm"
 # define DOOR_PATH "./sprites/door.xpm"
+# define BOOM1_PATH "./sprites/boom1.xpm"
+# define BOOM2_PATH "./sprites/boom2.xpm"
+# define BOOM3_PATH "./sprites/boom3.xpm"
+# define BOOM4_PATH "./sprites/boom4.xpm"
+# define BOOM5_PATH "./sprites/boom5.xpm"
+# define BOOM6_PATH "./sprites/boom6.xpm"
+# define BOOM7_PATH "./sprites/boom7.xpm"
+# define BOOM8_PATH "./sprites/boom8.xpm"
+# define BOOM9_PATH "./sprites/boom9.xpm"
+# define BOOM10_PATH "./sprites/boom10.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -159,6 +169,9 @@ typedef struct s_frame
 	double	frame_time;
 	double	time_prev;
 	double	time_now;
+	int		boom;
+	int		nb_boom;
+	double	start_boom;
 }	t_frame;
 
 typedef struct s_move
@@ -239,7 +252,6 @@ typedef struct s_weapon
 	int		nb_frame;
 	double	start_frame;
 }	t_weapon;
-
 
 typedef struct s_cube
 {
@@ -379,6 +391,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	init_calc_sprites(t_cube *cube, t_obj *current);
 void	calc_height_width(t_cube *cube, t_obj *current);
 void	draw_pixels_sprites(t_cube *cube, t_obj *current);
+
+// draw boom
+void	draw_boom(t_cube *cube);
 
 // draw sprites
 void	draw_sprites(t_cube *cube);

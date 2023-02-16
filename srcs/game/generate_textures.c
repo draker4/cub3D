@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:31:37 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 17:04:42 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,17 @@ int	generate_textures(t_cube *cube)
 		|| load_texture(cube, 6, LIGHT_PATH)
 		|| load_texture(cube, 7, BARREL_PATH)
 		|| load_texture(cube, 8, PILLAR_PATH)
-		|| load_texture(cube, 9, DOOR_PATH))
+		|| load_texture(cube, 9, DOOR_PATH)
+		|| load_texture(cube, 10, BOOM1_PATH)
+		|| load_texture(cube, 11, BOOM2_PATH)
+		|| load_texture(cube, 12, BOOM3_PATH)
+		|| load_texture(cube, 13, BOOM4_PATH)
+		|| load_texture(cube, 14, BOOM5_PATH)
+		|| load_texture(cube, 15, BOOM6_PATH)
+		|| load_texture(cube, 16, BOOM7_PATH)
+		|| load_texture(cube, 17, BOOM8_PATH)
+		|| load_texture(cube, 18, BOOM9_PATH)
+		|| load_texture(cube, 19, BOOM10_PATH))
 		exit_game(cube, 1);
 	generate_background(cube);
 	if (generate_weapon(cube, 0, PUNCH1_PATH)

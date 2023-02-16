@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_weapon.c                                      :+:      :+:    :+:   */
+/*   draw_boom.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 15:22:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:34:44 by bperriol         ###   ########lyon.fr   */
+/*   Created: 2023/02/16 17:12:32 by bperriol          #+#    #+#             */
+/*   Updated: 2023/02/16 17:29:52 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,38 @@ static void	choose_anim(t_cube *cube)
 {
 	static double	time;
 
-	if (!cube->attack)
-		cube->weapon.nb_frame = 0;
-	else
+	cube->frame.start_boom += cube->frame.frame_time;
+	if (cube->frame.start_boom > time)
 	{
-		cube->weapon.start_frame += cube->frame.frame_time;
-		if (cube->weapon.start_frame > time)
-		{
-			cube->weapon.nb_frame++;
-			time += 0.1;
-		}
+		cube->frame.nb_boom++;
+		time += 0.1;
 	}
-	if (cube->weapon.nb_frame == 3)
+	if (cube->frame.nb_boom == 20)
 	{
-		open_close_door(cube);
-		cube->weapon.nb_frame = 0;
+		cube->frame.boom = 0;
 		time = 0;
-		cube->attack = 0;
 	}
 }
 
-void	draw_weapon(t_cube *cube)
+void	draw_boom(t_cube *cube)
 {
 	int	x;
 	int	y;
 	int	color;
 
-	x = 0;
+	x = SCREEN_WIDTH / 2 - TEX_WIDTH / 2;
 	choose_anim(cube);
-	while (x < SCREEN_WIDTH)
+	if (cube->frame.nb_boom == 20)
+		return ;
+	while (x < TEX_WIDTH)
 	{
-		y = 0;
-		while (y < SCREEN_HEIGHT)
+		y = SCREEN_HEIGHT / 2 - TEX_HEIGHT / 2;
+		while (y < TEX_HEIGHT)
 		{
-			color = cube->weapon.tex[cube->weapon.nb_frame] \
+			color = cube->tex.texture[cube->frame.nb_boom] \
 			[SCREEN_HEIGHT * x + y];
 			if ((color & 0x00FFFFFF) != 0)
-				cube->buffer[y][x] \
-				= color;
+				cube->buffer[y][x] = color;
 			y++;
 		}
 		x++;
