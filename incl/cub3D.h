@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 17:20:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 17:33:54 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@
 # define ANGLE 0.66
 # define NB_SPRITES 19
 # define NB_TEXTURES 20
+# define MAP_SIZE 200
+# define MAP_POS 10
+
+# define BLACK 0x000000
+# define BLUE 0x0000FF
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
 
 # define W 119
 # define S 115

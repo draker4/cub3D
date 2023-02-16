@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/15 20:13:07 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:06:27 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,6 @@ int	split_size(char **str)
 	if (!str || !*str)
 		return (i);
 	while (str[i])
-		i++;
-	return (i);
-}
-
-int	map_size_x(int *map)
-{
-	int	i;
-
-	i = 0;
-	if (!map)
-		return (0);
-	while (map[i])
-		i++;
-	return (i);
-}
-
-int	map_size_y(int **map)
-{
-	int	i;
-
-	i = 0;
-	if (!map || !*map)
-		return (i);
-	while (map[i])
 		i++;
 	return (i);
 }

@@ -226,6 +226,9 @@ debug				:
 run					:	all
 						./${NAME} map/map_tuto.cub
 
+run2				:	all
+						./${NAME} map/map_subject.cub
+
 runl				:	all
 						${LEAKS}./${NAME} map/map_subject.cub
 
