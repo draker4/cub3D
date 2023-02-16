@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:50:43 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 16:31:50 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
 # define NB_SPRITES 19
-# define NB_TEXTURES 9
+# define NB_TEXTURES 10
 
 # define W 119
 # define S 115
 # define A 97
 # define D 100
+# define F 102
+# define SPACE 32
 # define RIGHT 65363
 # define LEFT 65361
 # define ESCAPE 65307
@@ -60,6 +62,7 @@ the wall\n"
 # define PUNCH1_PATH "./sprites/punch1.xpm"
 # define PUNCH2_PATH "./sprites/punch2.xpm"
 # define PUNCH3_PATH "./sprites/punch3.xpm"
+# define DOOR_PATH "./sprites/door.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -147,6 +150,8 @@ typedef struct s_raycast
 	int		line_height;
 	int		line_start;
 	int		line_end;
+	int		door;
+	int		open_door;
 }	t_raycast;
 
 typedef struct s_frame
@@ -288,6 +293,9 @@ int		handle_mouse(int x, int y, t_cube *cube);
 void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x,
 			int mouse);
 void	move_player(t_cube *cube);
+
+// open door
+void	open_close_door(t_cube *cube);
 
 // prototypes play game
 void	play_game(t_cube *cube);

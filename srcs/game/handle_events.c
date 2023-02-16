@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:10:28 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 16:06:29 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	handle_keypress(int keycode, t_cube *cube)
 		cube->move.rotate_right = 1;
 	if (keycode == LEFT)
 		cube->move.rotate_left = 1;
-	if (keycode == 32)
+	if (keycode == F)
+		open_close_door(cube);
+	if (keycode == SPACE)
 	{
 		cube->weapon.start_frame = 0;
 		cube->attack = 1;

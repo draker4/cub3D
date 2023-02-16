@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:18:44 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/14 18:51:22 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 16:32:20 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	find_index_texture(t_cube *cube)
 {
-	if (cube->raycast.side)
+	if (cube->raycast.door)
+		cube->tex.tex_num = 9;
+	else if (cube->raycast.side)
 	{
 		if (cube->raycast.ray_dir_y <= 0)
 			cube->tex.tex_num = 0;
