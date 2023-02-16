@@ -102,7 +102,7 @@ PATH_LIBFT		=	${addprefix ${DIR_LIBFT}, ${LIBFT_A}}
 
 # ----------  Compilation  ----------- #
 
-CC				=	clang
+CC				=	cc
 CFLAGS			= 	-Wall -Wextra -Werror
 AR				= 	ar rcs
 FSANITIZE		=	-fsanitize=address

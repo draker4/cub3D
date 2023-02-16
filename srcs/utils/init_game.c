@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 20:13:24 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 14:44:21 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 static int	init_mlx(t_cube *cube)
 {
+	int	unused;
+
+	(void)unused;
 	cube->vars.mlx_ptr = mlx_init();
 	if (!cube->vars.mlx_ptr)
 		return (EXIT_FAILURE);
 	cube->vars.mlx_win = mlx_new_window(cube->vars.mlx_ptr, \
 	SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE);
 	if (!cube->vars.mlx_win)
-	{
-		write(2, E_MLX_WINDOW, ft_strlen(E_MLX_WINDOW));
-		free(cube->vars.mlx_ptr);
-		return (EXIT_FAILURE);
-	}
+		return (unused = write(2, E_MLX_WINDOW, ft_strlen(E_MLX_WINDOW)), \
+		free(cube->vars.mlx_ptr), EXIT_FAILURE);
 	cube->data.img = mlx_new_image(cube->vars.mlx_ptr, \
 	SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cube->data.img)
 	{
-		write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE));
 		mlx_destroy_window(cube->vars.mlx_ptr, cube->vars.mlx_win);
 		free(cube->vars.mlx_ptr);
-		return (EXIT_FAILURE);
+		return (unused = write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), \
+		EXIT_FAILURE);
 	}
 	cube->data.addr = mlx_get_data_addr(cube->data.img, \
 	&cube->data.bits_per_pixel, &cube->data.line_length, \

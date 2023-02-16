@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:34:00 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 17:59:24 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 14:18:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ void	calc_height_width(t_cube *cube, t_obj *current)
 		cube->sprites.end_x = SCREEN_WIDTH - 1;
 }
 
+static void	fill_buffer(t_cube *cube, t_obj *current, int x, int y)
+{
+	cube->sprites.d = (y - cube->sprites.move_screen) * 256 - SCREEN_HEIGHT * \
+	128 + (int)cube->sprites.sp_height * 128;
+	cube->sprites.tex_y = ((cube->sprites.d * TEX_HEIGHT) / (int)cube->sprites.\
+	sp_height) / 256;
+	if (TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y > 0)
+	{
+		cube->sprites.color = cube->tex.texture [current->texture] \
+		[TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y];
+		if ((cube->sprites.color & 0x00FFFFFF) != 0)
+			cube->buffer[y][x] = cube->sprites.color;
+	}
+}
+
 void	draw_pixels_sprites(t_cube *cube, t_obj *current)
 {
 	int	x;
@@ -67,16 +82,7 @@ void	draw_pixels_sprites(t_cube *cube, t_obj *current)
 		{
 			y = cube->sprites.start_y - 1;
 			while (++y < cube->sprites.end_y)
-			{
-				cube->sprites.d = (y - cube->sprites.move_screen) * 256 - \
-				SCREEN_HEIGHT * 128 + (int)cube->sprites.sp_height * 128;
-				cube->sprites.tex_y = ((cube->sprites.d * TEX_HEIGHT) / \
-				(int)cube->sprites.sp_height) / 256;
-				cube->sprites.color = cube->tex.texture [current->texture] \
-				[TEX_WIDTH * cube->sprites.tex_x + cube->sprites.tex_y];
-				if ((cube->sprites.color & 0x00FFFFFF) != 0)
-					cube->buffer[y][x] = cube->sprites.color;
-			}
+				fill_buffer(cube, current, x, y);
 		}
 	}
 }

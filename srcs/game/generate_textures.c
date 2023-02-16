@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 16:14:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 14:38:45 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	load_texture(t_cube *cube, int index, char *path)
 
 	data.img = mlx_xpm_file_to_image(cube->vars.mlx_ptr, path, &width, &height);
 	if (!data.img)
-		return (write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), EXIT_FAILURE);
+		return (x = write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), \
+		EXIT_FAILURE);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 	x = -1;
@@ -88,7 +89,8 @@ static int	generate_weapon(t_cube *cube, int index, char *path)
 
 	data.img = mlx_xpm_file_to_image(cube->vars.mlx_ptr, path, &width, &height);
 	if (!data.img)
-		return (write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), EXIT_FAILURE);
+		return (x = write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), \
+		EXIT_FAILURE);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
 	&data.line_length, &data.endian);
 	x = -1;
