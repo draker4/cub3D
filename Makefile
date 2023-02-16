@@ -40,12 +40,13 @@ HEAD			=	cub3D.h
 SRCS			=	cub3D.c
 
 SRCS_G			=	collision_sprites.c		\
-					draw_map.c			\
+					draw_map.c				\
 					draw_textures.c			\
 					exit_game.c				\
 					generate_textures.c		\
 					handle_events.c			\
 					move_player.c			\
+					open_door.c				\
 					play_game.c				\
 					raycast_floor_ceiling.c	\
 					raycast_walls.c

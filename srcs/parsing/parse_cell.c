@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/16 16:56:24 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 17:09:21 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	player_start(t_cube *cube, int y, int x)
 int	parse_cell(t_cube *cube, int y, int x)
 {
 	if (cube->parse.map[y][x] == ' ' || cube->parse.map[y][x] == '0'
-		|| cube->parse.map[y][x] == '1'
+		|| cube->parse.map[y][x] == '1' || cube->parse.map[y][x] == '3'
 		|| (x > 0 && cube->parse.map[y][x] == '\n'))
 		return (EXIT_SUCCESS);
 	if (cube->parse.map[y][x] == 'N' || cube->parse.map[y][x] == 'S'
