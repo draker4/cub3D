@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 18:01:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:33:56 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,9 +332,6 @@ void	raycast_floor_ceiling(t_cube *cube);
 
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 
-// check the map is surrounded by wall
-int		confirm_map(t_cube *cube, t_limits max, int y, int x);
-
 // get file data and parse it
 int		get_data(t_cube *cube, char *file);
 
@@ -390,8 +387,6 @@ int		color_atoi(char *str, int *color);
 int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
-int		map_size_x(int *map);
-int		map_size_y(int **map);
 
 // mlx utils
 int		combine_rgb(int r, int g, int b);

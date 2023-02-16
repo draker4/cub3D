@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/16 18:09:52 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/16 18:45:41 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	define_limits(t_limits *max, char **map, int y)
 		max->x_next = ft_strlen(map[y + 1]) - 1;
 }
 
-int	confirm_map(t_cube *cube, t_limits max, int y, int x)
+int	confirm_map(t_cube *cube, int y, int x)
 {
-	if (y == 0 || x == 0 || y == max.y || x == max.x || x >= max.x_prev
-		|| x >= max.x_next)
+	if (y == 0 || x == 0 || y == cube->parse.max.y || x == cube->parse.max.x - 1
+		|| x >= cube->parse.max.x_prev || x >= cube->parse.max.x_next)
 		return (ft_error(E_WALL), EXIT_FAILURE);
 	if (cube->parse.map[y - 1][x] == ' ' || cube->parse.map[y + 1][x] == ' '
 	|| cube->parse.map[y][x - 1] == ' ' || cube->parse.map[y][x + 1] == ' ')
@@ -70,7 +70,6 @@ int	parse_map(t_cube *cube)
 
 	y = 0;
 	cube->parse.max.y = split_size(cube->parse.map);
-	cube->limits.y = cube->parse.max.y;
 	while (cube->parse.map[y])
 	{
 		x = 0;
@@ -80,8 +79,8 @@ int	parse_map(t_cube *cube)
 			if (parse_cell(cube, y, x))
 				return (EXIT_FAILURE);
 			if ((cube->parse.map[y][x] == '0' || cube->parse.map[y][x] == '2'
-				|| cube->parse.map[y][x] == '3' || cube->parse.map[y][x] == '4')
-				&& confirm_map(cube, cube->parse.max, y, x))
+			|| cube->parse.map[y][x] == '3' || cube->parse.map[y][x] == '4')
+			&& confirm_map(cube, y, x))
 				return (EXIT_FAILURE);
 			x++;
 		}
@@ -104,5 +103,6 @@ int	get_map(t_cube *cube, int fd)
 	}
 	if (parse_map(cube) || map_to_int(cube))
 		return (EXIT_FAILURE);
+	cube->limits.y = cube->parse.max.y;
 	return (EXIT_SUCCESS);
 }
