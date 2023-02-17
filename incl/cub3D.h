@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 17:33:54 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 19:25:07 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_SPRITES 19
-# define NB_TEXTURES 20
+# define NB_TEXTURES 10
+# define NB_BOOM 6
 # define MAP_SIZE 200
 # define MAP_POS 10
 
@@ -80,6 +80,13 @@ the wall\n"
 # define BOOM8_PATH "./sprites/boom8.xpm"
 # define BOOM9_PATH "./sprites/boom9.xpm"
 # define BOOM10_PATH "./sprites/boom10.xpm"
+# define SMOKE1_PATH "./sprites/smoke1.xpm"
+# define SMOKE2_PATH "./sprites/smoke2.xpm"
+# define SMOKE3_PATH "./sprites/smoke3.xpm"
+# define SMOKE4_PATH "./sprites/smoke4.xpm"
+# define SMOKE5_PATH "./sprites/smoke5.xpm"
+# define SMOKE6_PATH "./sprites/smoke6.xpm"
+# define SMOKE7_PATH "./sprites/smoke7.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -176,9 +183,6 @@ typedef struct s_frame
 	double	frame_time;
 	double	time_prev;
 	double	time_now;
-	int		boom;
-	int		nb_boom;
-	double	start_boom;
 }	t_frame;
 
 typedef struct s_move
@@ -260,6 +264,14 @@ typedef struct s_weapon
 	double	start_frame;
 }	t_weapon;
 
+typedef struct s_boom
+{
+	int		**tex;
+	int		nb_frame;
+	double	start_frame;
+	int		boom;
+}	t_boom;
+
 typedef struct s_cube
 {
 	int				**map;
@@ -277,6 +289,7 @@ typedef struct s_cube
 	t_tex			tex;
 	t_weapon		weapon;
 	t_limits		limits;
+	t_boom			boom;
 	int				nb_objs;
 	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
@@ -391,6 +404,7 @@ int		map_size_y(int **map);
 // mlx utils
 int		combine_rgb(int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	fill_pixel(t_cube *cube, int index, int color);
 
 /* --------------------------  PROTOTYPE SPRITES  --------------------------- */
 

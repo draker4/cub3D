@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 17:34:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 18:34:06 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ static int	init_mlx(t_cube *cube)
 	return (EXIT_SUCCESS);
 }
 
-static int	**init_textures(void)
+static int	**init_textures(int nb_textures, int width, int height)
 {
 	int	**textures;
 	int	i;
 
-	textures = malloc(sizeof(int *) * (NB_TEXTURES + 1));
+	textures = malloc(sizeof(int *) * (nb_textures + 1));
 	if (!textures)
 		return (perror("Init_textures - Malloc"), NULL);
 	i = 0;
-	while (i < NB_TEXTURES)
+	while (i < nb_textures)
 	{
-		textures[i] = malloc(sizeof(int) * (TEX_WIDTH * TEX_HEIGHT));
+		textures[i] = malloc(sizeof(int) * (width * height));
 		if (!textures[i])
 		{
 			while (--i)
@@ -65,43 +65,21 @@ static int	**init_textures(void)
 	return (textures);
 }
 
-static int	**init_weapon(void)
-{
-	int	**tex;
-	int	i;
-
-	tex = malloc(sizeof(int *) * (3 + 1));
-	if (!tex)
-		return (perror("Init_textures - Malloc"), NULL);
-	i = 0;
-	while (i < 3)
-	{
-		tex[i] = malloc(sizeof(int) * (SCREEN_WIDTH * SCREEN_HEIGHT));
-		if (!tex[i])
-		{
-			while (--i)
-				free(tex[i]);
-			free(tex);
-			return (perror("Init_textures - Malloc"), NULL);
-		}
-		i++;
-	}
-	tex[i] = NULL;
-	return (tex);
-}
-
 int	init_game(t_cube *cube)
 {
 	if (init_mlx(cube))
 		return (EXIT_FAILURE);
-	cube->tex.texture = init_textures();
+	cube->tex.texture = init_textures(NB_TEXTURES, TEX_WIDTH, TEX_HEIGHT);
 	if (!cube->tex.texture)
 		exit_game(cube, 1);
-	cube->weapon.tex = init_weapon();
+	cube->weapon.tex = init_textures(3, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cube->weapon.tex)
 		exit_game(cube, 1);
+	cube->boom.tex = init_textures(6, 860, SCREEN_HEIGHT);
+	if (!cube->boom.tex)
+		exit_game(cube, 1);
 	cube->nb_objs = obj_size(cube->obj);
-	cube->frame.boom = 0;
+	cube->boom.boom = 0;
 	if (generate_textures(cube))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 17:14:22 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 18:21:52 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	update(t_cube *cube)
 	raycast_walls(cube);
 	draw_sprites(cube);
 	draw_weapon(cube);
-	if (cube->frame.boom)
+	if (cube->boom.boom)
 		draw_boom(cube);
 	draw_map(cube);
 	draw_buffer(cube);

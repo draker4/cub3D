@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:12:32 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 17:29:52 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/16 19:13:55 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static void	choose_anim(t_cube *cube)
 {
 	static double	time;
 
-	cube->frame.start_boom += cube->frame.frame_time;
-	if (cube->frame.start_boom > time)
+	cube->boom.start_frame += cube->frame.frame_time;
+	if (cube->boom.start_frame > time)
 	{
-		cube->frame.nb_boom++;
+		cube->boom.nb_frame++;
 		time += 0.1;
 	}
-	if (cube->frame.nb_boom == 20)
+	if (cube->boom.nb_frame == 5)
 	{
-		cube->frame.boom = 0;
-		time = 0;
+		cube->boom.boom = 0;
+		time = 0.1;
 	}
 }
 
@@ -35,19 +35,17 @@ void	draw_boom(t_cube *cube)
 	int	y;
 	int	color;
 
-	x = SCREEN_WIDTH / 2 - TEX_WIDTH / 2;
+	x = 0;
 	choose_anim(cube);
-	if (cube->frame.nb_boom == 20)
-		return ;
-	while (x < TEX_WIDTH)
+	while (x < 860)
 	{
-		y = SCREEN_HEIGHT / 2 - TEX_HEIGHT / 2;
-		while (y < TEX_HEIGHT)
+		y = 0;
+		while (y < SCREEN_HEIGHT)
 		{
-			color = cube->tex.texture[cube->frame.nb_boom] \
+			color = cube->boom.tex[cube->boom.nb_frame] \
 			[SCREEN_HEIGHT * x + y];
 			if ((color & 0x00FFFFFF) != 0)
-				cube->buffer[y][x] = color;
+				cube->buffer[y][x + 500] = color;
 			y++;
 		}
 		x++;
