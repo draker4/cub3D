@@ -70,7 +70,8 @@ SRCS_U			=	error.c					\
 					map_utils.c				\
 					mlx_utils.c
 
-SRCS_S			=	calcul_sprites.c		\
+SRCS_S			=	anim_smoke.c			\
+					calcul_sprites.c		\
 					draw_boom.c				\
 					draw_sprites.c			\
 					draw_weapon.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:15:51 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 19:13:07 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:05:08 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	swap_obj(t_obj **current, t_obj **check, t_obj tmp)
 	(*current)->u_div = (*check)->u_div;
 	(*current)->v_div = (*check)->v_div;
 	(*current)->v_move = (*check)->v_move;
+	(*current)->draw = (*check)->draw;
+	(*current)->start_frame = (*check)->start_frame;
 	(*check)->pos_x = tmp.pos_x;
 	(*check)->pos_y = tmp.pos_y;
 	(*check)->texture = tmp.texture;
@@ -44,6 +46,8 @@ static void	swap_obj(t_obj **current, t_obj **check, t_obj tmp)
 	(*check)->u_div = tmp.u_div;
 	(*check)->v_div = tmp.v_div;
 	(*check)->v_move = tmp.v_move;
+	(*check)->draw = tmp.draw;
+	(*check)->start_frame = tmp.start_frame;
 }
 
 static void	sort_sprites(t_cube *cube)
@@ -78,9 +82,12 @@ void	draw_sprites(t_cube *cube)
 	sort_sprites(cube);
 	while (current)
 	{
-		init_calc_sprites(cube, current);
-		calc_height_width(cube, current);
-		draw_pixels_sprites(cube, current);
+		if (current->draw)
+		{
+			init_calc_sprites(cube, current);
+			calc_height_width(cube, current);
+			draw_pixels_sprites(cube, current);
+		}
 		current = current->next;
 	}
 }

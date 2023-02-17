@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_obj_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 04:56:37 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/15 18:10:19 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/17 10:06:16 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_obj	*new_obj(t_obj data, t_cube *cube, char cell)
 	new->u_div = data.u_div;
 	new->v_div = data.v_div;
 	new->v_move = data.v_move;
+	new->draw = data.draw;
+	new->start_frame = data.start_frame;
 	new->next = NULL;
 	cube->parse.map[(int)data.pos_y][(int)data.pos_x] = cell;
 	return (new);

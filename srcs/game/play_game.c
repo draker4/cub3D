@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 18:21:52 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 10:09:54 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ static void	fill_background(t_cube *cube)
 	}
 }
 
+static void	add_elem(t_cube *cube)
+{
+	anim_smoke(cube);
+	draw_sprites(cube);
+	draw_weapon(cube);
+	if (cube->boom.boom)
+		draw_boom(cube);
+	draw_map(cube);
+}
+
 static int	update(t_cube *cube)
 {
 	cube->frame.time_prev = cube->frame.time_now;
@@ -46,11 +56,7 @@ static int	update(t_cube *cube)
 	else
 		fill_background(cube);
 	raycast_walls(cube);
-	draw_sprites(cube);
-	draw_weapon(cube);
-	if (cube->boom.boom)
-		draw_boom(cube);
-	draw_map(cube);
+	add_elem(cube);
 	draw_buffer(cube);
 	mlx_put_image_to_window(cube->vars.mlx_ptr, cube->vars.mlx_win, \
 	cube->data.img, 0, 0);

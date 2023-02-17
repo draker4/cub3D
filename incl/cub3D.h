@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 09:05:03 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 10:12:47 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_TEXTURES 10
+# define NB_TEXTURES 17
 # define NB_BOOM 6
 # define MAP_SIZE 200
 # define MAP_POS 10
@@ -130,6 +130,8 @@ typedef struct s_obj
 	double			u_div;
 	double			v_div;
 	double			v_move;
+	int				draw;
+	double			start_frame;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -407,6 +409,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	fill_pixel(t_cube *cube, int index, int color);
 
 /* --------------------------  PROTOTYPE SPRITES  --------------------------- */
+
+// anim smoke
+void	anim_smoke(t_cube *cube);
 
 // calcul sprites
 void	init_calc_sprites(t_cube *cube, t_obj *current);
