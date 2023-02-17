@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 19:25:07 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 09:05:03 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@
 # define BLUE 0x0000FF
 # define WHITE 0xFFFFFF
 # define RED 0xFF0000
+# define PINK 0xFF00FF
+# define YELLOW 0xFFF000
+# define AZUL 0x00FFFF
+# define GREEN 0x00FF00
 
 # define W 119
 # define S 115
@@ -58,8 +62,9 @@
 # define E_FILE_TYPE "The map should be of type .cub\n"
 # define E_PLAYER "Player starting position define more than once\n"
 # define E_NO_START "No starting position defined\n"
-# define E_WALL "The map isn't closed or there is an empty field between \
-the wall\n"
+# define E_WALL "The map isn't closed or there is an empty field as a floor \
+cell\n"
+# define E_DOOR "A door is not set properly\n"
 # define E_XPM_IMAGE "Mlx_xpm_file_to_image function error\n"
 # define E_MLX_WINDOW "Mlx_new_window function error\n"
 
@@ -340,9 +345,6 @@ void	raycast_floor_ceiling(t_cube *cube);
 
 /* --------------------------  PROTOTYPE PARSING  --------------------------- */
 
-// check the map is surrounded by wall
-int		confirm_map(t_cube *cube, t_limits max, int y, int x);
-
 // get file data and parse it
 int		get_data(t_cube *cube, char *file);
 
@@ -398,8 +400,6 @@ int		color_atoi(char *str, int *color);
 int		remove_n(char **tmp);
 int		file_type(char *str, char *type);
 int		split_size(char **str);
-int		map_size_x(int *map);
-int		map_size_y(int **map);
 
 // mlx utils
 int		combine_rgb(int r, int g, int b);
