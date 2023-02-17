@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 10:09:54 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 12:00:34 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ static void	fill_background(t_cube *cube)
 	}
 }
 
+static void	collect_elem(t_cube *cube)
+{
+	t_obj	*obj;
+
+	obj = cube->obj;
+	while (obj)
+	{
+		if (obj->texture == 17 && (int)obj->pos_x == (int)cube->player.pos_x
+			&& (int)obj->pos_y == (int)cube->player.pos_y)
+		{
+			obj->draw = 0;
+			cube->weapon.gun = 1;
+		}
+		obj = obj->next;
+	}
+}
+
 static void	add_elem(t_cube *cube)
 {
 	anim_smoke(cube);
@@ -56,6 +73,7 @@ static int	update(t_cube *cube)
 	else
 		fill_background(cube);
 	raycast_walls(cube);
+	collect_elem(cube);
 	add_elem(cube);
 	draw_buffer(cube);
 	mlx_put_image_to_window(cube->vars.mlx_ptr, cube->vars.mlx_win, \

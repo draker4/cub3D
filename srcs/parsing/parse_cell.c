@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/17 10:32:17 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:57:17 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	parse_obj(t_cube *cube, int y, int x)
 	else if (cube->parse.map[y][x] == '4')
 		new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 10, 0.0, 1, 1,
 				256, 1, 0, NULL}, cube, '4');
+	else if (cube->parse.map[y][x] == 'G')
+		new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 17, 0.0, 1, 1,
+				0, 1, 0, NULL}, cube, '0');
 	if (!new)
 		return (EXIT_FAILURE);
 	obj_add_back(&cube->obj, new);
@@ -62,7 +65,7 @@ int	parse_cell(t_cube *cube, int y, int x)
 		return (player_start(cube, y, x));
 	if (cube->parse.map[y][x] == 'B' || cube->parse.map[y][x] == 'L'
 		|| cube->parse.map[y][x] == 'P' || cube->parse.map[y][x] == '3'
-		|| cube->parse.map[y][x] == '4')
+		|| cube->parse.map[y][x] == '4' || cube->parse.map[y][x] == 'G')
 		return (parse_obj(cube, y, x));
 	return (ft_error(E_CELL), EXIT_FAILURE);
 }

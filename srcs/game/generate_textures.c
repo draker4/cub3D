@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:21:26 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:55:17 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int	generate_textures(t_cube *cube)
 		|| load(cube, 10, SMOKE1_PATH) || load(cube, 11, SMOKE2_PATH)
 		|| load(cube, 12, SMOKE3_PATH) || load(cube, 13, SMOKE4_PATH)
 		|| load(cube, 14, SMOKE5_PATH) || load(cube, 15, SMOKE6_PATH)
-		|| load(cube, 16, SMOKE7_PATH))
+		|| load(cube, 16, SMOKE7_PATH) || load(cube, 17, GUN_COLLECT))
 		exit_game(cube, 1);
 	generate_background(cube);
 	if (load_weapon(cube, 0, PUNCH1_PATH) || load_weapon(cube, 1, PUNCH2_PATH)

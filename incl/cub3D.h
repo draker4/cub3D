@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:29:27 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:54:49 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_TEXTURES 17
+# define NB_TEXTURES 18
 # define NB_SP_WEAPON 7
 # define NB_BOOM 6
 # define MAP_SIZE 200
@@ -97,6 +97,7 @@ cell\n"
 # define GUN2_PATH "./sprites/gun2.xpm"
 # define GUN3_PATH "./sprites/gun3.xpm"
 # define GUN4_PATH "./sprites/gun4.xpm"
+# define GUN_COLLECT "./sprites/gun_collect.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
