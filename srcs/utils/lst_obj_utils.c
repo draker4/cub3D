@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 04:56:37 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:29:11 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 14:11:49 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_obj	*new_obj(t_obj data, t_cube *cube, char cell)
 	new->v_move = data.v_move;
 	new->draw = data.draw;
 	new->start_frame = data.start_frame;
+	new->time_anim = data.time_anim;
 	new->next = NULL;
 	cube->parse.map[(int)data.pos_y][(int)data.pos_x] = cell;
 	return (new);

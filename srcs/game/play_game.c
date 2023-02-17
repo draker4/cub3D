@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 12:00:34 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 13:45:22 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	collect_elem(t_cube *cube)
 static void	add_elem(t_cube *cube)
 {
 	anim_smoke(cube);
+	anim_enemy(cube);
 	draw_sprites(cube);
 	draw_weapon(cube);
 	if (cube->boom.boom)

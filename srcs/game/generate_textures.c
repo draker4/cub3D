@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:55:17 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 13:18:20 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int	load_weapon(t_cube *cube, int index, char *path)
 	return (EXIT_SUCCESS);
 }
 
-static int	generate_boom(t_cube *cube, int index, char *path)
+static int	load_boom(t_cube *cube, int index, char *path)
 {
 	t_data	data;
 	int		width;
@@ -128,7 +128,12 @@ int	generate_textures(t_cube *cube)
 		|| load(cube, 10, SMOKE1_PATH) || load(cube, 11, SMOKE2_PATH)
 		|| load(cube, 12, SMOKE3_PATH) || load(cube, 13, SMOKE4_PATH)
 		|| load(cube, 14, SMOKE5_PATH) || load(cube, 15, SMOKE6_PATH)
-		|| load(cube, 16, SMOKE7_PATH) || load(cube, 17, GUN_COLLECT))
+		|| load(cube, 16, SMOKE7_PATH) || load(cube, 17, GUN_COLLECT)
+		|| load(cube, 18, ENEMY1_PATH) || load(cube, 19, ENEMY2_PATH)
+		|| load(cube, 20, ENEMY3_PATH) || load(cube, 21, ENEMY4_PATH)
+		|| load(cube, 22, ENEMY5_PATH) || load(cube, 23, ENEMY6_PATH)
+		|| load(cube, 24, ENEMY7_PATH) || load(cube, 25, ENEMY8_PATH)
+		|| load(cube, 26, DEATH_PATH))
 		exit_game(cube, 1);
 	generate_background(cube);
 	if (load_weapon(cube, 0, PUNCH1_PATH) || load_weapon(cube, 1, PUNCH2_PATH)
@@ -136,12 +141,9 @@ int	generate_textures(t_cube *cube)
 		|| load_weapon(cube, 4, GUN2_PATH) || load_weapon(cube, 5, GUN3_PATH)
 		|| load_weapon(cube, 6, GUN4_PATH))
 		exit_game(cube, 1);
-	if (generate_boom(cube, 0, BOOM1_PATH)
-		|| generate_boom(cube, 1, BOOM2_PATH)
-		|| generate_boom(cube, 2, BOOM3_PATH)
-		|| generate_boom(cube, 3, BOOM4_PATH)
-		|| generate_boom(cube, 4, BOOM5_PATH)
-		|| generate_boom(cube, 5, BOOM6_PATH))
+	if (load_boom(cube, 0, BOOM1_PATH) || load_boom(cube, 1, BOOM2_PATH)
+		|| load_boom(cube, 2, BOOM3_PATH) || load_boom(cube, 3, BOOM4_PATH)
+		|| load_boom(cube, 4, BOOM5_PATH) || load_boom(cube, 5, BOOM6_PATH))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);
 }

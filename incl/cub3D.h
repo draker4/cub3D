@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:54:49 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 14:09:49 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@
 # define ROT_SPEED 2.0
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_TEXTURES 18
+# define NB_TEXTURES 27
 # define NB_SP_WEAPON 7
 # define NB_BOOM 6
 # define MAP_SIZE 200
 # define MAP_POS 10
+# define TIME_ANIM 0.1
 
 # define BLACK 0x000000
 # define BLUE 0x0000FF
@@ -98,6 +99,15 @@ cell\n"
 # define GUN3_PATH "./sprites/gun3.xpm"
 # define GUN4_PATH "./sprites/gun4.xpm"
 # define GUN_COLLECT "./sprites/gun_collect.xpm"
+# define ENEMY1_PATH "./sprites/enemy1.xpm"
+# define ENEMY2_PATH "./sprites/enemy2.xpm"
+# define ENEMY3_PATH "./sprites/enemy3.xpm"
+# define ENEMY4_PATH "./sprites/enemy4.xpm"
+# define ENEMY5_PATH "./sprites/enemy5.xpm"
+# define ENEMY6_PATH "./sprites/enemy6.xpm"
+# define ENEMY7_PATH "./sprites/enemy7.xpm"
+# define ENEMY8_PATH "./sprites/enemy8.xpm"
+# define DEATH_PATH "./sprites/death.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -138,6 +148,7 @@ typedef struct s_obj
 	double			v_move;
 	int				draw;
 	double			start_frame;
+	double			time_anim;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -370,12 +381,8 @@ int		get_map(t_cube *cube, int fd);
 int		map_to_int(t_cube *cube);
 
 // used to parse the map
-int		player_start(t_cube *cube, int y, int x);
 void	define_limits(t_limits *max, char **map, int y);
 int		parse_cell(t_cube *cube, int y, int x);
-
-// analyse obj and prepare list of object to be used
-int		parse_obj(t_cube *cube, int y, int x);
 
 /* --------------------------  PROTOTYPE UTILS  --------------------------- */
 
@@ -418,8 +425,9 @@ void	fill_pixel(t_cube *cube, int index, int color);
 
 /* --------------------------  PROTOTYPE SPRITES  --------------------------- */
 
-// anim smoke
+// animations
 void	anim_smoke(t_cube *cube);
+void	anim_enemy(t_cube *cube);
 
 // calcul sprites
 void	init_calc_sprites(t_cube *cube, t_obj *current);
