@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 04:56:37 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 10:06:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:29:11 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,21 @@ int	obj_size(t_obj *obj)
 		obj = obj->next;
 	}
 	return (i);
+}
+
+void	change_obj_state(t_cube *cube, double x, double y, int state)
+{
+	t_obj	*obj;
+
+	obj = cube->obj;
+	while (obj)
+	{
+		if (obj->pos_x == x && obj->pos_y == y)
+			break ;
+		obj = obj->next;
+	}
+	if (!obj)
+		return ;
+	obj->draw = state;
+	obj->start_frame = 0;
 }

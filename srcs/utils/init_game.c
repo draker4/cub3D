@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 18:34:06 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:10:20 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,13 @@ int	init_game(t_cube *cube)
 	cube->tex.texture = init_textures(NB_TEXTURES, TEX_WIDTH, TEX_HEIGHT);
 	if (!cube->tex.texture)
 		exit_game(cube, 1);
-	cube->weapon.tex = init_textures(3, SCREEN_WIDTH, SCREEN_HEIGHT);
+	cube->weapon.tex = init_textures(NB_SP_WEAPON, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!cube->weapon.tex)
 		exit_game(cube, 1);
 	cube->boom.tex = init_textures(6, 860, SCREEN_HEIGHT);
 	if (!cube->boom.tex)
 		exit_game(cube, 1);
 	cube->nb_objs = obj_size(cube->obj);
-	cube->boom.boom = 0;
 	if (generate_textures(cube))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);

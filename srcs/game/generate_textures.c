@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 09:21:18 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:21:26 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	generate_background(t_cube *cube)
 	}
 }
 
-static int	generate_weapon(t_cube *cube, int index, char *path)
+static int	load_weapon(t_cube *cube, int index, char *path)
 {
 	t_data	data;
 	int		width;
@@ -131,9 +131,10 @@ int	generate_textures(t_cube *cube)
 		|| load(cube, 16, SMOKE7_PATH))
 		exit_game(cube, 1);
 	generate_background(cube);
-	if (generate_weapon(cube, 0, PUNCH1_PATH)
-		|| generate_weapon(cube, 1, PUNCH2_PATH)
-		|| generate_weapon(cube, 2, PUNCH3_PATH))
+	if (load_weapon(cube, 0, PUNCH1_PATH) || load_weapon(cube, 1, PUNCH2_PATH)
+		|| load_weapon(cube, 2, PUNCH3_PATH) || load_weapon(cube, 3, GUN1_PATH)
+		|| load_weapon(cube, 4, GUN2_PATH) || load_weapon(cube, 5, GUN3_PATH)
+		|| load_weapon(cube, 6, GUN4_PATH))
 		exit_game(cube, 1);
 	if (generate_boom(cube, 0, BOOM1_PATH)
 		|| generate_boom(cube, 1, BOOM2_PATH)

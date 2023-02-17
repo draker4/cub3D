@@ -6,33 +6,33 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:22:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:34:44 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:27:57 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	choose_anim(t_cube *cube)
+static void	choose_anim(t_cube *cube, int begin, int end)
 {
 	static double	time;
 
 	if (!cube->attack)
-		cube->weapon.nb_frame = 0;
+		cube->weapon.nb_frame = begin;
 	else
 	{
-		cube->weapon.start_frame += cube->frame.frame_time;
 		if (cube->weapon.start_frame > time)
 		{
 			cube->weapon.nb_frame++;
 			time += 0.1;
 		}
-	}
-	if (cube->weapon.nb_frame == 3)
-	{
-		open_close_door(cube);
-		cube->weapon.nb_frame = 0;
-		time = 0;
-		cube->attack = 0;
+		if (cube->weapon.nb_frame == end + 1)
+		{
+			open_close_door(cube);
+			cube->weapon.nb_frame = begin;
+			time = 0;
+			cube->attack = 0;
+		}
+		cube->weapon.start_frame += cube->frame.frame_time;
 	}
 }
 
@@ -43,7 +43,10 @@ void	draw_weapon(t_cube *cube)
 	int	color;
 
 	x = 0;
-	choose_anim(cube);
+	if (cube->weapon.gun)
+		choose_anim(cube, 3, 6);
+	else
+		choose_anim(cube, 0, 2);
 	while (x < SCREEN_WIDTH)
 	{
 		y = 0;

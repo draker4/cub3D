@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 10:12:47 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 11:29:27 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
 # define NB_TEXTURES 17
+# define NB_SP_WEAPON 7
 # define NB_BOOM 6
 # define MAP_SIZE 200
 # define MAP_POS 10
@@ -92,6 +93,10 @@ cell\n"
 # define SMOKE5_PATH "./sprites/smoke5.xpm"
 # define SMOKE6_PATH "./sprites/smoke6.xpm"
 # define SMOKE7_PATH "./sprites/smoke7.xpm"
+# define GUN1_PATH "./sprites/gun1.xpm"
+# define GUN2_PATH "./sprites/gun2.xpm"
+# define GUN3_PATH "./sprites/gun3.xpm"
+# define GUN4_PATH "./sprites/gun4.xpm"
 
 /* ------------------------------  STRUCTURE  ------------------------------- */
 
@@ -267,6 +272,7 @@ typedef struct s_bkground
 typedef struct s_weapon
 {
 	int		**tex;
+	int		gun;
 	int		nb_frame;
 	double	start_frame;
 }	t_weapon;
@@ -395,6 +401,7 @@ t_obj	*new_obj(t_obj data, t_cube *cube, char cell);
 void	free_obj(t_obj **obj);
 void	obj_add_back(t_obj **obj, t_obj *new);
 int		obj_size(t_obj *obj);
+void	change_obj_state(t_cube *cube, double x, double y, int state);
 
 // map utils
 int		rgb_format(char *str);
