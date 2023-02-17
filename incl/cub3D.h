@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 14:09:49 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:09:05 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define TEX_HEIGHT 256
 # define MOVE_SPEED 4.0
 # define ROT_SPEED 2.0
+# define SPEED_ENEMY 0.5
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
 # define NB_TEXTURES 27
@@ -36,6 +37,7 @@
 # define MAP_SIZE 200
 # define MAP_POS 10
 # define TIME_ANIM 0.1
+# define ENEMY_DIST_FOLLOW 16
 
 # define BLACK 0x000000
 # define BLUE 0x0000FF
@@ -149,6 +151,9 @@ typedef struct s_obj
 	int				draw;
 	double			start_frame;
 	double			time_anim;
+	int				vertical;
+	int				dead;
+	int				dir;
 	struct s_obj	*next;
 }	t_obj;
 
@@ -345,6 +350,9 @@ int		generate_textures(t_cube *cube);
 int		handle_keypress(int keycode, t_cube *cube);
 int		handle_keyrelease(int keycode, t_cube *cube);
 int		handle_mouse(int x, int y, t_cube *cube);
+
+// move ennemies
+void	move_enemy(t_cube *cube);
 
 // prototypes move player
 void	rotate_player(t_cube *cube, double prev_dir_x, double prev_plane_x,

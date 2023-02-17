@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:15:51 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 13:57:21 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:15:17 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ static void	swap_obj(t_obj **current, t_obj **check, t_obj tmp)
 	(*current)->v_move = (*check)->v_move;
 	(*current)->draw = (*check)->draw;
 	(*current)->start_frame = (*check)->start_frame;
+	(*current)->vertical = (*check)->vertical;
+	(*current)->dead = (*check)->dead;
+	(*current)->dir = (*check)->dir;
 	(*check)->pos_x = tmp.pos_x;
 	(*check)->pos_y = tmp.pos_y;
 	(*check)->texture = tmp.texture;
@@ -48,6 +51,9 @@ static void	swap_obj(t_obj **current, t_obj **check, t_obj tmp)
 	(*check)->v_move = tmp.v_move;
 	(*check)->draw = tmp.draw;
 	(*check)->start_frame = tmp.start_frame;
+	(*check)->vertical = tmp.vertical;
+	(*check)->dead = tmp.dead;
+	(*check)->dir = tmp.dir;
 }
 
 static void	sort_sprites(t_cube *cube)

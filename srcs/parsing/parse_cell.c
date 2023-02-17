@@ -6,35 +6,56 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/17 14:11:29 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:13:49 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static int	rd(int nb)
+{
+	static int	x;
+	static int	y;
+
+	if (nb == 2)
+	{
+		if (x++ % 2)
+			return (1);
+		else
+			return (0);
+	}
+	else
+	{
+		if (y++ % 3)
+			return (1);
+		else
+			return (-1);
+	}
+}
+
 static void	choose_obj(t_cube *cube, int y, int x, t_obj **new)
 {
 	if (cube->parse.map[y][x] == 'L')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 6, 0.0, 1, 1,
-				-256, 1, 0, 0, NULL}, cube, '0');
+				-256, 1, 0, 0, 0, 0, 0, NULL}, cube, '0');
 	else if (cube->parse.map[y][x] == 'B')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 7, 0.0, 1, 1,
-				256, 1, 0, 0, NULL}, cube, '2');
+				256, 1, 0, 0, 0, 0, 0, NULL}, cube, '2');
 	else if (cube->parse.map[y][x] == 'P')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 8, 0.0, 0.6,
-				0.6, 0, 1, 0, 0, NULL}, cube, '2');
+				0.6, 0, 1, 0, 0, 0, 0, 0, NULL}, cube, '2');
 	else if (cube->parse.map[y][x] == '3')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 10, 0.0, 1, 1,
-				256, 0, 0, 0, NULL}, cube, '3');
+				256, 0, 0, 0, 0, 0, 0, NULL}, cube, '3');
 	else if (cube->parse.map[y][x] == '4')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 10, 0.0, 1, 1,
-				256, 1, 0, TIME_ANIM, NULL}, cube, '4');
+				256, 1, 0, TIME_ANIM, 0, 0, 0, NULL}, cube, '4');
 	else if (cube->parse.map[y][x] == 'G')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 17, 0.0, 1, 1,
-				0, 1, 0, 0, NULL}, cube, '0');
+				0, 1, 0, 0, 0, 0, 0, NULL}, cube, '0');
 	else if (cube->parse.map[y][x] == 'X')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 18, 0.0, 1, 1,
-				256, 1, 0, TIME_ANIM, NULL}, cube, '0');
+				256, 1, 0, TIME_ANIM, rd(2), 0, rd(3), NULL}, cube, '0');
 }
 
 static int	parse_obj(t_cube *cube, int y, int x)

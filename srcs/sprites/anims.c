@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 09:49:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 14:10:21 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 14:13:10 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,7 @@ void	anim_enemy(t_cube *cube)
 	while (obj)
 	{
 		if (obj->texture >= 18 && obj->texture <= 25 && obj->draw)
-		{
 			change_enemy_texture(cube, obj);
-			// if (x==1)
-			// 	printf("texture=%d\n", obj->texture);
-			// x++;
-		}
 		obj = obj->next;
 	}
 }

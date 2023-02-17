@@ -45,6 +45,7 @@ SRCS_G			=	collision_sprites.c		\
 					exit_game.c				\
 					generate_textures.c		\
 					handle_events.c			\
+					move_enemy.c			\
 					move_player.c			\
 					open_door.c				\
 					play_game.c				\
