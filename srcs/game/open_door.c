@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:47:19 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 12:02:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 16:25:31 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	check_door_punch(t_cube *cube)
 
 static void	check_door_gun(t_cube *cube)
 {
-	int	i;
+	double	i;
 
-	i = 1;
+	i = 0.5;
 	while (cube->map[(int)(cube->player.pos_y + i * cube->player.dir_y)] \
 	[(int)(cube->player.pos_x + i * cube->player.dir_x)] != 1)
 	{
@@ -67,14 +67,19 @@ static void	check_door_gun(t_cube *cube)
 			cube->player.dir_x));
 			return ;
 		}
-		i++;
+		i += 0.5;
 	}
 }
 
 void	open_close_door(t_cube *cube)
 {
-	if (cube->weapon.gun)
-		check_door_gun(cube);
+	if (!cube->kill)
+	{
+		if (cube->weapon.gun)
+			check_door_gun(cube);
+		else
+			check_door_punch(cube);
+	}
 	else
-		check_door_punch(cube);
+		cube->kill = 0;
 }

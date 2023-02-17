@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 15:09:05 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 16:17:30 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define MAP_POS 10
 # define TIME_ANIM 0.1
 # define ENEMY_DIST_FOLLOW 16
+# define DETECT_ENEMY 0.2
 
 # define BLACK 0x000000
 # define BLUE 0x0000FF
@@ -320,6 +321,7 @@ typedef struct s_cube
 	t_weapon		weapon;
 	t_limits		limits;
 	t_boom			boom;
+	int				kill;
 	int				nb_objs;
 	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
@@ -350,6 +352,9 @@ int		generate_textures(t_cube *cube);
 int		handle_keypress(int keycode, t_cube *cube);
 int		handle_keyrelease(int keycode, t_cube *cube);
 int		handle_mouse(int x, int y, t_cube *cube);
+
+// kill enemies
+void	kill_enemy(t_cube *cube);
 
 // move ennemies
 void	move_enemy(t_cube *cube);

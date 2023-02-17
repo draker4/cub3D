@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:43:30 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:10:20 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:26:32 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	init_game(t_cube *cube)
 	if (!cube->boom.tex)
 		exit_game(cube, 1);
 	cube->nb_objs = obj_size(cube->obj);
+	cube->kill = 0;
 	if (generate_textures(cube))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);

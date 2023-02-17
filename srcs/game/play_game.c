@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 14:13:49 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 16:02:00 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ static void	collect_elem(t_cube *cube)
 static void	add_elem(t_cube *cube)
 {
 	anim_smoke(cube);
+	if (cube->attack && cube->weapon.start_frame == 0.0)
+	{
+		kill_enemy(cube);
+		open_close_door(cube);
+	}
 	anim_enemy(cube);
 	move_enemy(cube);
 	draw_sprites(cube);

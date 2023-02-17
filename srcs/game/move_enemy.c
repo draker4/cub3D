@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:15:15 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 15:22:23 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:42:24 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	move_enemy(t_cube *cube)
 	obj = cube->obj;
 	while (obj)
 	{
-		if (obj->texture >= 18 && obj->texture <= 25 && obj->draw)
+		if (obj->texture >= 18 && obj->texture <= 25 && obj->draw && !obj->dead)
 		{
 			if (pow(obj->pos_x - cube->player.pos_x, 2) + \
 			pow(obj->pos_y - cube->player.pos_y, 2) < ENEMY_DIST_FOLLOW)

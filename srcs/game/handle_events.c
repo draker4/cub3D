@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:40:41 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/16 16:35:37 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 15:35:11 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	handle_keypress(int keycode, t_cube *cube)
 		cube->weapon.start_frame = 0;
 		cube->attack = 1;
 	}
-	if (keycode == 65307)
+	if (keycode == ESCAPE)
 		exit_game(cube, 0);
 	return (EXIT_SUCCESS);
 }
@@ -48,7 +48,7 @@ int	handle_keyrelease(int keycode, t_cube *cube)
 		cube->move.right = 0;
 	if (keycode == RIGHT)
 		cube->move.rotate_right = 0;
-	if (keycode == 65361)
+	if (keycode == LEFT)
 		cube->move.rotate_left = 0;
 	return (EXIT_SUCCESS);
 }

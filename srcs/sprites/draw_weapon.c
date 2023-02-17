@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 15:22:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 11:27:57 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 16:01:44 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static void	choose_anim(t_cube *cube, int begin, int end)
 		}
 		if (cube->weapon.nb_frame == end + 1)
 		{
-			open_close_door(cube);
 			cube->weapon.nb_frame = begin;
 			time = 0;
 			cube->attack = 0;
