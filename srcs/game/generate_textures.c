@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:10:35 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 13:18:20 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 17:44:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,33 +90,15 @@ static int	load_weapon(t_cube *cube, int index, char *path)
 	return (EXIT_SUCCESS);
 }
 
-static int	load_boom(t_cube *cube, int index, char *path)
+static void	generate_explosion(t_cube *cube)
 {
-	t_data	data;
-	int		width;
-	int		height;
-	int		x;
-	int		y;
-
-	data.img = mlx_xpm_file_to_image(cube->vars.mlx_ptr, path, &width, &height);
-	if (!data.img)
-		return (x = write(2, E_XPM_IMAGE, ft_strlen(E_XPM_IMAGE)), \
-		EXIT_FAILURE);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
-	&data.line_length, &data.endian);
-	x = -1;
-	while (++x < 860)
-	{
-		y = -1;
-		while (++y < SCREEN_HEIGHT)
-		{
-			cube->boom.tex[index][x * SCREEN_HEIGHT + y] = \
-			*(unsigned int *)(data.addr + (y * data.line_length + x * \
-			(data.bits_per_pixel / 8)));
-		}
-	}
-	mlx_destroy_image(cube->vars.mlx_ptr, data.img);
-	return (EXIT_SUCCESS);
+	if (load(cube, 27, BOOM1_PATH)
+		|| load(cube, 28, BOOM2_PATH) || load(cube, 29, BOOM3_PATH)
+		|| load(cube, 30, BOOM4_PATH) || load(cube, 31, BOOM5_PATH)
+		|| load(cube, 32, BOOM6_PATH) || load(cube, 33, BOOM7_PATH)
+		|| load(cube, 34, BOOM8_PATH) || load(cube, 35, BOOM9_PATH)
+		|| load(cube, 36, BOOM10_PATH))
+		exit_game(cube, 1);
 }
 
 int	generate_textures(t_cube *cube)
@@ -135,15 +117,12 @@ int	generate_textures(t_cube *cube)
 		|| load(cube, 24, ENEMY7_PATH) || load(cube, 25, ENEMY8_PATH)
 		|| load(cube, 26, DEATH_PATH))
 		exit_game(cube, 1);
+	generate_explosion(cube);
 	generate_background(cube);
 	if (load_weapon(cube, 0, PUNCH1_PATH) || load_weapon(cube, 1, PUNCH2_PATH)
 		|| load_weapon(cube, 2, PUNCH3_PATH) || load_weapon(cube, 3, GUN1_PATH)
 		|| load_weapon(cube, 4, GUN2_PATH) || load_weapon(cube, 5, GUN3_PATH)
 		|| load_weapon(cube, 6, GUN4_PATH))
-		exit_game(cube, 1);
-	if (load_boom(cube, 0, BOOM1_PATH) || load_boom(cube, 1, BOOM2_PATH)
-		|| load_boom(cube, 2, BOOM3_PATH) || load_boom(cube, 3, BOOM4_PATH)
-		|| load_boom(cube, 4, BOOM5_PATH) || load_boom(cube, 5, BOOM6_PATH))
 		exit_game(cube, 1);
 	return (EXIT_SUCCESS);
 }

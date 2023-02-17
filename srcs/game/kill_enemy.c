@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:50 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 16:17:26 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 18:29:41 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	kill_enemy(t_cube *cube)
 	obj = cube->obj;
 	while (obj)
 	{
-		if (obj->texture >= 18 && obj->texture <= 25 && obj->draw && !obj->dead)
+		if (obj->texture >= 18 && obj->texture <= 25 && !obj->dead)
 		{
 			if (cube->weapon.gun)
 				shoot_enemy(cube, obj);

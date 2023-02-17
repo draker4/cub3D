@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:47:19 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 16:25:31 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 18:06:20 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,33 @@
 
 static void	open_door(t_cube *cube, int y, int x)
 {
+	t_obj	*new;
+
 	cube->map[y][x] = 4;
-	cube->boom.boom = 1;
-	cube->boom.start_frame = 0;
-	cube->boom.nb_frame = 0;
-	change_obj_state(cube, (double)x + 0.5, (double)y + 0.5, 1);
+	new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 27, 0.0, 1, 1,
+			0, 0, TIME_ANIM, 0, 0, 0, NULL}, cube, '4');
+	if (!new)
+		exit_game(cube, 1);
+	obj_add_back(&cube->obj, new);
+	cube->nb_objs = obj_size(cube->obj);
 }
 
 static void	close_door(t_cube *cube, int y, int x)
 {
+	t_obj	*obj;
+
 	cube->map[y][x] = 3;
-	change_obj_state(cube, (double)x + 0.5, (double)y + 0.5, 0);
+	obj = cube->obj;
+	while (obj)
+	{
+		if (obj->pos_x == x + 0.5 && obj->pos_y == y + 0.5)
+			break ;
+		obj = obj->next;
+	}
+	if (!obj)
+		return ;
+	del_one(&cube->obj, obj);
+	cube->nb_objs = obj_size(cube->obj);
 }
 
 static void	check_door_punch(t_cube *cube)

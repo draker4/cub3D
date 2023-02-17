@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 16:17:30 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 18:05:10 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@
 # define SPEED_ENEMY 0.5
 # define WALL_HEIGHT 1.5
 # define ANGLE 0.66
-# define NB_TEXTURES 27
+# define NB_TEXTURES 37
 # define NB_SP_WEAPON 7
-# define NB_BOOM 6
 # define MAP_SIZE 200
 # define MAP_POS 10
 # define TIME_ANIM 0.1
@@ -149,7 +148,6 @@ typedef struct s_obj
 	double			u_div;
 	double			v_div;
 	double			v_move;
-	int				draw;
 	double			start_frame;
 	double			time_anim;
 	int				vertical;
@@ -295,14 +293,6 @@ typedef struct s_weapon
 	double	start_frame;
 }	t_weapon;
 
-typedef struct s_boom
-{
-	int		**tex;
-	int		nb_frame;
-	double	start_frame;
-	int		boom;
-}	t_boom;
-
 typedef struct s_cube
 {
 	int				**map;
@@ -320,9 +310,8 @@ typedef struct s_cube
 	t_tex			tex;
 	t_weapon		weapon;
 	t_limits		limits;
-	t_boom			boom;
-	int				kill;
 	int				nb_objs;
+	int				kill;
 	int				attack;
 	int				buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 	double			buffer_z[SCREEN_WIDTH];
@@ -421,8 +410,8 @@ void	init_cube(t_cube *cube);
 t_obj	*new_obj(t_obj data, t_cube *cube, char cell);
 void	free_obj(t_obj **obj);
 void	obj_add_back(t_obj **obj, t_obj *new);
+void	del_one(t_obj **obj, t_obj *to_free);
 int		obj_size(t_obj *obj);
-void	change_obj_state(t_cube *cube, double x, double y, int state);
 
 // map utils
 int		rgb_format(char *str);

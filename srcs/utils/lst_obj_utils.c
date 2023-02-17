@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 04:56:37 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 15:10:16 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/17 18:07:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_obj	*new_obj(t_obj data, t_cube *cube, char cell)
 	new->u_div = data.u_div;
 	new->v_div = data.v_div;
 	new->v_move = data.v_move;
-	new->draw = data.draw;
 	new->start_frame = data.start_frame;
 	new->time_anim = data.time_anim;
 	new->dead = data.dead;
@@ -84,19 +83,13 @@ int	obj_size(t_obj *obj)
 	return (i);
 }
 
-void	change_obj_state(t_cube *cube, double x, double y, int state)
+void	del_one(t_obj **obj, t_obj *to_free)
 {
-	t_obj	*obj;
-
-	obj = cube->obj;
-	while (obj)
+	if (obj && *obj == to_free)
 	{
-		if (obj->pos_x == x && obj->pos_y == y)
-			break ;
-		obj = obj->next;
+		free(to_free);
+		*obj = (*obj)->next;
 	}
-	if (!obj)
-		return ;
-	obj->draw = state;
-	obj->start_frame = 0;
+	else if (obj && *obj)
+		del_one(&((*obj)->next), to_free);
 }
