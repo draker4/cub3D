@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:50 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:29:41 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 10:51:50 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	punch_enemy(t_cube *cube, t_obj *obj)
 {
-	if (cube->map[(int)(cube->player.pos_y + 1 * cube->player.dir_y)] \
-	[(int)(cube->player.pos_x + 1 * cube->player.dir_x)] == \
-	cube->map[(int)obj->pos_y][(int)obj->pos_x])
+	if (pow(cube->player.pos_x + cube->player.dir_x - obj->pos_x, 2) \
+		+ pow(cube->player.pos_y + cube->player.dir_y - obj->pos_y, 2) \
+		< DETECT_ENEMY)
 	{
 		obj->dead = 1;
 		obj->start_frame = 0;

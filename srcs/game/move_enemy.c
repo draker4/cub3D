@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:15:15 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:07:22 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 10:58:44 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,27 @@ static void	move(t_cube *cube, t_obj *obj, double speed, int type)
 	}
 }
 
+static void	choose_move(t_cube *cube, t_obj *obj)
+{
+	if (pow(obj->pos_x - cube->player.pos_x, 2) + \
+	pow(obj->pos_y - cube->player.pos_y, 2) < ENEMY_DIST_FOLLOW)
+	{
+		follow(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 0);
+		follow(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 4);
+	}
+	else
+	{
+		move(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 0);
+		move(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 4);
+	}
+	if (pow(obj->pos_x - cube->player.pos_x, 2) + \
+	pow(obj->pos_y - cube->player.pos_y, 2) < ENEMY_DIST_DEAD)
+	{
+		if (write(1, "Oh no! You died!\n", 17))
+			exit(1);
+	}
+}
+
 void	move_enemy(t_cube *cube)
 {
 	t_obj	*obj;
@@ -56,19 +77,7 @@ void	move_enemy(t_cube *cube)
 	while (obj)
 	{
 		if (obj->texture >= 18 && obj->texture <= 25 && !obj->dead)
-		{
-			if (pow(obj->pos_x - cube->player.pos_x, 2) + \
-			pow(obj->pos_y - cube->player.pos_y, 2) < ENEMY_DIST_FOLLOW)
-			{
-				follow(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 0);
-				follow(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 4);
-			}
-			else
-			{
-				move(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 0);
-				move(cube, obj, SPEED_ENEMY * cube->frame.frame_time, 4);
-			}
-		}
+			choose_move(cube, obj);
 		obj = obj->next;
 	}
 }

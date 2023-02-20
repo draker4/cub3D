@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:01:06 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:05:10 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 10:55:09 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define MAP_POS 10
 # define TIME_ANIM 0.1
 # define ENEMY_DIST_FOLLOW 16
+# define ENEMY_DIST_DEAD 0.1
 # define DETECT_ENEMY 0.2
 
 # define BLACK 0x000000
