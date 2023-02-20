@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:15:15 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/20 10:58:44 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 11:40:04 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	choose_move(t_cube *cube, t_obj *obj)
 	pow(obj->pos_y - cube->player.pos_y, 2) < ENEMY_DIST_DEAD)
 	{
 		if (write(1, "Oh no! You died!\n", 17))
-			exit(1);
+			exit_game(cube, 1);
 	}
 }
 

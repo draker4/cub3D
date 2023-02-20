@@ -126,7 +126,7 @@ MKDIR			=	mkdir -p
 LEAKS			=	leaks -atExit -- 
 LLDB			=	lldb
 CP				=	cp
-VALGRIND		=	valgrind --leak-check=full --track-origins=yes --show-reachable=no --show-possibly-lost=no --trace-children=yes
+VALGRIND		=	valgrind --leak-check=full --track-origins=yes --show-reachable=yes --show-possibly-lost=yes --trace-children=yes
 
 # ****************************  RULES  ***************************** #
 

@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 09:49:21 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:26:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 11:57:14 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ static void	change_enemy_texture(t_cube *cube, t_obj *obj)
 void	anim_enemy(t_cube *cube)
 {
 	t_obj	*obj;
+	t_obj	*next;
 
 	obj = cube->obj;
 	while (obj)
 	{
+		next = obj->next;
 		if (obj->texture >= 18 && obj->texture <= 26)
 		{
 			if (!obj->dead)
@@ -73,14 +75,14 @@ void	anim_enemy(t_cube *cube)
 			else
 			{
 				obj->texture = 26;
-				if (obj->start_frame > 2 * obj->time_anim)
-				{
-					del_one(&cube->obj, obj);
-					cube->nb_objs = obj_size(cube->obj);
-				}
 				obj->start_frame += cube->frame.frame_time;
 			}
+			if (obj->dead && obj->start_frame > 2 * obj->time_anim)
+			{
+				del_one(&cube->obj, obj);
+				cube->nb_objs = obj_size(cube->obj);
+			}
 		}
-		obj = obj->next;
+		obj = next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 16:29:31 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:20:45 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 11:56:49 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ static void	fill_background(t_cube *cube)
 static void	collect_elem(t_cube *cube)
 {
 	t_obj	*obj;
+	t_obj	*next;
 
 	obj = cube->obj;
 	while (obj)
 	{
+		next = obj->next;
 		if (obj->texture == 17 && (int)obj->pos_x == (int)cube->player.pos_x
 			&& (int)obj->pos_y == (int)cube->player.pos_y)
 		{
@@ -49,7 +51,7 @@ static void	collect_elem(t_cube *cube)
 			cube->nb_objs = obj_size(cube->obj);
 			cube->weapon.gun = 1;
 		}
-		obj = obj->next;
+		obj = next;
 	}
 }
 

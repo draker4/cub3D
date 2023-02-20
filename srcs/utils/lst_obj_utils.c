@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 04:56:37 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/17 18:07:09 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 11:54:40 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,13 @@ int	obj_size(t_obj *obj)
 
 void	del_one(t_obj **obj, t_obj *to_free)
 {
+	t_obj	*next;
+
 	if (obj && *obj == to_free)
 	{
+		next = (*obj)->next;
 		free(to_free);
-		*obj = (*obj)->next;
+		*obj = next;
 	}
 	else if (obj && *obj)
 		del_one(&((*obj)->next), to_free);
