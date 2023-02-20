@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/17 18:06:06 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 12:02:14 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	choose_obj(t_cube *cube, int y, int x, t_obj **new)
 				0.6, 0, 0, 0, 0, 0, 0, NULL}, cube, '2');
 	else if (cube->parse.map[y][x] == '4')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 10, 0.0, 1, 1,
-				256, 0, TIME_ANIM, 0, 0, 0, NULL}, cube, '4');
+				0, 0, TIME_ANIM, 0, 0, 0, NULL}, cube, '4');
 	else if (cube->parse.map[y][x] == 'G')
 		*new = new_obj((t_obj){(double)x + 0.5, (double)y + 0.5, 17, 0.0, 1, 1,
 				0, 0, 0, 0, 0, 0, NULL}, cube, '0');
