@@ -6,7 +6,7 @@
 /*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 15:47:19 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/20 12:02:01 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 14:39:58 by bperriol         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	check_door_gun(t_cube *cube)
 		}
 		else if \
 		(cube->map[(int)(cube->player.pos_y + i * cube->player.dir_y)] \
-		[(int)(cube->player.pos_x + i * cube->player.dir_x)] == 4)
+		[(int)(cube->player.pos_x + i * cube->player.dir_x)] == 4 && i > 1)
 		{
 			close_door(cube, (int)(cube->player.pos_y + i * \
 			cube->player.dir_y), (int)(cube->player.pos_x + i * \
