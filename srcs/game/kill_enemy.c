@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kill_enemy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperriol <bperriol@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:33:50 by bperriol          #+#    #+#             */
-/*   Updated: 2023/02/20 11:11:43 by bperriol         ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 14:10:59 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	shoot_enemy(t_cube *cube, t_obj *obj)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (cube->map[(int)(cube->player.pos_y + i * cube->player.dir_y)] \
 	[(int)(cube->player.pos_x + i * cube->player.dir_x)] != 1)
 	{

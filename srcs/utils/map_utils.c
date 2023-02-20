@@ -6,7 +6,7 @@
 /*   By: bboisson <bboisson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:30:55 by bboisson          #+#    #+#             */
-/*   Updated: 2023/02/16 17:06:27 by bboisson         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:58:22 by bboisson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	color_atoi(char *str, int *color)
 		*color = *color * 10 + str[i] - 48;
 		i++;
 	}
-	if (str[i])
+	if (str[i] || *color > 255)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
